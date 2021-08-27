@@ -1,0 +1,37 @@
+version: "3.8"
+services:
+    api: 
+      build:
+        dockerfile: Dockerfile
+        context: ./docker-test 
+        target: development
+      volumes:
+          - ./docker-test:/usr/src/app
+          - ./usr/src/app/node_modules
+      command: npm run start:dev
+      depends_on:
+        - postgres
+      environment:
+        DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/db
+        NODE_ENV: development
+        JWT_SECRET: ${JWT_SECRET}
+        PORT: 3000
+      ports: 
+        - "${API_PORT}:3000"
+    postgres:
+      image: postgres:13
+      ports: 
+        - "${POSTGRES_PORT}:5432"
+      environment:
+        POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+        POSTGRES_USER: ${POSTGRES_USER}
+        POSTGRES_DB: ${POSTGRES_DB}
+    postgres_admin:
+      image: dpage/pgadmin4:4.28
+      depends_on:
+        - postgres
+      environment: 
+        PGADMIN_DEFAULT_EMAIL: admin@admin.de
+        PGADMIN_DEFAULT_PASSWORD: password
+      ports:
+        - "${POSTGRES_ADMIN_PORT}:80"
