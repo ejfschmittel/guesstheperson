@@ -1,0 +1,50 @@
+.form-input{
+    display: flex;
+    box-sizing: border-box;
+    position: relative;
+    padding: 1.5rem .3rem;
+    width: 100%;
+    margin: .3rem 0;
+
+
+    &__input{
+        width: 100%;
+        padding: .5rem .5rem;
+        font-size: 1.3rem;
+        box-sizing: border-box;   
+    }
+
+    &__label{
+        font-size: 1.4rem;
+        color: #888;
+        position: absolute;
+        left: .8rem;
+        font-weight: bold;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: .3s;
+    }
+
+
+
+
+    input {
+        &:focus, &:not(:placeholder-shown), &:-webkit-autofill {
+          &+label { 
+            top: 0;
+            transform: translateY(0);
+            color: #fff;
+          }
+        }
+    }
+
+
+
+    &__error{
+        position: absolute;
+        color: red;
+        bottom: 0;
+        left: .5rem;
+        font-size: 1.3rem;
+    }
+}
