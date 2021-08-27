@@ -1,4 +1,5 @@
-import { IsString } from "class-validator";
+import { IsNumber, IsString } from "class-validator";
+import { UserEntity } from "src/users/models/users.entity";
 
 export class CreatePersonDto{
     @IsString()
@@ -6,4 +7,7 @@ export class CreatePersonDto{
 
     @IsString()
     name: string;
+
+    @IsNumber()
+    owner: UserEntity;
 }
