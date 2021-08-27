@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { PeopleModule } from './people/people.module';
+import { BoardsModule } from './boards/boards.module';
 @Module({
   imports: [
     ConfigModule.forRoot({isGlobal: true}),
@@ -17,7 +18,8 @@ import { PeopleModule } from './people/people.module';
     }),
     UsersModule,
     AuthModule,
-    PeopleModule
+    PeopleModule,
+    BoardsModule
   ],
   controllers: [AppController],
   providers: [AppService],
