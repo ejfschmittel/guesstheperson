@@ -4,7 +4,7 @@ import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColum
 
 
 @Entity()
-export class Board{
+export class BoardEntity{
     @PrimaryGeneratedColumn("uuid")
     id: string;
 

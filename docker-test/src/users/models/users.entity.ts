@@ -1,3 +1,4 @@
+import { BoardEntity } from "src/boards/models/board.entity";
 import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn, OneToMany} from "typeorm";
 
 import {PeopleEntity} from "../../people/models/people.entity"
@@ -19,6 +20,9 @@ export class UserEntity{
 
     @OneToMany(() => PeopleEntity, people => people.owner)
     people: PeopleEntity[];
+
+    @OneToMany(() => BoardEntity, board => board.owner)
+    boards: BoardEntity[];
 
     @BeforeInsert()
     emailToLowerCase(){
