@@ -4,6 +4,8 @@ import thunk from 'redux-thunk'
 
 import reducers from './root-reducer'
 
+
+
 const INITIAL_STATE = {}
 const enhancers = []
 const middleware = [

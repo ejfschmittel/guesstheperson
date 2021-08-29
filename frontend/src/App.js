@@ -15,9 +15,10 @@ function App() {
   const token = useSelector(store => store.user.auth_token)
 
   useEffect(() => {
-    console.log(token)
+    console.log(token !== null)
     
-    if(token){
+    if(token !== null){
+      console.log("why")
       console.log(token)
       // login user
       const user = parseJwt(token).user;

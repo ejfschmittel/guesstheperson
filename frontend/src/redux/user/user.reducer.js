@@ -31,6 +31,9 @@ const userReducer = (state = initalState, action) => {
             return {...state, userLoginPending: false, user: action.payload.user, auth_token: action.payload.token, userLoginError: null}
         case USER_TYPES.LOGIN_USER_ERROR:
             return {...state, userLoginPending: false, userLoginError: action.payload}
+
+        case USER_TYPES.LOGOUT_USER:
+            return {...state, user: null, auth_token: null}
         default:
             return state;
     }

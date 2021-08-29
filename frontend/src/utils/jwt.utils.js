@@ -25,3 +25,7 @@ export const setAuthToken = (token) => {
 export const getAuthToken = () => {
     return localStorage.getItem(JWT_TOKEN_KEY)
 }
+
+export const removeAuthToken = () => {
+    localStorage.removeItem(JWT_TOKEN_KEY);
+}

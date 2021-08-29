@@ -25,6 +25,33 @@ const login = async (userLoginDto) => {
     }).then(res => res.json())
 }
 
+
+const register = async (userRegisterDto) => {
+
+    validate(userRegisterDto, {
+        email: {
+            exists: true,
+        },
+        name: {
+            exists: true,
+        },
+        password: {
+            exists: true
+        }
+    })
+    
+
+    return fetch(USER_BASE_URL, {
+        method: "post",
+        headers: {
+            'Accept': 'application/json', 
+            'Content-Type': 'application/json',
+        }, 
+        body: JSON.stringify(userRegisterDto)
+    }).then(res => res.json())
+}
+
 export default {
-    login
+    login,
+    register
 }
