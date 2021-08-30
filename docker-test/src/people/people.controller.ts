@@ -1,9 +1,9 @@
-import { Body, Controller, Get, Param, Post, Req, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Req, Res, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import {PeopleInterface} from "./models/people.interface"
 
-
+import {join} from "path"
 import {editFileName, imageFileFilter} from "src/utils/image.utils"
 import { PeopleService } from './people.service';
 import { PersonOwnerGuard } from './guards/people.guard';
@@ -34,6 +34,8 @@ export class PeopleController {
         })
     }   
 
+
+
     @Get()
     getPeople(): Promise<PeopleInterface[]>{
         return this.peopleService.findAll();
@@ -54,6 +56,9 @@ export class PeopleController {
     updatePerson(@Param("id") id: string): any{
         return null;
     }
+
+  
+
 
     
 }

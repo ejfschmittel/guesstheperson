@@ -1,0 +1,33 @@
+.header{
+    background: #333;
+    color: #fff;
+
+    &__content{
+        margin: 0 auto;
+        width: min(100%, 1000px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__title{
+        font-size: 2rem;
+        letter-spacing: .1rem;
+    }
+
+    &__link{
+        color: #fff;
+        text-decoration: none;
+        display: block;
+        padding: .5rem .8rem;
+        font-size: 1.6rem;
+        cursor: pointer;
+        border: none;
+        background: none;
+
+    }
+
+    &__navigation{
+        display: flex;
+    }
+}

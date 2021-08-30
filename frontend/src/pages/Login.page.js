@@ -4,9 +4,12 @@ import Header from '../components/Header.component'
 
 const LoginPage = () => {
     return (
-        <div className="wholescreen">
+        <div className="page page--fullscreen page--flex" >
             <Header />
-            <Login />
+        
+            <div className="page__content page__content--flex-center">
+                <Login />
+            </div>
         </div>
     )
 }

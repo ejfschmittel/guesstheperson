@@ -7,6 +7,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { PeopleModule } from './people/people.module';
 import { BoardsModule } from './boards/boards.module';
+import { UploadsModule } from './uploads/uploads.module';
 @Module({
   imports: [
     ConfigModule.forRoot({isGlobal: true}),
@@ -19,7 +20,8 @@ import { BoardsModule } from './boards/boards.module';
     UsersModule,
     AuthModule,
     PeopleModule,
-    BoardsModule
+    BoardsModule,
+    UploadsModule
   ],
   controllers: [AppController],
   providers: [AppService],

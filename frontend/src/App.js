@@ -7,6 +7,7 @@ import RegisterPage from "./pages/Register.page";
 import { userLoginSuccess} from "./redux/user/user.actions"
 import {parseJwt} from "./utils/jwt.utils"
 import "./styles/main.scss";
+import PeopleOverview from "./pages/PeopleOverview.page";
 
 
 
@@ -33,6 +34,7 @@ function App() {
           
           <Route path="/register" component={RegisterPage}/>
           <Route path="/login" component={LoginPage}/>
+          <Route path="/people" component={PeopleOverview}/>
           <Route path="/" component={HomepagePage}/>
         </Switch>
       </Router>

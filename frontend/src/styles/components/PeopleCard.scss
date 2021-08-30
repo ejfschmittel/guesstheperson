@@ -1,0 +1,52 @@
+.people-card{
+ 
+    padding: 1.6rem;
+    border-radius: .3rem;
+    background: #fff;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+
+    &__img-container{
+        background: #aaa;
+        min-height: 200px;
+        min-width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__img{
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    &__name{
+        width: 100%;
+        background: #333;
+        color: #fff;
+        text-align: center;
+        font-size: 1.3rem;
+        padding: .3rem;
+    }
+
+    &__delete-btn{
+        width: 100%;
+        font-size: 1.3rem;
+        display: block;
+        background: red;
+        color: #fff;
+        cursor: pointer;
+        border: none;
+        padding: .3rem 0;
+    }
+
+    &__edit-btn{
+        width: 100%;
+        background: blue;
+        color: #fff;
+        font-size: 1.3rem;
+        display: block;
+        cursor: pointer;
+        border: none;
+        padding: .3rem 0;
+    }
+}
