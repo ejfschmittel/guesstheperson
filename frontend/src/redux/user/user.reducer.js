@@ -1,11 +1,23 @@
 import USER_TYPES from "./user.types"
-import {getAuthToken} from "../../utils/jwt.utils"
+import {getAuthToken, parseJwt} from "../../utils/jwt.utils"
+
+
+
+  const token = getAuthToken();
+  let user = null;
+  if(token){
+      console.log(token)
+    user = parseJwt(token).user
+  }
+
+
+
 
 const initalState = {
-    user: null,
+    user: user,
     userLoginPending: false,
     userLoginError: null,
-    auth_token: getAuthToken(),
+    auth_token: token,
 
 
     registeredUser: null,

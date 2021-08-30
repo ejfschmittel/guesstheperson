@@ -1,0 +1,22 @@
+.image-selector{
+    position: relative;
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    &__input-label{
+        min-height: 300px;
+        width: 100%;
+        background: #eee;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    &__input{
+        display: none;
+    }
+}

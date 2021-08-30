@@ -1,0 +1,61 @@
+
+
+.edit-person-btn{
+    width: 100%;
+    display: block;
+    padding: .8rem;
+    border: none;
+    background: green;
+    color: #fff;
+    margin: 0 auto;
+    margin-top: 2rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+    box-shadow: 0 .3rem .5rem rgba(0,0,0,.5);
+    border-radius: .5rem;
+    margin: 2rem 0;
+}
+
+.person-overlay{
+    background: #fff;
+    padding: 1rem;
+    width: min(100%,800px);
+
+    &__buttons{
+        display: flex;
+
+    }
+
+    &__button{
+        margin-right: 1rem;
+        font-size: 1.4rem;
+        color: #fff;
+        background-color: green;
+        cursor: pointer;
+        padding: .5rem 2rem;
+        border: none;
+        display: block;
+
+        disabled{
+            opacity: .8;
+            cursor: not-allowed;
+        }
+    }
+}
+
+.overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5);
+    z-index: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__container{
+
+    }
+}

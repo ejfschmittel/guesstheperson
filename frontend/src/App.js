@@ -10,22 +10,10 @@ import "./styles/main.scss";
 import PeopleOverview from "./pages/PeopleOverview.page";
 
 
-
 function App() {
   const dispatch = useDispatch()
   const token = useSelector(store => store.user.auth_token)
 
-  useEffect(() => {
-    console.log(token !== null)
-    
-    if(token !== null){
-      console.log("why")
-      console.log(token)
-      // login user
-      const user = parseJwt(token).user;
-      dispatch(userLoginSuccess(token, user))
-    }
-  }, [])
 
   return (
     <div className="App">
