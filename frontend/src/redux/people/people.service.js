@@ -10,6 +10,8 @@ const deletePerson = (personId) => {
 
     const PEOPLE_DELETE_URL = PEOPLE_BASE_URL + `${personId}`
 
+    console.log(PEOPLE_DELETE_URL)
+
     return fetch(PEOPLE_DELETE_URL, {
         method: "DELETE",
         headers: {

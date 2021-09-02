@@ -13,7 +13,9 @@ const initialState = {
 
 
 const peopleReducer = (state = initialState, action) => {
+    console.log(action)
     switch(action.type){
+
 
         case PEOPLE_TYPES.PEOPLE_CREATE_SUCCESS:
             return {
@@ -38,10 +40,17 @@ const peopleReducer = (state = initialState, action) => {
             return {...state, fetchAllPeoplPending: false, fetchAllPeopleError: action.payload}
 
 
+        case PEOPLE_TYPES.PEOPLE_DELETE_SUCCESS:
+            return {
+                ...state, 
+                peopleList: state.peopleList.filter(id => id !== action.payload.id),
+                
+            }
+
         case PEOPLE_TYPES.PEOPLE_DELETE_START:
             return {...state, peopleByID: {
                 ...state.peopleByID,
-                [action.payload.id]: peopleReducer(state.peopleByID[action.payload.id],action)
+                [action.payload.id]: personReducer(state.peopleByID[action.payload.id],action)
             }}
         default:
             return state

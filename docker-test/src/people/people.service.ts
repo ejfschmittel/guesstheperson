@@ -30,6 +30,10 @@ export class PeopleService {
         })
     }
 
+    async delete(id: string): Promise<string>{
+        await this.peopleRespositiory.delete(id)
+        return id;
+    }
 
 
     async findAll(): Promise<PeopleInterface[]>{

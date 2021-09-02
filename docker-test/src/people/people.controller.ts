@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Req, Res, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Req, Res, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import {PeopleInterface} from "./models/people.interface"
@@ -42,9 +42,10 @@ export class PeopleController {
         return this.peopleService.findAll();
     }
 
-    @Get(":id/delete")
+    @Delete(":id")
     deletePerson(@Param("id") id: string): any{
-        return null
+        this.peopleService.delete(id);
+        return {id}
     }
 
     @Get(":id")

@@ -1,18 +1,26 @@
 import React, {useState} from 'react'
+import {useDispatch, useSelector} from "react-redux"
 
 import "../styles/components/PeopleCard.scss"
 import {FaCog, FaTrash, FaEdit} from "react-icons/fa"
+import peopleActions from "../redux/people/people.actions"
 
 const path = "http://localhost:8080/api/" 
 
 
 const PeopleCard = ({person}) => {
+    const dispatch = useDispatch()
     const [showSettings, setShowSettings] = useState(false)
 
 
     const toggleSettings = () => {
         console.log()
         setShowSettings(!showSettings)
+    }
+
+    const onDeleteClick = (e) => {
+        e.preventDefault()
+        dispatch(peopleActions.deletePerson(person.id))
     }
 
     return (
@@ -27,7 +35,7 @@ const PeopleCard = ({person}) => {
                         <FaEdit />
                         Edit
                     </button>
-                    <button className="people-card__option-item">
+                    <button className="people-card__option-item" onClick={onDeleteClick}>
                         <FaTrash />Delete
                     </button>
                 </div>

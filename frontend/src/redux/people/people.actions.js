@@ -5,7 +5,8 @@ import peopleService from "./people.service"
 
 const deletePerson = (personId) => dispatch => {
     const deletePersonStart = () => ({
-        type: PEOPLE_TYPES.PEOPLE_DELETE_START
+        type: PEOPLE_TYPES.PEOPLE_DELETE_START,
+        payload: {id: personId}
     })
 
     const deletePersonSuccess = (personId) => ({
@@ -23,7 +24,7 @@ const deletePerson = (personId) => dispatch => {
     peopleService.deletePerson(personId)
     .then(json => {
         console.log(json)
-        dispatch(deletePersonSuccess(json))
+        dispatch(deletePersonSuccess(json.id))
     })
     .catch(error => {
         console.log(error)
