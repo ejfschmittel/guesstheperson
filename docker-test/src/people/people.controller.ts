@@ -26,7 +26,8 @@ export class PeopleController {
         fileFilter: imageFileFilter
     }))
     createPerson(@UploadedFile() image, @Body("name") name: string, @Req() request): any{
-        console.log(request)
+        //console.log(request)
+        console.log(image)
         return this.peopleService.createPerson({
             image_url: image.path,
             name: name,

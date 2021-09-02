@@ -1,13 +1,15 @@
 import React, {useState, useRef, useEffect, useCallback} from 'react'
-
+import { useSelector, useDispatch } from 'react-redux';
 import FormInput from "./FormInput.component"
 import ImageSelector from './ImageSelector.component';
 import "../styles/components/EditPersonOverlay.scss";
-
+import {FaTimes} from "react-icons/fa"
+import peopleActions from "../redux/people/people.actions"
 
 
 const useCrop = (initialImage=null) => {
     const [img, setImg] = useState(initialImage)
+    const [imgFile, setImgFile] = useState(null)
     const imgRef = useRef(null)
 
 
@@ -19,13 +21,19 @@ const useCrop = (initialImage=null) => {
 
     const cropImage = async () => {
         if( imgRef && crop.width && crop.height) {
-          const croppedImageUrl = await getCroppedImg(
+          const croppedImage = await getCroppedImg(
             imgRef.current,
             crop,
             'newFile.jpeg'
           );
-          console.log(croppedImageUrl)
-          setImg(croppedImageUrl)
+    
+          console.log(imgFile)
+          const previewUrl = window.URL.createObjectURL(croppedImage);
+          setImg(previewUrl)
+ 
+           const newImgFile = new File([croppedImage], imgFile.name)
+           
+           setImgFile(newImgFile)
         }
     }
 
@@ -66,8 +74,8 @@ const useCrop = (initialImage=null) => {
                 console.error('Canvas is empty');
                 return;
               }
-              const previewUrl = window.URL.createObjectURL(blob);
-              resolve(previewUrl);
+              
+              resolve(blob);
             },
             'image/jpeg',
             1
@@ -81,16 +89,43 @@ const useCrop = (initialImage=null) => {
     }, []);
 
 
-    return {crop,img,setImg, setCrop, onImageLoad, cropImage}
+    return {crop,img,setImg, setCrop, onImageLoad, cropImage, imgFile,setImgFile}
 }
 
 
-const EditPersonOverlay = ({person, setShowOverlay}) => {
+const EditPersonOverlay = ({person, setShowOverlay, showOverlay}) => {
+    const dispatch = useDispatch()
+    const [editedPerson, setEditedPerson] = useState(person)
+    const {crop, setCrop, onImageLoad, cropImage, img, setImg, setImgFile, imgFile} = useCrop()
 
-    const {crop, setCrop, onImageLoad, cropImage, img, setImg} = useCrop()
+   
 
-    const onClickSaveClick = () => {
+    const onClickSaveClick = (e) => {
         // save or update 
+        e.preventDefault()
+
+        console.log(editedPerson)
+        console.log(img)
+
+        if(person.id){
+            // update
+         
+        }else{
+            // create
+            const createPersonDto = {
+                name: editedPerson.name,
+                image: imgFile
+            }
+            console.log(createPersonDto)
+            dispatch(peopleActions.createPerson(createPersonDto))
+        }
+    }
+
+    const onChange = (e) => {
+        setEditedPerson({
+            ...editedPerson,
+            [e.target.name]: e.target.value
+        })
     }
 
     const onImageSelect = (e) => {
@@ -98,6 +133,8 @@ const EditPersonOverlay = ({person, setShowOverlay}) => {
         if (e.target.files && e.target.files.length > 0) {
             const reader = new FileReader();
             reader.addEventListener('load', () => setImg(reader.result));
+            console.log(e.target.files[0])
+            setImgFile(e.target.files[0])
             reader.readAsDataURL(e.target.files[0]);
         }
     }
@@ -107,12 +144,18 @@ const EditPersonOverlay = ({person, setShowOverlay}) => {
         cropImage();
     }
 
+    const closeOverlay = () => {
+        setShowOverlay(false)
+    }
 
     return (
-        <div className="overlay" onClick={() => setShowOverlay(false)}>
+        <div className={`overlay ${!showOverlay && 'overlay--hidden'}`} >
             <div className="overlay__container person-overlay">
+                <div className="person-overlay__close" onClick={closeOverlay}>
+                    <FaTimes />
+                </div>
                 <form>
-                    <FormInput />
+                    <FormInput id="person-name" name="name" value={editedPerson?.name} onChange={onChange}/>
                     <ImageSelector 
                         src={img}
                         crop={crop}
@@ -124,7 +167,7 @@ const EditPersonOverlay = ({person, setShowOverlay}) => {
                     
 
                     <div className="person-overlay__buttons">
-                        <button className="person-overlay__button">Save</button>
+                        <button className="person-overlay__button" onClick={onClickSaveClick}>Save</button>
                         <button className="person-overlay__button" onClick={onCropClick}>Crop</button>
                         <label className="person-overlay__button" onClick={onImageSelect}>
                             ChangeImage

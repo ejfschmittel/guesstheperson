@@ -11,12 +11,16 @@ import EditPersonOverlay from '../components/PeopleCreateOverlay.component'
 
 const PeopleOverview = () => {
     const dispatch = useDispatch()
-    const peopleList = useSelector(store => store.people.peopleList)
-    const peopleByID= useSelector(store =>store.people.peopleByID)
-    const isLoadingPeople = useSelector(store => store.people.fetchAllPeoplPending)
+    const peopleList = useSelector(store => store.people.people.peopleList)
+    const peopleByID= useSelector(store =>store.people.people.peopleByID)
+    const isLoadingPeople = useSelector(store => store.people.people.fetchAllPeoplePending)
     const user = useSelector(store => store.user.user)
     const people = peopleList.map(id => peopleByID[id])
 
+    const [overlayPerson, setOverlayPerson] = useState({
+        name: "test",
+        image_url: "",
+    })
     const [showOverlay, setShowOverlay] = useState(false)
 
     useEffect(() => {
@@ -37,7 +41,7 @@ const PeopleOverview = () => {
                 <h1 className="page__title">{user.name}'s People Selection</h1>
                 <button className="edit-person-btn" onClick={onCreateClick}>Create new Person</button>
                 <PeopleList people={people}/>
-                <EditPersonOverlay person={null} setShowOverlay={setShowOverlay}/>
+                <EditPersonOverlay person={overlayPerson} setShowOverlay={setShowOverlay} showOverlay={showOverlay}/>
             </div>
         </div>
        
