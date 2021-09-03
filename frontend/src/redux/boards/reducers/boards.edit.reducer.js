@@ -1,0 +1,1 @@
+import BOARDS_TYPES from "../boards.types"
