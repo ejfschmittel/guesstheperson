@@ -1,20 +1,21 @@
 import { PeopleEntity } from "src/people/models/people.entity";
 import { UserEntity } from "src/users/models/users.entity";
 import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import { BoardPersonEntity } from "./boardPerson.entity";
+import { BoardEntity } from "./board.entity";
 
 
 @Entity()
-export class BoardEntity{
+export class BoardPersonEntity{
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
     @Column()
-    title: string
+    index: number;
 
-    @OneToMany(() => BoardPersonEntity, boardPerson => boardPerson.board, {cascade: ['remove']})
-    people: BoardPersonEntity[]
+    @ManyToOne(() => PeopleEntity, person => person.boardReferences)
+    person: PeopleEntity
 
-    @ManyToOne(() => UserEntity, user => user.people)
-    owner: UserEntity;
+    // one board / multiple entities
+    @ManyToOne(() => BoardEntity, board => board.people)
+    board: BoardEntity;
 }

@@ -4,6 +4,7 @@ import Register from '../components/Register.component'
 import FormInput from '../components/FormInput.component'
 
 
+
 const HomePage = () => {
     return (
         <div className="wholescreen-flex">

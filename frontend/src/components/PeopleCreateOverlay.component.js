@@ -5,7 +5,7 @@ import ImageSelector from './ImageSelector.component';
 import "../styles/components/EditPersonOverlay.scss";
 import {FaTimes} from "react-icons/fa"
 import peopleActions from "../redux/people/people.actions"
-
+import FlexOverlay from "./FlexOverlay"
 
 const useCrop = (initialImage=null) => {
     const [img, setImg] = useState(initialImage)
@@ -144,16 +144,11 @@ const EditPersonOverlay = ({person, setShowOverlay, showOverlay}) => {
         cropImage();
     }
 
-    const closeOverlay = () => {
-        setShowOverlay(false)
-    }
+
 
     return (
-        <div className={`overlay ${!showOverlay && 'overlay--hidden'}`} >
-            <div className="overlay__container person-overlay">
-                <div className="person-overlay__close" onClick={closeOverlay}>
-                    <FaTimes />
-                </div>
+        <FlexOverlay setShow={setShowOverlay} show={showOverlay} className="person-overlay">
+       
                 <form>
                     <FormInput id="person-name" name="name" value={editedPerson?.name} onChange={onChange}/>
                     <ImageSelector 
@@ -175,8 +170,8 @@ const EditPersonOverlay = ({person, setShowOverlay, showOverlay}) => {
                         </label>
                     </div>
                 </form>
-            </div>
-        </div>
+
+        </FlexOverlay>
     )
 }
 

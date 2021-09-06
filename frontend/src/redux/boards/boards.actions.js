@@ -60,8 +60,39 @@ const fetchAllBoards = () => dispatch => {
         })   
 }
 
+const fetchOneBoard = (id) => dispatch => {
+    console.log("fetch board")
+    const fetchOneBoardStart = () => ({
+        type: BOARDS_TYPES.BOARDS_FETCH_ONE_START
+    })
+
+    const fetchOneBoardSuccess = (board) => ({
+        type: BOARDS_TYPES.BOARDS_FETCH_ONE_SUCCESS,
+        payload: board
+    })
+
+    const fetchOneBoardError = (errors) => ({
+        type: BOARDS_TYPES.BOARDS_FETCH_ONE_ERROR,
+        payload: errors,
+    })
+
+    dispatch(fetchOneBoardStart())
+
+    boardsServices.fetchOne(id)
+        .then(json => {
+            console.log("fetch board success")
+            dispatch(fetchOneBoardSuccess(json))
+        })
+        .catch(errors => {
+            console.log(errors)
+            dispatch(fetchOneBoardError(errors))
+        })   
+}
+
+
 
 export default {
     fetchAllBoards,
+    fetchOneBoard,
     createBoard
 }

@@ -2,7 +2,7 @@
     padding: 3rem;
     box-shadow: 0 .2rem .5rem rgba(0,0,0,.5);
     border-radius: .5rem;
-    background: #421d25;
+    background: #eee;
 
     &__title{
         font-size: 3rem;
@@ -10,11 +10,11 @@
         text-align: center;
         padding-bottom: 2.5rem;
         margin-bottom: 2rem;
-        color: #fff;
+        color: #333;
     }
 
     &__section{
-        border-top: 1px solid #eee;
+        border-top: 1px solid #aaa;
         margin-top: 3rem;
     }
 

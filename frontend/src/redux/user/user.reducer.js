@@ -1,13 +1,16 @@
 import USER_TYPES from "./user.types"
-import {getAuthToken, parseJwt} from "../../utils/jwt.utils"
+import {getAuthToken, parseJwt, isExpired} from "../../utils/jwt.utils"
 
 
 
   const token = getAuthToken();
   let user = null;
   if(token){
-      console.log(token)
-    user = parseJwt(token).user
+
+    const parsedToken = parseJwt(token);
+    isExpired(parsedToken)
+    console.log(parsedToken)
+    user = parsedToken.user
   }
 
 

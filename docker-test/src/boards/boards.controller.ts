@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Req, UseGuards } from '@nestjs/common';
 import { JWTAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { BoardsService } from './boards.service';
 import { createBoardDto } from './models/dto/CreateBoard.dto';
@@ -29,7 +29,7 @@ export class BoardsController {
 
     @Put(":id")
     updateBoard(@Param("id") id: string, @Body() updateBoardDto: UpdateBoardDto){
-
+        return this.boardsService.updateBoard(id, updateBoardDto)
     }
 
     @Delete(":id")

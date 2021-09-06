@@ -1,19 +1,33 @@
-import React, {useState} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import {useDispatch, useSelector} from "react-redux"
 
 import "../styles/components/PeopleCard.scss"
 import {FaCog, FaTrash, FaEdit} from "react-icons/fa"
 import peopleActions from "../redux/people/people.actions"
-
+import {SortableContainer, SortableElement, SortableHandle} from "react-sortable-hoc"
 const path = "http://localhost:8080/api/" 
 
+/*
+const PeopleCard = SortableElement(({}) => {
+    return (
+        <div className="people-card"></div>
+    )
+})*/
 
-const PeopleCard = ({person}) => {
+const PeopleCard = SortableElement(({person, selected, hideOptions, onClick}) => {
     const dispatch = useDispatch()
+    const cardRef = useRef()
     const [showSettings, setShowSettings] = useState(false)
 
 
-    const toggleSettings = () => {
+
+    const onPersonClick = (e) => {
+        onClick(person)
+    }
+
+    const toggleSettings = (e) => {
+        e.preventDefault()
+        
         console.log()
         setShowSettings(!showSettings)
     }
@@ -24,9 +38,9 @@ const PeopleCard = ({person}) => {
     }
 
     return (
-        <div className="people-card">
-            <div className="people-card__options">
-                <div className="people-card__options-btn" onClick={toggleSettings}>
+        <div className={`people-card ${selected ? 'people-card--selected' : ''}`} ref={cardRef} onClick={onPersonClick}>
+           <div className="people-card__options">
+                <div className={`people-card__options-btn ${hideOptions ? 'people-card__options-btn--hidden' : ''}`} onClick={toggleSettings}>
                     <FaCog />
                 </div>
 
@@ -41,18 +55,28 @@ const PeopleCard = ({person}) => {
                 </div>
             </div>
             
-            <div className="people-card__img-container">
-                <img className="people-card__img" src={path + person.image_url} />
+            <div className="people-card__flex-container">
+                <div className="people-card__img-container" style={{backgroundImage: `url('${path + person.image_url}')`}}>
+                   
+                </div>
             </div>
             <div className="people-card__name">
                 {person.name}
             </div>
-
+       
          
 
 
         </div>
     )
+})
+
+
+PeopleCard.defaultProps = {
+    person: null,
+    selected: false,
+    hideOptions: false,
+    onClick: () => {}
 }
 
 export default PeopleCard

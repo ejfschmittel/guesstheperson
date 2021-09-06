@@ -32,6 +32,8 @@ const PeopleOverview = () => {
         setShowOverlay(true)
     }
 
+
+
     return (
 
         <div className="page page--fullscreen page--flex" >
@@ -40,7 +42,7 @@ const PeopleOverview = () => {
             <div className="page__content page__content--container">
                 <h1 className="page__title">{user.name}'s People Selection</h1>
                 <button className="edit-person-btn" onClick={onCreateClick}>Create new Person</button>
-                <PeopleList people={people}/>
+                <PeopleList items={people}  />
                 <EditPersonOverlay person={overlayPerson} setShowOverlay={setShowOverlay} showOverlay={showOverlay}/>
             </div>
         </div>

@@ -1,7 +1,7 @@
 import {getAuthToken} from "../../utils/jwt.utils"
 import {API_BASE_URL} from "../../utils/urls.utils"
 import {validate} from "../../utils/validation.utils"
-
+import {handleFetchResponse} from "../../utils/fetch.utils"
 
 const BOARDS_BASE_URL = API_BASE_URL + "boards/"
 
@@ -34,7 +34,19 @@ const fetchAll = () => {
     }).then(res => res.json())
 }
 
+const fetchOne = (id) => {
+    const URL = BOARDS_BASE_URL + id
+    return fetch(URL, {
+        method: "GET",
+        headers: {
+            'Authorization': 'Bearer ' + getAuthToken(),
+        }
+    }).then(handleFetchResponse)
+}
+
+
 export default {
     fetchAll,
+    fetchOne,
     createBoard
 }

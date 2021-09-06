@@ -29,3 +29,14 @@ export const getAuthToken = () => {
 export const removeAuthToken = () => {
     localStorage.removeItem(JWT_TOKEN_KEY);
 }
+
+export const isExpired = (parsedToken) => {
+    if(parsedToken){
+        // cpompare exp date with current date
+        // 1630947375
+        // 1630938689769
+        return (new Date().getTime() / 1000) <= parsedToken.exp
+    }
+
+    return true;
+}

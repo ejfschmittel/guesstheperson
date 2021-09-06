@@ -2,6 +2,8 @@ import React from 'react'
 import BoardPreview from './BoardPreview'
 import "../styles/components/BoardsList.scss"
 
+
+
 const BoardsList = ({boards}) => {
     return (
         <div className="boards-list">
