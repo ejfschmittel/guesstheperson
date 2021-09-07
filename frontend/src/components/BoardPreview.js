@@ -12,6 +12,8 @@ const BoardPreview = ({board}) => {
             <div>
                 {board.title}
             </div>
+            <button className="board-preview__edit-btn">Edit</button>
+            <button className="board-preview__play-btn">Play</button>
         </Link>
     )
 }

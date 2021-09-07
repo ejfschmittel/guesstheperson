@@ -44,9 +44,28 @@ const fetchOne = (id) => {
     }).then(handleFetchResponse)
 }
 
+const updateBoard = (id,updateBoardDto) => {
+    
+    validate(updateBoardDto,{
+        title: {exists: true}
+    })
+
+    const URL = BOARDS_BASE_URL + id;
+    return fetch(URL, {
+        method: "PUT",
+        body: JSON.stringify(updateBoardDto),
+        headers: {
+            'Authorization': 'Bearer ' + getAuthToken(),
+            'Accept': 'application/json', 
+            'Content-Type': 'application/json',
+        }
+    }).then(handleFetchResponse)
+}
+
 
 export default {
     fetchAll,
     fetchOne,
-    createBoard
+    createBoard,
+    updateBoard
 }

@@ -90,9 +90,40 @@ const fetchOneBoard = (id) => dispatch => {
 }
 
 
+const updateBoard = (id, updateBoardDto) => dispatch => {
+    console.log("fetch board")
+    const updateBoardStart = () => ({
+        type: BOARDS_TYPES.BOARDS_EDIT_START
+    })
+
+    const updateBoardSuccess = (board) => ({
+        type: BOARDS_TYPES.BOARDS_EDIT_SUCCESS,
+        payload: board
+    })
+
+    const updateBoardError = (errors) => ({
+        type: BOARDS_TYPES.BOARDS_EDIT_ERROR,
+        payload: errors,
+    })
+
+    dispatch(updateBoardStart())
+
+    boardsServices.updateBoard(id, updateBoardDto)
+        .then(json => {
+            console.log("fetch board success")
+            dispatch(updateBoardSuccess(json))
+        })
+        .catch(errors => {
+            console.log(errors)
+            dispatch(updateBoardError(errors))
+        })   
+}
+
+
 
 export default {
     fetchAllBoards,
     fetchOneBoard,
-    createBoard
+    createBoard,
+    updateBoard,
 }
