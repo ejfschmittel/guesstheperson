@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux"
 import {useParams} from "react-router-dom"
 import Header from '../components/Header.component'
 
+
 import EditableTitle from '../components/EditableTitle'
 import BoardEditAddPeopleOverlay from '../components/BoardEditAddPeopleOverlay'
 import PeopleList from '../components/PeopleList.component'

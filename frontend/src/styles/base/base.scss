@@ -67,6 +67,12 @@ html, body{
             width: min(100%, 1000px);
             margin: 0 auto;
             margin-top: 5rem;
+
+            
+            @include respond(tab-port){
+                width: 100%;
+                padding: 1rem;
+            }
         }
     }
 
