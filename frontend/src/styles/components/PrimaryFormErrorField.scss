@@ -1,0 +1,14 @@
+.primary-error-field{
+    min-height: 3rem;
+    padding: .5rem;
+    font-size: .9rem;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--active{
+        background: red;
+        color: #fff;
+    }
+}

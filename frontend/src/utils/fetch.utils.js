@@ -1,13 +1,4 @@
-class HTTPError extends Error{
-    constructor(message, status, response){
-        super(message);
-        this.response = response
-        this.status = status
-    }
-
-    getStatus = () => this.status
-    getInfo = () => this.response;
-}
+import {HTTPError} from "./errors.utils"
 
 export const handleFetchResponse = (response) => {
     if(response.ok){
@@ -15,9 +6,10 @@ export const handleFetchResponse = (response) => {
     }else{
         console.log(response)
         
-
         return response.json().then((json) => {
-            throw new HTTPError(`(Status: ${response.status}) ${response.statusText}`, response.status, json)
+            console.log("parsed response")
+            console.log(json)
+            throw new HTTPError(`(Status: ${response.status}) ${response.statusText}`, response.status, json.message)
         })
     }
 }

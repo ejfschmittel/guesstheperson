@@ -1,5 +1,5 @@
 
-
+import {FormError} from "./errors.utils"
 
 const ERROR_KEYS = {
     EXISTS: "exists",
@@ -37,24 +37,8 @@ const DEFAULT_ERROR_VALIDATORS = {
 
 
 
-export class ValidationError extends Error {
-    constructor(message,errors){
-        super(message)
-        this.errors = errors;
-    }
-
-    getValidationErrors(){
-        return this.errors;
-    }
-}
 
 
-export const prepareErrors = (errors) => {
-    if( errors instanceof ValidationError){
-        return errors.getValidationErrors()
-    }
-    return errors;
-}
 
 export const validate = (data, validators) => {
     const errors = {}
@@ -79,7 +63,7 @@ export const validate = (data, validators) => {
 
     if(!isEmptyObject(errors)){
         console.log("thow new validation error")
-        throw new ValidationError("validation error", errors)
+        throw new FormError("validation error", errors)
     }
 }
 

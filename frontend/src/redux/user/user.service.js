@@ -1,5 +1,6 @@
 import {API_BASE_URL} from "../../utils/urls.utils"
 import { validate } from "../../utils/validation.utils"
+import {handleFetchResponse} from "../../utils/fetch.utils"
 
 const USER_BASE_URL = API_BASE_URL + "users/"
 const LOGIN_URL = USER_BASE_URL + "login/"
@@ -9,6 +10,9 @@ const LOGIN_URL = USER_BASE_URL + "login/"
 const login = async (userLoginDto) => {
 
     validate(userLoginDto, {
+        email: {
+            exists:true,
+        },
         password: {
             exists: true
         }
@@ -22,7 +26,7 @@ const login = async (userLoginDto) => {
             'Content-Type': 'application/json',
         }, 
         body: JSON.stringify(userLoginDto)
-    }).then(res => res.json())
+    }).then(handleFetchResponse)
 }
 
 

@@ -1,8 +1,8 @@
 import USER_TYPES from "./user.types"
 import userService from "./user.service"
-import {prepareErrors} from "../../utils/validation.utils"
-import {getUserData, setAuthToken, removeAuthToken} from "../../utils/jwt.utils"
 
+import {getUserData, setAuthToken, removeAuthToken} from "../../utils/jwt.utils"
+import {parseError} from "../../utils/errors.utils"
 
 const userLoginStart = () => ({
     type: USER_TYPES.LOGIN_USER_PENDING,
@@ -35,8 +35,9 @@ const login = (userLoginDto) => (dispatch) => {
             dispatch(userLoginSuccess(token, user))
         })
         .catch(error => {
-            console.log(error)
-            const perparedErrors = prepareErrors(error)
+            const perparedErrors = parseError(error)
+            console.log("prepared error")
+            console.log(perparedErrors)
             dispatch(userLoginError(perparedErrors))
         })
 }
@@ -65,8 +66,9 @@ const register = (userLoginDto) => (dispatch) => {
             dispatch(userRegisterSuccess(json))
         })
         .catch(error => {
-            const perparedErrors = prepareErrors(error)
-            dispatch(userRegisterError(perparedErrors))
+            const preparedError = parseError(error)
+          
+            //dispatch(userRegisterError(preparedError))
         })
 }
 
