@@ -36,8 +36,6 @@ const login = (userLoginDto) => (dispatch) => {
         })
         .catch(error => {
             const perparedErrors = parseError(error)
-            console.log("prepared error")
-            console.log(perparedErrors)
             dispatch(userLoginError(perparedErrors))
         })
 }
@@ -66,9 +64,8 @@ const register = (userLoginDto) => (dispatch) => {
             dispatch(userRegisterSuccess(json))
         })
         .catch(error => {
-            const preparedError = parseError(error)
-          
-            //dispatch(userRegisterError(preparedError))
+            const perparedErrors = parseError(error)
+            dispatch(userRegisterError(perparedErrors))
         })
 }
 

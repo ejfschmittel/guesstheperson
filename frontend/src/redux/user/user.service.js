@@ -52,7 +52,7 @@ const register = async (userRegisterDto) => {
             'Content-Type': 'application/json',
         }, 
         body: JSON.stringify(userRegisterDto)
-    }).then(res => res.json())
+    }).then(handleFetchResponse)
 }
 
 export default {
