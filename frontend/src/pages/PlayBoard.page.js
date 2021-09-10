@@ -24,7 +24,7 @@ const PlayBoard = () => {
     useEffect(() => {
         // fetch board
         dispatch(boardsActions.fetchOneBoard(boardId))
-    }, [])
+    }, [dispatch, boardId])
 
     console.log("play board")
 

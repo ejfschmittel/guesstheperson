@@ -15,29 +15,27 @@
     }
 
     &__label{
-        font-size: 1.4rem;
+        font-size: 1.6rem;
         color: #888;
         position: absolute;
         left: .8rem;
-        font-weight: bold;
         top: 50%;
         transform: translateY(-50%);
         transition: .3s;
     }
 
 
-
-
-    input {
-        &:focus, &:not(:placeholder-shown), &:-webkit-autofill {
-          &+label { 
-            top: 0;
-            transform: translateY(0);
-            color: #000;
-          }
-        }
+    &__input:focus + &__label{
+        top: -3px;
+        transform: translateY(0);
+        color: #000;
     }
 
+    &__input:not(:placeholder-shown) + &__label{
+        top: -3px;
+        transform: translateY(0);
+        color: #000;
+    }
 
 
     &__error{

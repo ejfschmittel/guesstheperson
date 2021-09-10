@@ -63,9 +63,11 @@ const updateBoard = (id,updateBoardDto) => {
 }
 
 
-export default {
+const boardServices = {
     fetchAll,
     fetchOne,
     createBoard,
     updateBoard
 }
+
+export default boardServices

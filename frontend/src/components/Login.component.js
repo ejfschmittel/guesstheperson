@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import FormInput from './FormInput.component'
-import {validate} from "../utils/validation.utils"
 import {useDispatch, useSelector} from "react-redux"
 import userActions from "../redux/user/user.actions"
 import PrimaryButton from './PrimaryButton'

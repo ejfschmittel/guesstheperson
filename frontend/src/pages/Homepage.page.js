@@ -1,6 +1,5 @@
 import React from 'react'
 import {Link} from "react-router-dom"
-import Register from '../components/Register.component'
 import FormInput from '../components/FormInput.component'
 
 

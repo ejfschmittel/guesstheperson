@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import FormInput from './FormInput.component'
-import {useDispatch, useSelector} from "react-redux"
+import {useDispatch} from "react-redux"
 import boardActions from "../redux/boards/boards.actions"
 
 const CreateBoardForm = () => {

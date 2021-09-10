@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useMemo} from 'react'
+import React, {useState, useEffect} from 'react'
 import {useDispatch, useSelector} from "react-redux"
 import {useParams} from "react-router-dom"
 import Header from '../components/Header.component'
@@ -38,7 +38,7 @@ const BaordEditPage = () => {
     useEffect(() => {
         // fetch board
         dispatch(boardActions.fetchOneBoard(boardId))
-    }, [])
+    }, [dispatch, boardId])
 
     const onAddPersonClick = () => {
         setShowOverlay(true)
@@ -50,7 +50,6 @@ const BaordEditPage = () => {
     }
 
     const addPeople = (people) => {
-        let nextIndex = displayPeople.length;
         let peopleToAdd = []
 
         
@@ -66,7 +65,6 @@ const BaordEditPage = () => {
             // add people
             if(!exists){
                 peopleToAdd.push(people[i])
-                nextIndex++
             }else{
                 console.log(people[i].id + " already exists")
             }

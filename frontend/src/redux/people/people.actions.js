@@ -90,8 +90,12 @@ const fetchAllPeople = () => (dispatch) => {
         })
 }
 
-export default {
+
+const peopleActions = {
     fetchAllPeople,
     createPerson,
     deletePerson
 }
+
+export default peopleActions
+   

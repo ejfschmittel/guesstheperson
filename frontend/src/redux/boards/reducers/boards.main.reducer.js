@@ -10,7 +10,7 @@ const initialState = {
 }
 
 const boardsMainReducer = (state=initialState, action) => {
-    console.log("hello")
+
     switch(action.type){
 
         case BOARDS_TYPES.BOARDS_FETCH_ALL_START:

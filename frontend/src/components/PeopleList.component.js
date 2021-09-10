@@ -1,8 +1,8 @@
 import React from 'react'
 import PeopleCard from './PeopleCard.component'
 import "../styles/components/PeopleList.scss"
-
-import {SortableContainer, SortableElement} from "react-sortable-hoc"
+import LoadingOverlay from './LoadingIndicator.component'
+import {SortableContainer} from "react-sortable-hoc"
 
 const PeopleList = (props) => {
 
@@ -24,11 +24,14 @@ const PeopleList = (props) => {
     )
 }
 
-export const RawPeopleList = SortableContainer(({items, sortable, hideOptions, selected, onClick}) => {
+export const RawPeopleList = SortableContainer(({items, sortable, hideOptions, selected, onClick, isLoading}) => {
     return (
         <div className="people-list">
+         
+            <LoadingOverlay show={isLoading}/>
+           
             {items.map((person, idx) => {
-                const isSelected = selected.filter(id => person.id === id).length == 1
+                const isSelected = selected.filter(id => person.id === id).length === 1
                 return (
                     <PeopleCard 
                         person={person} 

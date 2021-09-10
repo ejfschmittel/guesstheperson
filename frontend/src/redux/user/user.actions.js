@@ -78,8 +78,10 @@ const logout = () => {
 }
 
 
-export default {
+const userActions =  {
     login,
     register,
     logout
 }
+
+export default userActions

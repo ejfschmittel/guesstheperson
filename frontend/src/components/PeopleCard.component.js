@@ -1,18 +1,14 @@
-import React, {useState, useRef, useEffect} from 'react'
-import {useDispatch, useSelector} from "react-redux"
+import React, {useState, useRef} from 'react'
+import {useDispatch} from "react-redux"
 
 import "../styles/components/PeopleCard.scss"
 import {FaCog, FaTrash, FaEdit} from "react-icons/fa"
 import peopleActions from "../redux/people/people.actions"
-import {SortableContainer, SortableElement, SortableHandle} from "react-sortable-hoc"
-const path = "http://localhost:8080/api/" 
+import { SortableElement} from "react-sortable-hoc"
 
-/*
-const PeopleCard = SortableElement(({}) => {
-    return (
-        <div className="people-card"></div>
-    )
-})*/
+import {API_BASE_URL} from "../utils/urls.utils"
+
+
 
 const PeopleCard = SortableElement(({person, selected, hideOptions, onClick}) => {
     const dispatch = useDispatch()
@@ -56,7 +52,7 @@ const PeopleCard = SortableElement(({person, selected, hideOptions, onClick}) =>
             </div>
             
             <div className="people-card__flex-container">
-                <div className="people-card__img-container" style={{backgroundImage: `url('${path + person.image_url}')`}}>
+                <div className="people-card__img-container" style={{backgroundImage: `url('${API_BASE_URL + person.image_url}')`}}>
                    
                 </div>
             </div>

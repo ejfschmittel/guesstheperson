@@ -66,8 +66,10 @@ const fetchAllPeople = () =>{
     }).then(res => res.json())
 }
 
-export default {
+const peopleService = {
     fetchAllPeople,
     createPerson,
     deletePerson
 }
+
+export default peopleService

@@ -8,8 +8,7 @@
     flex-direction: column;
   
     aspect-ratio: 1;
-    backface-visibility: hidden;
-    -webkit-font-smoothing: subpixel-antialiased;
+ 
 
 
 
@@ -24,7 +23,7 @@
         height: 100%;
         top: 0;
         left: 0;
-        overflow: hidden;
+       
      
     }
 
@@ -52,9 +51,9 @@
 
     &__option-items{
         position: absolute;
-        top: 2rem;
-        right: 2rem;
-        width: 50%;
+        top: 1rem;
+        right: 1rem;
+        width: 80%;
         padding: 2rem .5rem;
        
         background: #fff;
@@ -64,12 +63,12 @@
         z-index: 3;
         opacity: 0;
         transform-origin: right top;
-        transform: rotate(-90deg);
+        transform: translateX(50px) translateY(-50px);
         transition: all .3s ;
         
         &--show{
             opacity: 1;
-            transform: rotate(0);
+            transform: translateX(0) translateY(0);
         }
 
         

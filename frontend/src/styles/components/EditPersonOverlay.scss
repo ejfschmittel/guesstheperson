@@ -25,23 +25,8 @@
     &__buttons{
         display: flex;
 
-    }
-
-
-
-    &__button{
-        margin-right: 1rem;
-        font-size: 1.4rem;
-        color: #fff;
-        background-color: green;
-        cursor: pointer;
-        padding: .5rem 2rem;
-        border: none;
-        display: block;
-
-        disabled{
-            opacity: .8;
-            cursor: not-allowed;
+        & > * {
+            margin-right: 1rem;
         }
     }
 }

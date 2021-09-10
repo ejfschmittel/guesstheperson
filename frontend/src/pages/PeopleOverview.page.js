@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from "react-redux"
 import Header from "../components/Header.component"
 import PeopleList from '../components/PeopleList.component'
 import peopleActions from "../redux/people/people.actions"
-import EditPersonOverlay from '../components/PeopleCreateOverlay.component'
+import CreatePersonOverlay from '../components/CreatePersonOverlay.component'
 /*
 
     CreatePersonOverlay
@@ -17,8 +17,11 @@ const PeopleOverview = () => {
     const user = useSelector(store => store.user.user)
     const people = peopleList.map(id => peopleByID[id])
 
+    console.log("isloading people")
+    console.log(isLoadingPeople)
+
     const [overlayPerson, setOverlayPerson] = useState({
-        name: "test",
+        name: "",
         image_url: "",
     })
     const [showOverlay, setShowOverlay] = useState(false)
@@ -26,7 +29,7 @@ const PeopleOverview = () => {
     useEffect(() => {
         // load people list
         dispatch(peopleActions.fetchAllPeople())
-    }, [])
+    }, [dispatch])
 
     const onCreateClick = () => {
         setShowOverlay(true)
@@ -41,9 +44,9 @@ const PeopleOverview = () => {
         
             <div className="page__content page__content--container">
                 <h1 className="page__title">{user.name}'s People Selection</h1>
-                <button className="edit-person-btn" onClick={onCreateClick}>Create new Person</button>
-                <PeopleList items={people}  hideOptions={false}/>
-                <EditPersonOverlay person={overlayPerson} setShowOverlay={setShowOverlay} showOverlay={showOverlay}/>
+                <button className="button button--action  button--fullwidth" onClick={onCreateClick}>Create new Person</button>
+                <PeopleList items={people}  hideOptions={false} isLoading={isLoadingPeople}/>
+                <CreatePersonOverlay person={overlayPerson} setShowOverlay={setShowOverlay} showOverlay={showOverlay}/>
             </div>
         </div>
        

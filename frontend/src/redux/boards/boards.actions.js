@@ -121,9 +121,11 @@ const updateBoard = (id, updateBoardDto) => dispatch => {
 
 
 
-export default {
+const boardActions = {
     fetchAllBoards,
     fetchOneBoard,
     createBoard,
     updateBoard,
 }
+
+export default boardActions

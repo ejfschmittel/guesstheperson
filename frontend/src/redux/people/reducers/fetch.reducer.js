@@ -4,7 +4,7 @@ import personReducer from "./person.reducer"
 const initialState = {
     fetchPersonPending: false,
     fetchPersonError: null,
-    fetchAllPeoplPending: false,
+    fetchAllPeoplePending: false,
     fetchAllPeopleError: null,
     peopleByID: {},
     peopleList: []
@@ -28,16 +28,16 @@ const peopleReducer = (state = initialState, action) => {
             }
 
         case PEOPLE_TYPES.PEOPLE_FETCH_ALL_START:
-            return {...state, fetchAllPeoplPending: true}
+            return {...state, fetchAllPeoplePending: true}
         case PEOPLE_TYPES.PEOPLE_FETCH_ALL_SUCCESS:
             return {
                 ...state, 
-                fetchAllPeoplPending: false, 
+                fetchAllPeoplePending: false, 
                 peopleByID: action.payload.reduce((res, next) => ({...res, [next.id]: next}) ,{}), 
                 peopleList: action.payload.map(person => person.id)
             }
         case PEOPLE_TYPES.PEOPLE_FETCH_ALL_ERROR:
-            return {...state, fetchAllPeoplPending: false, fetchAllPeopleError: action.payload}
+            return {...state, fetchAllPeoplePending: false, fetchAllPeopleError: action.payload}
 
 
         case PEOPLE_TYPES.PEOPLE_DELETE_SUCCESS:

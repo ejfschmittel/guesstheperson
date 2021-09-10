@@ -3,12 +3,12 @@ import React from 'react'
 import "../styles/components/LoadingIndicator.scss"
 
 const LoadingIndicator = () =>  (
-    <div class="loading-spinner">
+    <div className="loading-spinner">
         <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
     </div>
 )
 const LoadingOverlay = ({show}) => (
-    <div className={`loading-indicator ${show && 'loading-indicator--show'}`}>
+    <div className={`loading-incidator ${show && 'loading-incidator--show'}`}>
         <LoadingIndicator />
     </div>
 )

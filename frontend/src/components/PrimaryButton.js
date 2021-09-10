@@ -1,9 +1,9 @@
 import React from 'react'
 
 
-const PrimaryButton = ({children, className, isLoading, ...props}) => {
+const PrimaryButton = ({children, className, isLoading, small, ...props}) => {
     return (
-        <button className={`button button--action button--center test ${className}`} disabled={isLoading} {...props}>
+        <button className={`button button--action ${small ? 'button--small' : 'button--center'} ${className}`} disabled={isLoading} {...props}>
             {children}
         </button>
     )

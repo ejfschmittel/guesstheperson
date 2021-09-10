@@ -55,7 +55,9 @@ const register = async (userRegisterDto) => {
     }).then(handleFetchResponse)
 }
 
-export default {
+const userServices = {
     login,
     register
 }
+
+export default userServices 

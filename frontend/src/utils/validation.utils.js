@@ -51,7 +51,7 @@ export const validate = (data, validators) => {
         const fieldKey = validatorKeys[i];
         const value = data[fieldKey];
         const fieldValidators = validators[fieldKey]
-        if(value == undefined ) continue;
+        if(value === undefined ) continue;
         const fieldErrors = validateField(fieldKey, value, fieldValidators)
   
 

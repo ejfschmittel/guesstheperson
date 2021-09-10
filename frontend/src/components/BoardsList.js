@@ -8,7 +8,7 @@ const BoardsList = ({boards}) => {
     return (
         <div className="boards-list">
             {boards && boards.map(board => (
-                <BoardPreview id={board.id} board={board}/>
+                <BoardPreview id={board.id} board={board} key={board.id}/>
             ))}
         </div>
     )
