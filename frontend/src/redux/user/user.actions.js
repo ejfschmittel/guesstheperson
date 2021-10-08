@@ -1,6 +1,6 @@
 import USER_TYPES from "./user.types"
 import userService from "./user.service"
-
+import {hist} from "react-router-dom"
 import {getUserData, setAuthToken, removeAuthToken} from "../../utils/jwt.utils"
 import {parseError} from "../../utils/errors.utils"
 
@@ -71,6 +71,7 @@ const register = (userLoginDto) => (dispatch) => {
 
 const logout = () => {
     removeAuthToken();
+    
 
     return {
         type: USER_TYPES.LOGOUT_USER,

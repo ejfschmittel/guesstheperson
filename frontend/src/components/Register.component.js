@@ -36,15 +36,15 @@ const Register = () => {
             <div className="wholescreen-flex__container hero-card">
                 <h1 className="hero-card__title">Register</h1>
 
-                <form>
+                <form className="hero-card__section">
                     <PrimaryFormErrorField errorMessage={userRegisterError?.primaryMessage}/>
                     <FormInput label="Email" id="email" name="email" value={registerData.email} onChange={onChange}/>
                     <FormInput label="Username" id="name" name="name"  value={registerData.name} onChange={onChange}/>
                     <FormInput label="Password" id="password" name="password" type="password" value={registerData.password} onChange={onChange}/>
                     <PrimaryButton onClick={onSubmit} isLoading={userRegisterPending}>Register</PrimaryButton>
                 </form>
-                <div className="hero-card__section">
-                    <Link to={"/login"} className="button button--center button--action">Login</Link>
+                <div className="hero-card__section hero-card__section--border">
+                    Already have an account? <Link to="/login">Login</Link> to create a board.
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 .hero-card{
-    padding: 3rem;
+  
     box-shadow: 0 .2rem .5rem rgba(0,0,0,.5);
     border-radius: .5rem;
     background: #eee;
@@ -8,14 +8,31 @@
         font-size: 3rem;
         border-bottom: 1px solid #333;
         text-align: center;
-        padding-bottom: 2.5rem;
+        padding: 1.4rem 0;
         margin-bottom: .5rem;
-        color: #333;
+        color: #fff;
+       
+        font-weight: 100;
+        letter-spacing: .5rem;
+        background: #333;
+      
+        margin-bottom: .5rem;
+        border-top-left-radius: .5rem;
+        border-top-right-radius: .5rem;
     }
 
     &__section{
-        border-top: 1px solid #aaa;
-        margin-top: 3rem;
+        
+        padding: 3rem;
+     
+        margin-top: 2rem;
+
+        font-size: 1.2rem;
+        padding-top: 2rem; 
+
+        &--border{
+            border-top: 1px solid #aaa;
+        }
     }
 
 

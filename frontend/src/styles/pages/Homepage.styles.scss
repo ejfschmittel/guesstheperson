@@ -1,0 +1,34 @@
+.home-page{
+    min-height: 100%;
+    width: 100%;
+
+    background: rgb(117,161,226);
+    background: linear-gradient(0deg, rgba(47,54,65,1) 0%, rgba(42,37,45,1) 26%, rgba(16,7,28,1) 78%);
+
+    flex-direction: column;
+
+ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    &__title{
+        font-size: 5rem;
+        padding: 0 1rem;
+        margin-bottom: 3rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #eee;
+        color: #efefef;
+        text-align: center;
+    }
+
+
+    &__container{
+        width: min(80%, 600px);
+        margin: 0 auto;
+        transform: translate(0,-10vh);
+    }
+
+   
+}
