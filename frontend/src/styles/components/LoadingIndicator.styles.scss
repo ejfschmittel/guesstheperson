@@ -1,0 +1,59 @@
+.spinner{
+    display: flex;
+    width: 5rem;
+    height: 5rem;
+ 
+    align-items: center;
+
+    
+    &__rect{
+        flex: 1;
+        height: 100%;
+
+        background: #eee;
+        margin: 0 .1rem;
+        -webkit-animation: spinnerAnimation 1.2s infinite ease-in-out;
+        animation: spinnerAnimation 1.2s infinite ease-in-out;
+
+        &--1{
+
+        }
+
+        &--2{
+            -webkit-animation-delay: -1.1s;
+            animation-delay: -1.1s;
+        }
+
+        &--3{
+            -webkit-animation-delay: -1.0s;
+            animation-delay: -1.0s;
+        }
+
+        &--4{
+            -webkit-animation-delay: -0.9s;
+            animation-delay: -0.9s;
+        }
+
+        &--5{
+            -webkit-animation-delay: -0.8s;
+            animation-delay: -0.8s;
+        }
+    }
+}
+
+
+@-webkit-keyframes spinnerAnimation{
+    0%, 40%, 100% { -webkit-transform: scaleY(0.6) }  
+    20% { -webkit-transform: scaleY(1.0) }
+  }
+  
+
+@keyframes spinnerAnimation{
+    0%, 40%, 100% { 
+        transform: scaleY(0.6);
+        -webkit-transform: scaleY(0.6);
+    }  20% { 
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
+    }
+}

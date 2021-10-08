@@ -5,11 +5,23 @@ import {useDispatch, useSelector} from "react-redux"
 import userActions from "../redux/user/user.actions"
 import PrimaryButton from "./PrimaryButton"
 import PrimaryFormErrorField from "./PrimaryFormErrorField"
+import { useParsedFieldErrors } from '../hooks/useParsedFieldError.hook'
+import userServices from '../redux/user/user.service'
+import { parseError } from '../utils/errors.utils'
+
+
 
 const Register = () => {
     const dispatch = useDispatch()
     const userRegisterPending = useSelector(store => store.user.registerUserPending)
     const userRegisterError = useSelector(store => store.user.registerUserError)
+
+    
+    const parsedFieldErrors = useParsedFieldErrors(userRegisterError)
+
+
+
+
 
     const [registerData, setRegisterData] = useState({
         name: "",
@@ -38,9 +50,9 @@ const Register = () => {
 
                 <form className="hero-card__section">
                     <PrimaryFormErrorField errorMessage={userRegisterError?.primaryMessage}/>
-                    <FormInput label="Email" id="email" name="email" value={registerData.email} onChange={onChange}/>
-                    <FormInput label="Username" id="name" name="name"  value={registerData.name} onChange={onChange}/>
-                    <FormInput label="Password" id="password" name="password" type="password" value={registerData.password} onChange={onChange}/>
+                    <FormInput label="Email" id="email" name="email" value={registerData.email} onChange={onChange} errorMessage={parsedFieldErrors?.email}/>
+                    <FormInput label="Username" id="name" name="name"  value={registerData.name} onChange={onChange}  errorMessage={parsedFieldErrors?.name}/>
+                    <FormInput label="Password" id="password" name="password" type="password" value={registerData.password} onChange={onChange} errorMessage={parsedFieldErrors?.password}/>
                     <PrimaryButton onClick={onSubmit} isLoading={userRegisterPending}>Register</PrimaryButton>
                 </form>
                 <div className="hero-card__section hero-card__section--border">
