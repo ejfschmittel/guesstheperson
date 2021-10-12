@@ -1,3 +1,5 @@
+@use "../abstracts/" as *;
+
 .full-page-layout{
     min-height: 100%;
     width: 100%;
@@ -16,27 +18,52 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
+        
     }
 
     &__right{
-        flex: 1;
-        
+        flex: 1;   
         background: rgb(117,161,226);
         background: linear-gradient(0deg, rgba(47,54,65,1) 0%, rgba(42,37,45,1) 26%, rgba(16,7,28,1) 78%);
         -webkit-clip-path: circle(60.0% at 50% 10%);
         clip-path: circle(90.0% at 94% 50%);
+
+        @include respond(tab-land){
+            -webkit-clip-path: circle(60.0% at 50% 10%);
+        clip-path: circle(70.0% at 90% 50%);   
+        }
+
+        @include respond(tab-port){
+            display: none;     
+        }
     }
 
     & .header{
         position: fixed;
         width: 100%;
         z-index: 10;
-        background: transparent;    
+        background: transparent; 
+        
+        @include respond(tab-port){
+            background: rgb(117,161,226);
+            background: linear-gradient(0deg, rgba(47,54,65,1) 0%, rgba(42,37,45,1) 26%, rgba(16,7,28,1) 78%);
+        }
        
+    }
+
+    & .header__title a{
+        @include respond(tab-port){
+            color: #fff;
+        }
     }
 
     & .header__content{
         padding: 0 20vw;
+
+        @include respond(tab-land){
+            padding: 0 10vw;
+        }
     }
  
 }

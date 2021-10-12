@@ -8,7 +8,7 @@ const DefaultFullPageLayout = ({children}) => (
         <div className="full-page-layout__left">
         {children}
         </div>
-        <div className="feature-page__right">
+        <div className="full-page-layout__right">
            
         </div>
     </div>
