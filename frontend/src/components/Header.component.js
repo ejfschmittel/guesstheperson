@@ -10,7 +10,7 @@ const Header = () => {
     const user = useSelector(store => store.user.user);
 
     const onLogoutClick = () => {
-        dispatch(userActions.logout())
+        dispatch(userActions.logout("/"))
     }
 
     return (

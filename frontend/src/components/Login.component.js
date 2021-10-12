@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import {useHistory} from "react-router-dom"
 import { Link } from 'react-router-dom'
 import FormInput from './FormInput.component'
 import {useDispatch, useSelector} from "react-redux"
@@ -6,6 +7,22 @@ import userActions from "../redux/user/user.actions"
 import PrimaryButton from './PrimaryButton'
 import PrimaryFormErrorField from './PrimaryFormErrorField'
 import { useParsedFieldErrors } from '../hooks/useParsedFieldError.hook'
+import {useLocation} from "react-router-dom"
+
+
+const useLoginRedirect = () => {
+    const history = useHistory();
+    const user = useSelector(store => store.user.user);
+    const {state} = useLocation()
+
+    useEffect(() => {
+        // is logged in
+        if(user){
+            const redirectUrl = state?.referrer ? state.referrer.pathname : "/";
+            history.push(redirectUrl);
+        }
+    },[user])
+}
 
 
 const Login = () => {
@@ -13,6 +30,20 @@ const Login = () => {
     const loginPending = useSelector(store => store.user.userLoginPending)
     const loginError = useSelector(store => store.user.userLoginError)
     const parsedErrors = useParsedFieldErrors(loginError)
+
+
+
+
+    
+    const isLoggedIn = useLoginRedirect();
+
+
+
+  
+
+    
+   
+
 
 
     const [loginData, setLoginData] = useState({
@@ -27,10 +58,13 @@ const Login = () => {
         })
     }
 
+
     const onSubmit = (e) => {
         e.preventDefault()
         console.log(userActions)
-        dispatch(userActions.login(loginData))
+       
+        
+       dispatch(userActions.login(loginData))
     }
 
 

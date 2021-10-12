@@ -4,6 +4,8 @@ const JWT_TOKEN_KEY = "JWT_TOKEN";
 
 
 export const parseJwt = (token) => {
+    if(!token) return null;
+
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
@@ -35,7 +37,7 @@ export const isExpired = (parsedToken) => {
         // cpompare exp date with current date
         // 1630947375
         // 1630938689769
-        return (new Date().getTime() / 1000) <= parsedToken.exp
+        return (new Date().getTime() / 1000) >= parsedToken.exp
     }
 
     return true;

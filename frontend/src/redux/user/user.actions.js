@@ -1,6 +1,6 @@
 import USER_TYPES from "./user.types"
 import userService from "./user.service"
-import {hist} from "react-router-dom"
+import history from "../../utils/history.utils"
 import {getUserData, setAuthToken, removeAuthToken} from "../../utils/jwt.utils"
 import {parseError} from "../../utils/errors.utils"
 
@@ -21,7 +21,7 @@ const userLoginError = (error) => ({
     payload: error
 })
 
-const login = (userLoginDto) => (dispatch) => {
+const login = (userLoginDto, redirectUrl="/") => (dispatch) => {
     dispatch(userLoginStart())
 
 
@@ -33,6 +33,7 @@ const login = (userLoginDto) => (dispatch) => {
             const user = getUserData(token);
             setAuthToken(token)
             dispatch(userLoginSuccess(token, user))
+            
         })
         .catch(error => {
             const perparedErrors = parseError(error)
@@ -56,12 +57,16 @@ const userRegisterError = (error) => ({
 })
 
 
-const register = (userLoginDto) => (dispatch) => {
+const register = (userRegisterDto) => (dispatch) => {
     dispatch(userRegisterStart())
 
-    userService.register(userLoginDto)
+    userService.register(userRegisterDto)
         .then(json => {
             dispatch(userRegisterSuccess(json))
+            history.push({
+                pathname: "/login",
+                state: {registeredUser: userRegisterDto}
+            })
         })
         .catch(error => {
             const perparedErrors = parseError(error)
@@ -69,9 +74,12 @@ const register = (userLoginDto) => (dispatch) => {
         })
 }
 
-const logout = () => {
+const logout = (redirectUrl) => {
     removeAuthToken();
-    
+
+    if(redirectUrl){
+        history.push(redirectUrl)
+    }
 
     return {
         type: USER_TYPES.LOGOUT_USER,
