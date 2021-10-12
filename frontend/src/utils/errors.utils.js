@@ -27,7 +27,8 @@ const parseFormError = (error) => {
     console.log("**HTTP_ERROR**")
     console.error(error)
     const errorObject = getEmptyUniversalErrorObject()
-    errorObject.primaryMessage = getPrimaryMessageFromFormError(error);
+    //errorObject.primaryMessage = getPrimaryMessageFromFormError(error);
+    errorObject.primaryMessage = null;
     errorObject.type = ERROR_TYPES.FORM_ERROR;
     errorObject.status = 400;
     errorObject.data = error.data;

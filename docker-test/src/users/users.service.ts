@@ -53,12 +53,12 @@ export class UsersService {
                                     })
                                 )
                             }else{
-                                throw new HttpException("Login was not successfull", HttpStatus.UNAUTHORIZED)
+                                throw new HttpException("Incorrect email or password.", HttpStatus.UNAUTHORIZED)
                             }
                         })
                     )
                 }else{
-                    throw new HttpException("User not found", HttpStatus.NOT_FOUND)
+                    throw new HttpException("Incorrect email or password.", HttpStatus.NOT_FOUND)
                 }
             })
         )

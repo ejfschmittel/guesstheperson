@@ -62,7 +62,6 @@ export const validate = (data, validators) => {
 
 
     if(!isEmptyObject(errors)){
-        console.log("thow new validation error")
         throw new FormError("validation error", errors)
     }
 }

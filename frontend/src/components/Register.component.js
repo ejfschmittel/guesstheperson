@@ -15,8 +15,6 @@ const Register = () => {
     const dispatch = useDispatch()
     const userRegisterPending = useSelector(store => store.user.registerUserPending)
     const userRegisterError = useSelector(store => store.user.registerUserError)
-
-    
     const parsedFieldErrors = useParsedFieldErrors(userRegisterError)
 
 

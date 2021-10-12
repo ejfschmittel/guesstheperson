@@ -5,14 +5,15 @@ import {useDispatch, useSelector} from "react-redux"
 import userActions from "../redux/user/user.actions"
 import PrimaryButton from './PrimaryButton'
 import PrimaryFormErrorField from './PrimaryFormErrorField'
+import { useParsedFieldErrors } from '../hooks/useParsedFieldError.hook'
 
 
 const Login = () => {
     const dispatch = useDispatch()
     const loginPending = useSelector(store => store.user.userLoginPending)
     const loginError = useSelector(store => store.user.userLoginError)
-    console.log("login error!!!!")
-    console.log(loginError)
+    const parsedErrors = useParsedFieldErrors(loginError)
+
 
     const [loginData, setLoginData] = useState({
         email: "",
@@ -42,10 +43,10 @@ const Login = () => {
 
                 <form className="hero-card__section">
                     <PrimaryFormErrorField errorMessage={loginError?.primaryMessage}/>
-                    <FormInput label="Email" id="email" onChange={onChange} name="email" value={loginData.email} />
-                    <FormInput label="Password" id="password" type="password"  onChange={onChange} value={loginData.password} name="password"/>
+                    <FormInput label="Email" id="email" onChange={onChange} name="email" value={loginData.email} errorMessage={parsedErrors?.email} />
+                    <FormInput label="Password" id="password" type="password"  onChange={onChange} value={loginData.password} name="password"  errorMessage={parsedErrors?.password}/>
                     
-                    <PrimaryButton onClick={onSubmit} isLoading={loginPending} >Login</PrimaryButton>
+                    <PrimaryButton onClick={onSubmit} isLoading={loginPending}>Login</PrimaryButton>
                 </form>
                 <div className="hero-card__section hero-card__section--border">
                     Don't have an account yet? <Link to={"/register"}>Register</Link> now to create custom who am I boards with your friends.
