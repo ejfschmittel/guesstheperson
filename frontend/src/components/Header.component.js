@@ -24,6 +24,7 @@ const Header = () => {
 
                     {user ? 
                         <React.Fragment>
+                            <Link className="header__link" to="/">Home</Link>
                             <Link className="header__link" to="/people">People</Link>
                             <Link className="header__link" to="/boards">Boards</Link>
                             <button className="header__link" onClick={onLogoutClick}>Logout</button>
