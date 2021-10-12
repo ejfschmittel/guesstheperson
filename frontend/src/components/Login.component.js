@@ -8,6 +8,7 @@ import PrimaryButton from './PrimaryButton'
 import PrimaryFormErrorField from './PrimaryFormErrorField'
 import { useParsedFieldErrors } from '../hooks/useParsedFieldError.hook'
 import {useLocation} from "react-router-dom"
+import FormMessageDisplay from './FormMessageDisplay.component'
 
 
 const useLoginRedirect = () => {
@@ -30,8 +31,14 @@ const Login = () => {
     const loginPending = useSelector(store => store.user.userLoginPending)
     const loginError = useSelector(store => store.user.userLoginError)
     const parsedErrors = useParsedFieldErrors(loginError)
+    const {state} = useLocation();
 
+    const [formMessage, setFormMessage] = useState({
+        message: state?.registeredUser ? `${state.registeredUser.name} successfully created. You can now login.` : null,
+        type: "success",
+    })
 
+    
 
 
     
@@ -40,6 +47,14 @@ const Login = () => {
 
 
   
+    useEffect(() => {
+        if(loginError && loginError.primaryMessage){
+            setFormMessage({
+                message: loginError.primaryMessage,
+                type: "error"
+            })
+        }
+    },[loginError])
 
     
    
@@ -68,7 +83,7 @@ const Login = () => {
     }
 
 
-
+<PrimaryFormErrorField errorMessage={loginError?.primaryMessage}/>
     return (
 
         <div className="wholescreen-flex">
@@ -76,7 +91,9 @@ const Login = () => {
                 <h1 className="hero-card__title">Login</h1>
 
                 <form className="hero-card__section">
-                    <PrimaryFormErrorField errorMessage={loginError?.primaryMessage}/>
+                    
+                    <FormMessageDisplay message={formMessage.message} type={formMessage.type}/>
+
                     <FormInput label="Email" id="email" onChange={onChange} name="email" value={loginData.email} errorMessage={parsedErrors?.email} />
                     <FormInput label="Password" id="password" type="password"  onChange={onChange} value={loginData.password} name="password"  errorMessage={parsedErrors?.password}/>
                     

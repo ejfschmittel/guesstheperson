@@ -17,7 +17,7 @@ import history from "./utils/history.utils"
 function App() {
   return (
     <div className="App">
-      <Router history={history}>
+      <Router history={history} forceRefresh={true}>
         <Switch>
           
           <Route path="/register" component={RegisterPage}/>

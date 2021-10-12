@@ -65,7 +65,8 @@ const register = (userRegisterDto) => (dispatch) => {
             dispatch(userRegisterSuccess(json))
             history.push({
                 pathname: "/login",
-                state: {registeredUser: userRegisterDto}
+                state: {registeredUser: userRegisterDto},
+                forceRefresh: true,
             })
         })
         .catch(error => {
