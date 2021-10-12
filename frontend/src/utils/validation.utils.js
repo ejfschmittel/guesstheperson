@@ -5,6 +5,7 @@ const ERROR_KEYS = {
     EXISTS: "exists",
     MIN: "min",
     MAX: "max",
+    IS_EMAIL: "is_email"
 }
 
 
@@ -16,7 +17,6 @@ const DEFAULT_ERROR_VALIDATORS = {
     [ERROR_KEYS.EXISTS]: {
         value: undefined,
         pass: (value, validatorValue) => {
-            console.log("validat e xists")
             return !!value || value !== ""
         },
         errorMessage: (value, validatorValue, dataKey, errorKey) => `${dataKey} cannot be empty!`, 
@@ -30,9 +30,17 @@ const DEFAULT_ERROR_VALIDATORS = {
 
     [ERROR_KEYS.MAX]: {
         value: 30,
-        pass: (value, validatorValue) => !!value,
-        errorMessage: (value, validatorValue, dataKey, errorKey) => `${dataKey} has to be shorter thatn ${validatorValue} characters!`, 
+        pass: (value, validatorValue) => value.length <= validatorValue,
+        errorMessage: (value, validatorValue, dataKey, errorKey) => `${dataKey} has to be shorter than ${validatorValue} characters!`, 
     },
+    [ERROR_KEYS.IS_EMAIL]: {
+        value: undefined,
+        pass: (value, validatorValue) => {
+            const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            return re.test(value)
+        },
+        errorMessage: (value, validatorValue, dataKey, errorKey) => `'${value}' is not a valid email.`,
+    }
 }
 
 

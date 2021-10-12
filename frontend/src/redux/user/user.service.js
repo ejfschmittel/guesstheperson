@@ -35,12 +35,17 @@ const register = async (userRegisterDto) => {
     validate(userRegisterDto, {
         email: {
             exists: true,
+            is_email: true,
+            max: 64,
         },
         name: {
             exists: true,
+            max: 64,
+            min: 3,
         },
         password: {
-            exists: true
+            exists: true,
+            min: 6
         }
     })
     
