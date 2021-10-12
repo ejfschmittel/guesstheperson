@@ -4,6 +4,9 @@
     border-radius: .5rem;
     background: #fff;
 
+    animation: .5s hero-card-intro forwards ease-in-out;
+    
+
     &__title{
         font-size: 3rem;
         
@@ -38,4 +41,15 @@
     }
 
 
+}
+
+@keyframes hero-card-intro{
+    0%{
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
 }

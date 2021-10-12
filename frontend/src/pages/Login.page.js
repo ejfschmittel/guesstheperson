@@ -1,16 +1,12 @@
 import React from 'react'
 import Login from '../components/Login.component'
-import Header from '../components/Header.component'
+import DefaultFullPageLayout from '../components/DefaultFullPageLayout.component'
 
 const LoginPage = () => {
     return (
-        <div className="page page--fullscreen page--flex" >
-            <Header />
-        
-            <div className="page__content page__content--flex-center">
-                <Login />
-            </div>
-        </div>
+        <DefaultFullPageLayout>
+            <Login />
+        </DefaultFullPageLayout>
     )
 }
 
