@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import FormInput from './FormInput.component'
 import {useDispatch, useSelector} from "react-redux"
@@ -6,8 +6,7 @@ import userActions from "../redux/user/user.actions"
 import PrimaryButton from "./PrimaryButton"
 import PrimaryFormErrorField from "./PrimaryFormErrorField"
 import { useParsedFieldErrors } from '../hooks/useParsedFieldError.hook'
-import userServices from '../redux/user/user.service'
-import { parseError } from '../utils/errors.utils'
+import FormMessageDisplay from "./FormMessageDisplay.component"
 
 
 
@@ -17,7 +16,19 @@ const Register = () => {
     const userRegisterError = useSelector(store => store.user.registerUserError)
     const parsedFieldErrors = useParsedFieldErrors(userRegisterError)
 
+    const [formMessage, setFormMessage] = useState({
+        message: null,
+        type: "error",
+    })
 
+    useEffect(() => {
+        if(userRegisterError && userRegisterError.primaryMessage){
+            setFormMessage({
+                message: userRegisterError.primaryMessage,
+                type: "error"
+            })
+        }
+    }, [userRegisterError])
 
 
 
@@ -36,6 +47,7 @@ const Register = () => {
 
     const onSubmit = (e) => {
         e.preventDefault()
+        setFormMessage({message: null, type: "error"})
         dispatch(userActions.register(registerData))
     }
 
@@ -47,7 +59,8 @@ const Register = () => {
                 <h1 className="hero-card__title">Register</h1>
 
                 <form className="hero-card__section">
-                    <PrimaryFormErrorField errorMessage={userRegisterError?.primaryMessage}/>
+              
+                    <FormMessageDisplay message={formMessage.message} type={formMessage.type} />
                     <FormInput label="Email" id="email" name="email" value={registerData.email} onChange={onChange} errorMessage={parsedFieldErrors?.email}/>
                     <FormInput label="Username" id="name" name="name"  value={registerData.name} onChange={onChange}  errorMessage={parsedFieldErrors?.name}/>
                     <FormInput label="Password" id="password" name="password" type="password" value={registerData.password} onChange={onChange} errorMessage={parsedFieldErrors?.password}/>
