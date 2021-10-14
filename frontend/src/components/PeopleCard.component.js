@@ -10,7 +10,7 @@ import {API_BASE_URL} from "../utils/urls.utils"
 
 
 
-const PeopleCard = SortableElement(({person, selected, hideOptions, onClick}) => {
+const PeopleCard = SortableElement(({children, person, selected, hideOptions, onClick}) => {
     const dispatch = useDispatch()
     const cardRef = useRef()
     const [showSettings, setShowSettings] = useState(false)
@@ -28,18 +28,9 @@ const PeopleCard = SortableElement(({person, selected, hideOptions, onClick}) =>
         setShowSettings(!showSettings)
     }
 
-    const onDeleteClick = (e) => {
-        e.preventDefault()
-        dispatch(peopleActions.deletePerson(person.id))
-    }
-
     return (
         <div className={`people-card ${selected ? 'people-card--selected' : ''}`} ref={cardRef} onClick={onPersonClick}>
-      
-            <div className="people-card__overlay" onClick={onDeleteClick}>
-                <div><FaTrash /> Delete</div>
-            </div>
-            
+               
             <div className="people-card__flex-container">
                 <div className="people-card__img-container" style={{backgroundImage: `url('${API_BASE_URL + person.image_url}')`}}>
                    
@@ -51,6 +42,7 @@ const PeopleCard = SortableElement(({person, selected, hideOptions, onClick}) =>
                 {person.name}
             </div>
 
+            {children}
 
         </div>
     )

@@ -26,7 +26,9 @@ const PeopleList = (props) => {
     )
 }
 
-export const RawPeopleList = SortableContainer(({items, sortable, hideOptions, selected, onClick, isLoading, emptyMessage}) => {
+export const RawPeopleList = SortableContainer(({card: Card, items, sortable, hideOptions, selected, onClick, isLoading, emptyMessage}) => {
+
+
     return (
         <div className="people-list">
          
@@ -38,7 +40,7 @@ export const RawPeopleList = SortableContainer(({items, sortable, hideOptions, s
                 {items.map((person, idx) => {
                     const isSelected = selected.filter(id => person.id === id).length === 1
                     return (
-                        <PeopleCard 
+                        <Card 
                             person={person} 
                             key={person.id} 
                             index={idx} 
@@ -59,7 +61,8 @@ PeopleList.defaultProps = {
     sortable: false,
     selected: [],
     hideOptions: true,
-    onClick: () => {}
+    onClick: () => {},
+    card: PeopleCard
 }
 
 export default PeopleList

@@ -8,6 +8,7 @@ import CreatePersonOverlay from '../components/CreatePersonOverlay.component'
 import FormInput from '../components/FormInput.component'
 import "../styles/pages/PeopleOverviewpage.styles.scss"
 import {FaPlus} from "react-icons/fa"
+import PeopleOverviewCard from '../components/PeopleOverviewCard.component'
 /*
 
     CreatePersonOverlay
@@ -87,7 +88,13 @@ const PeopleOverview = () => {
               
 
               <div className="page-section">
-                <PeopleList items={displayedPeople}  hideOptions={false} isLoading={isLoadingPeople} emptyMessage={searchTerm ? `There are no people with the name '${searchTerm}'` : null}/>
+                <PeopleList 
+                    items={displayedPeople}  
+                    hideOptions={false} 
+                    isLoading={isLoadingPeople} 
+                    emptyMessage={searchTerm ? `There are no people with the name '${searchTerm}'` : null}
+                    card={PeopleOverviewCard}
+                    />
               </div>
                 
                 <CreatePersonOverlay person={overlayPerson} setShowOverlay={setShowOverlay} showOverlay={showOverlay}/>

@@ -44,6 +44,7 @@ export class PeopleController {
 
     @Delete(":id")
     deletePerson(@Param("id") id: string): any{
+        console.log("delete person with " + id)
         this.peopleService.delete(id);
         return {id}
     }

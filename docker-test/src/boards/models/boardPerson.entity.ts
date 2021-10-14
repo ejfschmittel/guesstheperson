@@ -12,7 +12,7 @@ export class BoardPersonEntity{
     @Column()
     index: number;
 
-    @ManyToOne(() => PeopleEntity, person => person.boardReferences)
+    @ManyToOne(() => PeopleEntity, person => person.boardReferences, {onDelete: 'CASCADE'})
     person: PeopleEntity
 
     // one board / multiple entities
