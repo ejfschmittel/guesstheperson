@@ -1,6 +1,24 @@
 .boards-list{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-    gap: 1.5rem;
-    padding: 1rem;
+
+    padding: 2rem;
+
+    &__items{
+        flex-direction: column;
+        gap: 2rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    & .form-message-display{
+        animation: fadeIn .6s;
+    }
+}
+
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
 }

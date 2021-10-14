@@ -23,8 +23,8 @@ function App() {
           <Route path="/register" component={RegisterPage}/>
           <Route path="/login" component={LoginPage}/>
           <Route path="/people" component={PeopleOverview}/>
-          <Route path="/boards/:boardId/play" component={PlayBoard} />
-          <Route path="/boards/:boardId" component={BaordEditPage} />
+          <Route path="/boards/:boardId/edit" component={BaordEditPage} />
+          <Route path="/boards/:boardId" component={PlayBoard} />
           <PrivateRoute path="/boards" component={BoardsOverviewPage} />
         
           <Route path="/" component={HomepagePage}/>

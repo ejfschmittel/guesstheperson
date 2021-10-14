@@ -1,33 +1,77 @@
 .board-preview{
-    border: 1px solid #666;
+    display: flex;
+    flex-direction: column;
+   
     border-radius: .5rem;
-    padding: 1rem;
+    padding: .5rem;
     text-decoration: none;
+    background:rgb(219, 196, 196);
+    box-shadow: 0 .2rem .3rem rgba(0,0,0,.5);
+    color: #333;
     
 
     &__title{
-        font-size: 1.1rem;
-        font-weight: bold;
-        text-align: center;
+        font-size: 1.4rem;
+       text-align: center;
+        flex: 1;
+        padding: .5rem 0;
+        background: #333;
+        color: #fff;
+    }
+
+    &__buttons{
+        display: flex;
+        width: 100%;
+    }
+
+    &__feature-img{
+        height: 10rem;
+        object-fit: cover;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    &__btn{
+        display: block;
+        background: transparent;
+        padding: .5rem .5rem;
+        color: #333;
+        border: none;
+        cursor: pointer;
+        font-size: 1.2rem;
+        width: 100%;
+     
+        border-left: 1px solid #bbb;
+        border-bottom: 1px solid #bbb;
+        transition: all .5s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+
+        svg{
+            margin-right: .3rem;
+        }
+
+        &:hover{
+            box-shadow: inset .1rem 0rem .2rem rgba(0,0,0,.2);
+            background: #cacaca;
+        }
+
+        &:active{
+            background: rgb(144, 128, 187);
+            color: #fff;
+        }
     }
 
     &__edit-btn{
-        display: block;
-        background: blue;
-        color: #fff;
-        cursor: pointer;
-        width: 100%;
-        font-size: 1.2rem;
-        padding: .3rem 0;
+
     }
 
     &__play-btn{
-        display: block;
-        background: green;
-        color: #fff;
-        width: 100%;
-        cursor: pointer;
-        font-size: 1.2rem;
-        padding: .3rem 0;
+
+        border-right: 1px solid #bbb;
+
+        
     }
 }

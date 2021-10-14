@@ -1,20 +1,23 @@
 import React from 'react'
 import {Link} from "react-router-dom"
-
+import {FaEdit, } from "react-icons/fa"
 import "../styles/components/BoardPreview.scss"
 
 const BoardPreview = ({board}) => {
     return (
-        <Link className="board-preview" to={`/boards/${board.id}`}>
-            <div>
-                <img />
-            </div>
-            <div>
+        <div className="board-preview" >
+
+            <div className="board-preview__feature-img" style={{backgroundImage: `url('https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg')` }}></div>
+
+            <div className="board-preview__title">
                 {board.title}
             </div>
-            <button className="board-preview__edit-btn">Edit</button>
-            <button className="board-preview__play-btn">Play</button>
-        </Link>
+
+            <div className="board-preview__buttons">
+                <Link to={`/boards/${board.id}/edit`} className="board-preview__btn board-preview__edit-btn"><FaEdit /> Edit</Link>
+                <Link to={`/boards/${board.id}`} className="board-preview__btn board-preview__play-btn"><FaEdit /> Play</Link>
+            </div>
+        </div>
     )
 }
 
