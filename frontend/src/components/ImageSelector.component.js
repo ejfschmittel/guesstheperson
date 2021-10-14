@@ -6,9 +6,9 @@ import 'react-image-crop/dist/ReactCrop.css';
 
 
 
-const ImageSelector = ({src, crop, setCrop, onImageLoad, onImageSelect}) => {
+const ImageSelector = ({src, crop, setCrop, onImageLoad, onImageSelect, errorMessage}) => {
     return (
-        <div className="image-selector">
+        <div className={`image-selector ${errorMessage && 'image-selector--error'}`}>
            {src ? <ReactCrop 
             src={src} 
             crop={crop} 
@@ -21,6 +21,7 @@ const ImageSelector = ({src, crop, setCrop, onImageLoad, onImageSelect}) => {
                 <input className="image-selector__input" type="file" onChange={onImageSelect}/>
             </label>
         }
+        <div className="form-input__error">{errorMessage}</div>
         </div>
     )
 }

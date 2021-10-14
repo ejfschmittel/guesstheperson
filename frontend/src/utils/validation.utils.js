@@ -17,7 +17,7 @@ const DEFAULT_ERROR_VALIDATORS = {
     [ERROR_KEYS.EXISTS]: {
         value: undefined,
         pass: (value, validatorValue) => {
-            return !!value || value !== ""
+            return !!value && value !== ""
         },
         errorMessage: (value, validatorValue, dataKey, errorKey) => `${dataKey} cannot be empty!`, 
     },

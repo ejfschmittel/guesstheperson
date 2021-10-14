@@ -1,5 +1,6 @@
 import PEOPLE_TYPES from "./people.types";
 import peopleService from "./people.service"
+import {parseError} from "../../utils/errors.utils"
 
 
 
@@ -32,7 +33,7 @@ const deletePerson = (personId) => dispatch => {
     })
 }
 
-const createPerson = (createPersonDto) => (dispatch) => {
+const createPerson = (createPersonDto) => async (dispatch) => {
     const createPersonStart = () => ({
         type: PEOPLE_TYPES.PEOPLE_CREATE_START
     })
@@ -49,15 +50,14 @@ const createPerson = (createPersonDto) => (dispatch) => {
 
     dispatch(createPersonStart())
 
-    peopleService.createPerson(createPersonDto)
-    .then(json => {
-        console.log(json)
+    peopleService.createPerson(createPersonDto).then(json => {
         dispatch(createPersonSuccess(json))
     })
     .catch(error => {
-        console.log(error)
-        dispatch(createPersonError(error))
+        const perparedErrors = parseError(error)
+        dispatch(createPersonError(perparedErrors))
     })
+
 
 }
 

@@ -34,6 +34,8 @@ const PeopleOverview = () => {
     })
     const [showOverlay, setShowOverlay] = useState(false)
 
+
+
     useEffect(() => {
         // load people list
         dispatch(peopleActions.fetchAllPeople())
@@ -45,6 +47,7 @@ const PeopleOverview = () => {
             const people = peopleList.map(id => peopleByID[id])
             setDisplayedPeople(people)
         }
+        setShowOverlay(false)
     }, [peopleByID, peopleList])
 
     const onCreateClick = () => {

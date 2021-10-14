@@ -1,51 +1,66 @@
-import React, {useState} from 'react'
-import { useDispatch } from 'react-redux';
+import React, {useState, useEffect} from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import FormInput from "./FormInput.component"
 import ImageSelector from './ImageSelector.component';
 import "../styles/components/EditPersonOverlay.scss";
 import peopleActions from "../redux/people/people.actions"
 import FlexOverlay from "./FlexOverlay"
 import useCrop from "../hooks/useCrop.hook"
-import PrimaryFormErrorField from "./PrimaryFormErrorField"
 import PrimaryButton from "./PrimaryButton"
+import FormMessageDisplay from './FormMessageDisplay.component';
+import { useParsedFieldErrors } from '../hooks/useParsedFieldError.hook';
 
-const CreatePersonOverlay = ({person, setShowOverlay, showOverlay}) => {
+const CreatePersonOverlay = ({setShowOverlay, showOverlay}) => {
     const dispatch = useDispatch()
-    const [editedPerson, setEditedPerson] = useState(person)
+
+    const [personName, setPersonName] = useState("")
     const {crop, setCrop, onImageLoad, cropImage, img, setImg, setImgFile, imgFile} = useCrop()
 
-   
+    const [statusMessage, setStatusMessage] = useState({
+        message: "",
+        type: "error"
+    })
+    const createPersonError = useSelector(store => store.people.create.createPersonError)
 
-    const onClickSaveClick = (e) => {
+    const [prevPending, setPrevPending] = useState(false)
+    const createPersonErrorPending = useSelector(store => store.people.create.createPersonPending)
+    const parsedFieldErrors = useParsedFieldErrors(createPersonError)
+
+
+    useEffect(() => {
+        if(createPersonErrorPending){
+            setPrevPending(true)
+        }else if(!createPersonErrorPending && prevPending){
+            setPrevPending(false)
+            setPersonName("")
+            setImg(null)
+        }
+    }, [createPersonErrorPending])
+
+
+
+
+    const onSaveClick = (e) => {
         // save or update 
         e.preventDefault()
 
-        console.log(editedPerson)
-        console.log(img)
-
-        if(person.id){
-            // update
-         
-        }else{
-            // create
-            const createPersonDto = {
-                name: editedPerson.name,
-                image: imgFile
-            }
-            console.log(createPersonDto)
-            dispatch(peopleActions.createPerson(createPersonDto))
+        // create
+        const createPersonDto = {
+            name: personName,
+            image: imgFile
         }
+  
+        dispatch(peopleActions.createPerson(createPersonDto))
+    
     }
 
+
+
     const onChange = (e) => {
-        setEditedPerson({
-            ...editedPerson,
-            [e.target.name]: e.target.value
-        })
+        setPersonName(e.target.value)
     }
 
     const onImageSelect = (e) => {
-        console.log(e)
         if (e.target.files && e.target.files.length > 0) {
             const reader = new FileReader();
             reader.addEventListener('load', () => setImg(reader.result));
@@ -66,7 +81,8 @@ const CreatePersonOverlay = ({person, setShowOverlay, showOverlay}) => {
         <FlexOverlay setShow={setShowOverlay} show={showOverlay} className="person-overlay" title="Create New Person">
        
                 <form>
-                    <FormInput label="name" id="person-name" name="name" value={editedPerson?.name} onChange={onChange}/>
+                    <FormMessageDisplay message={statusMessage.message} type={statusMessage.type} />
+                    <FormInput label="name" id="person-name" name="name" value={personName} onChange={onChange} errorMessage={parsedFieldErrors.name}/>
                     <ImageSelector 
                         src={img}
                         crop={crop}
@@ -74,11 +90,12 @@ const CreatePersonOverlay = ({person, setShowOverlay, showOverlay}) => {
                         onImageLoad={onImageLoad}
                         crossorigin="anonymous"
                         onImageSelect={onImageSelect}
+                        errorMessage={parsedFieldErrors.image}
                     />
                     
 
                     <div className="person-overlay__buttons">
-                        <PrimaryButton onClick={onClickSaveClick} isLoading={false} small>Save</PrimaryButton>
+                        <PrimaryButton onClick={onSaveClick} isLoading={false} small>Save</PrimaryButton>
                         <PrimaryButton onClick={onCropClick} isLoading={false} small>Crop</PrimaryButton>
                         <label className="button button--action button--small" onClick={onImageSelect}>
                             ChangeImage

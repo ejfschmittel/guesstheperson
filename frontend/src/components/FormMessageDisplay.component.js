@@ -26,7 +26,7 @@ const FormMessageDisplay = (props) => {
         }
     }, [type])
 
-    console.log(props)
+  
 
     return (
         <div className={`form-message-display ${messageClass} ${!message && 'form-message-display__hidden'}`}>

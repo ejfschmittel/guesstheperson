@@ -1,7 +1,7 @@
 import {getAuthToken} from "../../utils/jwt.utils"
 import {API_BASE_URL} from "../../utils/urls.utils"
 import {validate} from "../../utils/validation.utils"
-
+import {handleFetchResponse} from "../../utils/fetch.utils"
 const PEOPLE_BASE_URL = API_BASE_URL + "people/"
 
 
@@ -17,10 +17,10 @@ const deletePerson = (personId) => {
         headers: {
             'Authorization': 'Bearer ' + getAuthToken(),
         }
-    }).then(res => res.json())
+    }).then(handleFetchResponse)
 }
 
-const createPerson = (createPersonDto) => {
+const createPerson = async (createPersonDto) => {
 
     validate(createPersonDto, {
         name: {
@@ -32,8 +32,6 @@ const createPerson = (createPersonDto) => {
         }
     })
 
-    console.log(createPersonDto)
-
     const formData = new FormData()
     formData.append('name', createPersonDto.name)
     formData.append('image', createPersonDto.image)
@@ -42,9 +40,7 @@ const createPerson = (createPersonDto) => {
         console.log(pair[0]+ ', ' + pair[1]); 
     }
 
-    console.log(formData)
 
-    console.log(getAuthToken())
 
     return fetch(PEOPLE_BASE_URL, {
         method: "POST",
@@ -52,7 +48,7 @@ const createPerson = (createPersonDto) => {
         headers: {
             'Authorization': 'Bearer ' + getAuthToken(),
         }
-    }).then(res => res.json())
+    }).then(handleFetchResponse)
 }
 
 const fetchAllPeople = () =>{
