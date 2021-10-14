@@ -55,6 +55,9 @@
     }
 
     & .header__title a{
+
+        color: rgb(93, 29, 167);
+
         @include respond(tab-port){
             color: #fff;
         }

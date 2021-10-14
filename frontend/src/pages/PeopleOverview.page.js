@@ -4,6 +4,10 @@ import Header from "../components/Header.component"
 import PeopleList from '../components/PeopleList.component'
 import peopleActions from "../redux/people/people.actions"
 import CreatePersonOverlay from '../components/CreatePersonOverlay.component'
+
+import FormInput from '../components/FormInput.component'
+import "../styles/pages/PeopleOverviewpage.styles.scss"
+import {FaPlus} from "react-icons/fa"
 /*
 
     CreatePersonOverlay
@@ -15,10 +19,13 @@ const PeopleOverview = () => {
     const peopleByID= useSelector(store =>store.people.people.peopleByID)
     const isLoadingPeople = useSelector(store => store.people.people.fetchAllPeoplePending)
     const user = useSelector(store => store.user.user)
-    const people = peopleList.map(id => peopleByID[id])
+    
 
-    console.log("isloading people")
-    console.log(isLoadingPeople)
+
+    const [searchTerm, setSearchTerm] = useState("")
+    const [displayedPeople, setDisplayedPeople] = useState([])
+
+
 
     const [overlayPerson, setOverlayPerson] = useState({
         name: "",
@@ -31,8 +38,31 @@ const PeopleOverview = () => {
         dispatch(peopleActions.fetchAllPeople())
     }, [dispatch])
 
+
+    useEffect(() => {
+        if(peopleByID){
+            const people = peopleList.map(id => peopleByID[id])
+            setDisplayedPeople(people)
+        }
+    }, [peopleByID, peopleList])
+
     const onCreateClick = () => {
         setShowOverlay(true)
+    }
+
+    const onSearch = (e) => {
+        setSearchTerm(e.target.value)
+        filterPeople(e.target.value)
+    }
+
+
+    const filterPeople = (searchTerm) => {
+        const people = peopleList.map(id => {
+            const person = peopleByID[id]
+            return person.name.toLowerCase().includes(searchTerm.toLowerCase()) ? person : null; 
+        }).filter(person => person !== null)
+  
+        setDisplayedPeople(people)
     }
 
 
@@ -43,9 +73,23 @@ const PeopleOverview = () => {
             <Header />
         
             <div className="page__content page__content--container">
-                <h1 className="page__title">{user.name}'s People Selection</h1>
-                <button className="button button--action  button--fullwidth" onClick={onCreateClick}>Create new Person</button>
-                <PeopleList items={people}  hideOptions={false} isLoading={isLoadingPeople}/>
+
+
+                
+                <div className="page-section people-overview-header">
+                    <h1 className="people-overview-header__title">{user.name} | People Overview</h1>
+                    <div className="people-overview-header__controlls">
+                        <div className="people-overview-header__input"><FormInput label="search" value={searchTerm} onChange={onSearch}/></div>
+                        <div className="people-overview-header__button"> <button className="button button--action" onClick={onCreateClick}><FaPlus />New Person</button></div>
+                    </div>
+                </div>
+               
+              
+
+              <div className="page-section">
+                <PeopleList items={displayedPeople}  hideOptions={false} isLoading={isLoadingPeople} emptyMessage={searchTerm ? `There are no people with the name '${searchTerm}'` : null}/>
+              </div>
+                
                 <CreatePersonOverlay person={overlayPerson} setShowOverlay={setShowOverlay} showOverlay={showOverlay}/>
             </div>
         </div>

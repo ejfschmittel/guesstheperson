@@ -1,5 +1,6 @@
 .header{
-    background: #333;
+    background: rgb(117,161,226);
+    background: linear-gradient(0deg, rgba(47,54,65,1) 0%, rgba(42,37,45,1) 26%, rgba(16,7,28,1) 78%);
     padding: .8rem 0;
     color: #fff;
 
@@ -16,10 +17,12 @@
     &__title{
         font-size: 2rem;
         letter-spacing: .1rem;
+       
     
 
         a{
             text-decoration: none;
+            color: #fff;
         }
     }
 

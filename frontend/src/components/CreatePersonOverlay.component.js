@@ -63,7 +63,7 @@ const CreatePersonOverlay = ({person, setShowOverlay, showOverlay}) => {
 
 
     return (
-        <FlexOverlay setShow={setShowOverlay} show={showOverlay} className="person-overlay">
+        <FlexOverlay setShow={setShowOverlay} show={showOverlay} className="person-overlay" title="Create New Person">
        
                 <form>
                     <FormInput label="name" id="person-name" name="name" value={editedPerson?.name} onChange={onChange}/>

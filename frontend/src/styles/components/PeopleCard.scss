@@ -1,8 +1,9 @@
 .people-card{
     position: relative;
-    padding: 0rem;
+   
     border-radius: .3rem;
-    background: #fff;
+    padding: .5rem 0;
+    background: rgb(226, 221, 252);
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     display: flex;
     flex-direction: column;
@@ -10,10 +11,32 @@
     aspect-ratio: 1;
  
 
-
+    position: relative;
 
     &--selected{
         border: 3px solid green;
+    }
+
+    &:hover &__overlay{
+        opacity: 1;
+    }
+
+    &__overlay{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(34, 8, 8, 0.8);
+        border-radius: .3rem;
+
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        opacity: 0;
+        transition: .3s all;
     }
 
     &__options{
@@ -103,14 +126,14 @@
 
     &__flex-container{
         flex: 1;
-        background: red;
+       
     }   
 
     &__img-container{
-        background: #aaa;
+      
  
         width: 100%;
-        height: 100%;
+        aspect-ratio: 3 / 4;
         
         display: flex;
         justify-content: center;
@@ -128,12 +151,17 @@
     }
 
     &__name{
-        width: 100%;
+        
         background: #333;
+        margin:0  .5rem;
+        margin-top: .5rem;
+        border-radius: .5rem;
+
         color: #fff;
         text-align: center;
         font-size: 1.3rem;
         padding: .3rem;
+
     }
 
     &__delete-btn{

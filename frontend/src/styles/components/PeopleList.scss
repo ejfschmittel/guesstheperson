@@ -1,11 +1,16 @@
 .people-list{
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 1.5rem;
-    padding: 1rem;
 
-    min-height: 400px;
-    background: #eee;
+    padding: 2rem;
+
+ 
+    background: #fff;
     position: relative;
+
+    &__items{
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 1.5rem;
+    }
+
 }
 

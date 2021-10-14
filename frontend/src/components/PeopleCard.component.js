@@ -35,20 +35,9 @@ const PeopleCard = SortableElement(({person, selected, hideOptions, onClick}) =>
 
     return (
         <div className={`people-card ${selected ? 'people-card--selected' : ''}`} ref={cardRef} onClick={onPersonClick}>
-           <div className="people-card__options">
-                <div className={`people-card__options-btn ${hideOptions ? 'people-card__options-btn--hidden' : ''}`} onClick={toggleSettings}>
-                    <FaCog />
-                </div>
-
-                <div className={`people-card__option-items ${showSettings && 'people-card__option-items--show'}`}>
-                    <button className="people-card__option-item">
-                        <FaEdit />
-                        Edit
-                    </button>
-                    <button className="people-card__option-item" onClick={onDeleteClick}>
-                        <FaTrash />Delete
-                    </button>
-                </div>
+      
+            <div className="people-card__overlay" onClick={onDeleteClick}>
+                <div><FaTrash /> Delete</div>
             </div>
             
             <div className="people-card__flex-container">
@@ -56,11 +45,11 @@ const PeopleCard = SortableElement(({person, selected, hideOptions, onClick}) =>
                    
                 </div>
             </div>
+            
+       
             <div className="people-card__name">
                 {person.name}
             </div>
-       
-         
 
 
         </div>

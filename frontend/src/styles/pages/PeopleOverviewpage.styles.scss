@@ -1,0 +1,28 @@
+.people-overview-header{
+
+    padding: 1rem 2rem;
+    background: #ffff;
+    margin-bottom: 2rem;
+
+
+    &__controlls{
+        display: flex;
+        align-items: center;
+    }
+
+    &__input{
+        flex: 1;
+        margin-right: 2rem;
+        border-right: 1px solid #eee;
+        padding-right: 2rem;
+    }
+
+    &__title{
+        text-transform: capitalize;
+        
+    }
+
+    &__button{
+
+    }
+}

@@ -8,7 +8,8 @@ const useCrop = (initialImage=null) => {
 
 
     const [crop, setCrop] = useState({
-        unit: "%"
+        unit: "%",
+        aspect: 3 / 4,
     });
 
 

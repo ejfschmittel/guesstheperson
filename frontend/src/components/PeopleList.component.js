@@ -4,6 +4,8 @@ import "../styles/components/PeopleList.scss"
 import LoadingOverlay from './LoadingIndicator.component'
 import {SortableContainer} from "react-sortable-hoc"
 
+import FormMessageDisplay from "../components/FormMessageDisplay.component"
+
 const PeopleList = (props) => {
 
     function shouldCancelStart(e) {
@@ -24,26 +26,30 @@ const PeopleList = (props) => {
     )
 }
 
-export const RawPeopleList = SortableContainer(({items, sortable, hideOptions, selected, onClick, isLoading}) => {
+export const RawPeopleList = SortableContainer(({items, sortable, hideOptions, selected, onClick, isLoading, emptyMessage}) => {
     return (
         <div className="people-list">
          
             <LoadingOverlay show={isLoading}/>
+
+            {items.length === 0 && <FormMessageDisplay message={emptyMessage || "There are currently no people to display"} type="info" />}
            
-            {items.map((person, idx) => {
-                const isSelected = selected.filter(id => person.id === id).length === 1
-                return (
-                    <PeopleCard 
-                        person={person} 
-                        key={person.id} 
-                        index={idx} 
-                        disabled={!sortable} 
-                        selected={isSelected} 
-                        hideOptions={hideOptions} 
-                        onClick={onClick}
-                        />
-                )
-            })}
+           <div className="people-list__items">     
+                {items.map((person, idx) => {
+                    const isSelected = selected.filter(id => person.id === id).length === 1
+                    return (
+                        <PeopleCard 
+                            person={person} 
+                            key={person.id} 
+                            index={idx} 
+                            disabled={!sortable} 
+                            selected={isSelected} 
+                            hideOptions={hideOptions} 
+                            onClick={onClick}
+                            />
+                    )
+                })}
+            </div>
         </div>
     )
 })

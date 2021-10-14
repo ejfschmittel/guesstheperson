@@ -10,6 +10,20 @@
     justify-content: center;
     align-items: center;
 
+
+    
+
+    &__title{
+        background: #333;
+        color: #fff;
+        padding: 1rem 2rem;
+        font-size: 1.6rem;
+        position: relative;
+        border-top-left-radius: .5rem;
+        border-top-right-radius: .5rem;
+    }
+    
+
   
     &--hidden{
         display: none;
@@ -17,31 +31,43 @@
 
     &__container{
         background: #fff;
-        padding: 1rem;
+
         border-radius: .5rem;
         width: min(100%,800px);
         position: relative;
+    
+     
+    }
+
+    &__content{
+        padding: 2rem;
     }
 
     &__close{
         position: absolute;
-        padding: 1rem;
+        padding: .6rem;
         display: flex;
         justify-content: center;
         align-items: center;
-        top: -1rem;
-        right: -1rem;
-        background: #ddd;
+        font-size: 1.4rem;
+        top: 50%;
+        transform: translate(0, -50%);
+        right: 2rem;
+        background: rgb(129, 67, 67);
+      
         border-radius: 50%;
-        box-shadow: 0 .2rem .5rem rgba(0,0,0,.5);
+        box-shadow: 0 .2rem .2rem rgba(0,0,0,.3);
         cursor: pointer;
+        transition: all .3s;
  
          &:hover{
-             box-shadow: 0 .2rem .3rem rgba(0,0,0,.5);
+            box-shadow: 0 .2rem .5rem rgba(0,0,0,.5);
+            background: rgb(100, 52, 52);
          }
  
          &:active{
              box-shadow: none;
+             background: rgb(68, 34, 34);
          }
      }
 }
