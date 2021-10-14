@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react'
-import { useParams } from 'react-router'
+import {useParams} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux"
 import BoardDisplay from '../components/BoardDisplay'
 import Header from '../components/Header.component'
 import boardsActions from '../redux/boards/boards.actions'
 
 const PlayBoard = () => {
-    const {boardId} = useParams()
+    const { boardId } = useParams()
     const dispatch = useDispatch()
     const board = useSelector(store => store.boards.boards.byId[boardId])
     
@@ -26,7 +26,6 @@ const PlayBoard = () => {
         dispatch(boardsActions.fetchOneBoard(boardId))
     }, [dispatch, boardId])
 
-    console.log("play board")
 
     return (
         <div className="page page--fullscreen page--flex" >

@@ -3,18 +3,23 @@ import {useDispatch, useSelector} from "react-redux"
 import {useParams} from "react-router-dom"
 import Header from '../components/Header.component'
 
-
+import {FaPlus, FaTrash} from "react-icons/fa"
 import EditableTitle from '../components/EditableTitle'
 import BoardEditAddPeopleOverlay from '../components/BoardEditAddPeopleOverlay'
 import PeopleList from '../components/PeopleList.component'
 import boardActions from "../redux/boards/boards.actions"
+import FormInput from '../components/FormInput.component'
+import PrimaryButton from '../components/PrimaryButton'
+import PageTitleSection from '../components/PageTitleSection.component'
 
+import "../styles/pages/BoardEditPage.styles.scss"
 
 const BaordEditPage = () => {
     const {boardId} = useParams() 
     const dispatch = useDispatch()
     const [showOverlay, setShowOverlay] = useState(false)
     const board = useSelector(store => store.boards.boards.byId[boardId])
+    const user = useSelector(store => store.user.user)
 
     const [title, setTitle] = useState("Loading...")
 
@@ -90,16 +95,30 @@ const BaordEditPage = () => {
         <Header />
     
         <div className="page__content page__content--container">
-            <BoardEditAddPeopleOverlay show={showOverlay} setShow={setShowOverlay} addPeople={addPeople}/>
-            <EditableTitle value={title} onChange={onTitleChange}/>
-            {/*<h1 className="page__title">{board ? board?.title : "Loading..."}</h1>*/}
-            <button className="button button--action button--center" onClick={onAddPersonClick}>Add Person</button>
-            <div className="message">
-                Some message
+
+
+            <PageTitleSection title={"Edit 'Placeholder'"}>
+                <div className="edit-board-title-container">
+                    <div className="people-overview-header__input"><FormInput label="title"/></div>
+                    <div className="people-overview-header__button"> <button className="button button--mid button--action"  onClick={onAddPersonClick}><FaPlus />Add People</button></div>
+                    <div className="people-overview-header__button"> <button className="button button--mid button--danger"><FaTrash />Delete Board</button></div>
+                </div>
+            </PageTitleSection>
+  
+      
+            <div className="page-section edit-board-body">
+                <div className="edit-board-body__save">
+                <button className="button button--action button--center" onClick={onSave}>Save</button>
+                </div>
+                <PeopleList items={displayPeople} axis="xy"  />
             </div>
-            <PeopleList items={displayPeople} axis="xy"  />
-            <button className="button button--action button--center" onClick={onSave}>Save</button>
+            
+           
+
+
         </div>
+
+        <BoardEditAddPeopleOverlay title="Edit board" show={showOverlay} setShow={setShowOverlay} addPeople={addPeople}/>
     </div>
     )
 }

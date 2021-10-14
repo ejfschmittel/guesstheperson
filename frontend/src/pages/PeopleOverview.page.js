@@ -9,6 +9,7 @@ import FormInput from '../components/FormInput.component'
 import "../styles/pages/PeopleOverviewpage.styles.scss"
 import {FaPlus} from "react-icons/fa"
 import PeopleOverviewCard from '../components/PeopleOverviewCard.component'
+import PageTitleSection from "../components/PageTitleSection.component"
 /*
 
     CreatePersonOverlay
@@ -80,13 +81,13 @@ const PeopleOverview = () => {
 
 
                 
-                <div className="page-section people-overview-header">
-                    <h1 className="people-overview-header__title">{user.name} | People Overview</h1>
+                <PageTitleSection title="People Overview">
                     <div className="people-overview-header__controlls">
                         <div className="people-overview-header__input"><FormInput label="search" value={searchTerm} onChange={onSearch}/></div>
                         <div className="people-overview-header__button"> <button className="button button--action" onClick={onCreateClick}><FaPlus />New Person</button></div>
                     </div>
-                </div>
+                </PageTitleSection>
+              
                
               
 

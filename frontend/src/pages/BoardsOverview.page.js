@@ -6,7 +6,7 @@ import boardsActions from "../redux/boards/boards.actions"
 import {FaPlus} from "react-icons/fa"
 import FormInput from '../components/FormInput.component';
 import BoardCreateOverlay from '../components/BoardCreateOverlay.component';
-
+import PageTitleSection from "../components/PageTitleSection.component"
 
 
 const BoardsOverviewPage = () => {
@@ -58,13 +58,14 @@ const BoardsOverviewPage = () => {
     
         <div className="page__content page__content--container">
 
-            <div className="page-section people-overview-header">
-                <h1 className="people-overview-header__title">{user.name} | Boards</h1>
+
+            <PageTitleSection title="Boards">
                 <div className="people-overview-header__controlls">
                     <div className="people-overview-header__input"><FormInput label="search" value={searchTerm} onChange={onSearch}/></div>
                     <div className="people-overview-header__button"> <button className="button button--action" onClick={onCreateClick}><FaPlus />New Board</button></div>
                 </div>
-            </div>
+            </PageTitleSection>
+        
 
   
             <div className="page-section">

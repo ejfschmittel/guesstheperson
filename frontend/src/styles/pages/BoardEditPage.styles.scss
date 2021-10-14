@@ -1,0 +1,18 @@
+
+
+.edit-board-title-container{
+    display: flex;
+        align-items: center;
+
+        & button{
+            margin-right: 1rem;
+        }
+}
+
+.edit-board-body {
+
+    &__save{
+        padding-bottom: 3rem;
+        border-bottom: 1px solid #ccc;
+    }
+}

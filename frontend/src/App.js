@@ -1,5 +1,5 @@
 import React from "react";
-import {Switch, Route, Router} from "react-router-dom"
+import {Switch, Route, Router, BrowserRouter as Router2} from "react-router-dom"
 
 
 import HomepagePage from "./pages/Homepage.page";
@@ -17,14 +17,15 @@ import history from "./utils/history.utils"
 function App() {
   return (
     <div className="App">
-      <Router history={history} forceRefresh={true}>
+      <Router history={history} >
         <Switch>
           
           <Route path="/register" component={RegisterPage}/>
           <Route path="/login" component={LoginPage}/>
-          <Route path="/people" component={PeopleOverview}/>
-          <Route path="/boards/:boardId/edit" component={BaordEditPage} />
-          <Route path="/boards/:boardId" component={PlayBoard} />
+          <PrivateRoute path="/people" component={PeopleOverview}/>
+
+          <PrivateRoute path="/boards/:boardId/edit" component={BaordEditPage} />
+          <PrivateRoute path="/boards/:boardId" component={PlayBoard} />
           <PrivateRoute path="/boards" component={BoardsOverviewPage} />
         
           <Route path="/" component={HomepagePage}/>
