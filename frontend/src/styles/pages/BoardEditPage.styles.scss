@@ -12,7 +12,12 @@
 .edit-board-body {
 
     &__save{
-        padding-bottom: 3rem;
+        padding-bottom: .5rem;
         border-bottom: 1px solid #ccc;
+
+        & .form-message-display{
+            width: 80%;
+            margin: 1rem auto
+        }
     }
 }

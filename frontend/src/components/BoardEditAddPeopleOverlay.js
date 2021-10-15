@@ -1,9 +1,11 @@
 import React, {useEffect, useState, useMemo} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import FlexOverlay from './FlexOverlay'
-import PeopleList from "./PeopleList.component"
+import PeopleList, {DISPLAY_TYPES} from "./PeopleList.component"
 import FormInput from "./FormInput.component"
 import peopleActions from "../redux/people/people.actions"
+import "../styles/components/BoardEditAddPeopleOverlay.styles.scss"
+import PrimaryButton from "./PrimaryButton"
 
 const BoardEditAddPeopleOverlay = ({setShow, show, addPeople}) => {
     const dispatch = useDispatch()
@@ -71,13 +73,13 @@ const BoardEditAddPeopleOverlay = ({setShow, show, addPeople}) => {
     
 
     return (
-        <FlexOverlay setShow={setShow} show={show} >
-            <h3>Add new Peopel to your board</h3>
-            <p>You have currently selected {selectedPeople.length} People</p>
+        <FlexOverlay setShow={setShow} show={show} title="Add People">
+            <h3 className="board-add-people__subtitle">Add new Peopel to your board</h3>
+            <p className="board-add-people__count-info"> You have currently selected {selectedPeople.length} People</p>
   
             <FormInput label="Search" id="search-person" value={searchTerm} onChange={onSearch}/>
-            <PeopleList items={peopleDisplayList} sortable={false} onClick={onPersonClick} selected={selectedPeople}/>
-            <button className="button button--action button--center" onClick={onAddPeopleClick}>Add People</button>
+            <PeopleList items={peopleDisplayList} sortable={false} onClick={onPersonClick} selected={selectedPeople} displayType={DISPLAY_TYPES.AUTO_FIT}/>
+            <PrimaryButton onClick={onAddPeopleClick}>Add People</PrimaryButton>
         </FlexOverlay>
     )
 }

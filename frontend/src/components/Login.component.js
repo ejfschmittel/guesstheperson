@@ -5,7 +5,6 @@ import FormInput from './FormInput.component'
 import {useDispatch, useSelector} from "react-redux"
 import userActions from "../redux/user/user.actions"
 import PrimaryButton from './PrimaryButton'
-import PrimaryFormErrorField from './PrimaryFormErrorField'
 import { useParsedFieldErrors } from '../hooks/useParsedFieldError.hook'
 import {useLocation} from "react-router-dom"
 import FormMessageDisplay from './FormMessageDisplay.component'
@@ -83,7 +82,7 @@ const Login = () => {
     }
 
 
-<PrimaryFormErrorField errorMessage={loginError?.primaryMessage}/>
+
     return (
 
         <div className="wholescreen-flex">

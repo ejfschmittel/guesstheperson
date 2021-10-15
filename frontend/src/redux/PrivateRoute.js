@@ -33,6 +33,7 @@ const PrivateRoute = ({component: Component, ...props}) => {
 
     return (
         <Route 
+            {...props}
             render={props => 
                 isLoggedIn ? 
                     <Component {...props} />

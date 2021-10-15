@@ -3,19 +3,19 @@ import BOARDS_TYPES from "../boards.types"
 
 
 const initialState = {
-    updateBoardPending: false,
-    updateBoardError: null,
-    updatedBoard: null    
+    editBoardPending: false,
+    editBoardError: null,
+    editedBoard: null    
 }
 
 const updateBoardReducer = (state=initialState, action) => {
     switch(action.type){
         case BOARDS_TYPES.BOARDS_EDIT_START:
-            return {...state, updateBoardPending: true}
+            return {...state, editBoardPending: true}
         case BOARDS_TYPES.BOARDS_EDIT_SUCCESS:
-            return {...state, updateBoardPending: false, updatedBoard: action.payload, updateBoardError: null }
+            return {...state, editBoardPending: false, editedBoard: action.payload, editBoardError: null }
         case BOARDS_TYPES.BOARDS_EDIT_ERROR:
-            return {...state, updateBoardPending: false, updateBoardError: action.payload}
+            return {...state, editBoardPending: false, editBoardError: action.payload}
 
     
         default: 

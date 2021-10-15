@@ -1,10 +1,16 @@
-import React from 'react'
+import React, {useMemo} from 'react'
 import PeopleCard from './PeopleCard.component'
 import "../styles/components/PeopleList.scss"
 import LoadingOverlay from './LoadingIndicator.component'
 import {SortableContainer} from "react-sortable-hoc"
 
 import FormMessageDisplay from "../components/FormMessageDisplay.component"
+
+
+export const DISPLAY_TYPES = {
+    STANDARD: "standard",
+    AUTO_FIT: "auto_fit"
+}
 
 const PeopleList = (props) => {
 
@@ -21,16 +27,26 @@ const PeopleList = (props) => {
     })
 
 
+
+
     return (
         <RawPeopleList {...props} distance={1}  shouldCancelStart={shouldCancelStart} getHelperDimensions={getHelperDimensions}/>
     )
 }
 
-export const RawPeopleList = SortableContainer(({card: Card, items, sortable, hideOptions, selected, onClick, isLoading, emptyMessage}) => {
+export const RawPeopleList = SortableContainer(({card: Card, items, sortable, hideOptions, selected, onClick, isLoading, emptyMessage, displayType}) => {
 
+    const classes = useMemo(() => {
+        switch(displayType){
+            case DISPLAY_TYPES.AUTO_FIT:
+                return "people-list people-list--auto-fit"
+            default:
+                return "people-list"
+        }
+    }, [displayType])
 
     return (
-        <div className="people-list">
+        <div className={classes}>
          
             <LoadingOverlay show={isLoading}/>
 
@@ -48,6 +64,7 @@ export const RawPeopleList = SortableContainer(({card: Card, items, sortable, hi
                             selected={isSelected} 
                             hideOptions={hideOptions} 
                             onClick={onClick}
+                            selectable={!!selected}
                             />
                     )
                 })}
@@ -62,7 +79,8 @@ PeopleList.defaultProps = {
     selected: [],
     hideOptions: true,
     onClick: () => {},
-    card: PeopleCard
+    card: PeopleCard,
+    displayType: DISPLAY_TYPES.STANDARD
 }
 
 export default PeopleList

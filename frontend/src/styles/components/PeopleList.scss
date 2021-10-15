@@ -1,16 +1,27 @@
 .people-list{
 
     padding: 2rem;
-
- 
     background: #fff;
     position: relative;
+
+    &--auto-fit{
+        max-height: 40vh;
+        overflow-y: auto;
+
+        
+    }
+
+    &--auto-fit &__items{
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
 
     &__items{
         display: grid;
         grid-template-columns: repeat(6, 1fr);
         gap: 1.5rem;
     }
+
+    
 
 }
 

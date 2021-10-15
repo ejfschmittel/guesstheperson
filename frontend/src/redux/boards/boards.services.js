@@ -34,7 +34,7 @@ const fetchAll = () => {
     }).then(res => res.json())
 }
 
-const fetchOne = (id) => {
+const fetchOne = async (id) => {
     const URL = BOARDS_BASE_URL + id
     return fetch(URL, {
         method: "GET",

@@ -10,7 +10,7 @@ import {API_BASE_URL} from "../utils/urls.utils"
 
 
 
-const PeopleCard = SortableElement(({children, person, selected, hideOptions, onClick}) => {
+const PeopleCard = SortableElement(({children, person, selected, selectable, hideOptions, onClick}) => {
     const dispatch = useDispatch()
     const cardRef = useRef()
     const [showSettings, setShowSettings] = useState(false)
@@ -29,7 +29,7 @@ const PeopleCard = SortableElement(({children, person, selected, hideOptions, on
     }
 
     return (
-        <div className={`people-card ${selected ? 'people-card--selected' : ''}`} ref={cardRef} onClick={onPersonClick}>
+        <div className={`people-card ${selected ? 'people-card--selected' : ''} ${selectable ? 'people-card--selectable' : ''}`} ref={cardRef} onClick={onPersonClick}>
                
             <div className="people-card__flex-container">
                 <div className="people-card__img-container" style={{backgroundImage: `url('${API_BASE_URL + person.image_url}')`}}>

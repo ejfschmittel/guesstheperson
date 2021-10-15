@@ -1,31 +1,38 @@
 import React, {useState, useEffect} from 'react'
 import {useDispatch, useSelector} from "react-redux"
-import {useParams} from "react-router-dom"
+import {useParams, useLocation} from "react-router-dom"
 import Header from '../components/Header.component'
 
 import {FaPlus, FaTrash} from "react-icons/fa"
-import EditableTitle from '../components/EditableTitle'
 import BoardEditAddPeopleOverlay from '../components/BoardEditAddPeopleOverlay'
 import PeopleList from '../components/PeopleList.component'
 import boardActions from "../redux/boards/boards.actions"
 import FormInput from '../components/FormInput.component'
-import PrimaryButton from '../components/PrimaryButton'
 import PageTitleSection from '../components/PageTitleSection.component'
-
+import PrimaryButton from "../components/PrimaryButton"
+import FormMessageDisplay from '../components/FormMessageDisplay.component'
 import "../styles/pages/BoardEditPage.styles.scss"
 
 const BaordEditPage = () => {
     const {boardId} = useParams() 
     const dispatch = useDispatch()
-    const [showOverlay, setShowOverlay] = useState(false)
+  
+    // selectors
     const board = useSelector(store => store.boards.boards.byId[boardId])
+    const isEditPending = useSelector(store => store.boards.edit.editBoardPending)
     const user = useSelector(store => store.user.user)
 
+    // state vars
+    const [showOverlay, setShowOverlay] = useState(false)
     const [title, setTitle] = useState("Loading...")
-
-
     const [displayPeople, setDisplayPeople] = useState([])
 
+    // fetch board on load
+    useEffect(() => {
+        dispatch(boardActions.fetchOneBoard(boardId))
+    }, [dispatch, boardId])
+
+    // fill in data after board has loaded
     useEffect(() => {
         if(board){
             setTitle(board.title)
@@ -38,22 +45,18 @@ const BaordEditPage = () => {
     },[board])
 
 
-    console.log("DISPLAY PEOPLE")
-    console.log(displayPeople)
-    useEffect(() => {
-        // fetch board
-        dispatch(boardActions.fetchOneBoard(boardId))
-    }, [dispatch, boardId])
 
+    // open add people overlay on button click
     const onAddPersonClick = () => {
         setShowOverlay(true)
     }
 
-    
+    // onChange handler for title
     const onTitleChange = (e) => {
         setTitle(e.target.value)
     }
 
+    // add people to board (local only)
     const addPeople = (people) => {
         let peopleToAdd = []
 
@@ -78,6 +81,7 @@ const BaordEditPage = () => {
         setDisplayPeople([...displayPeople, ...peopleToAdd])
     }
 
+    // save all changes
     const onSave = (e) => {
         e.preventDefault();
         // combine titlte and personlist to transfer object 
@@ -90,36 +94,46 @@ const BaordEditPage = () => {
         }
     }
 
+    // deletes board
+    const onDeleteBoardClick = () => {
+        
+    }
+
     return (
-    <div className="page page--fullscreen page--flex" >
-        <Header />
+        <div className="page page--fullscreen page--flex" >
+            <Header />
+        
+            <div className="page__content page__content--container">
+
+
+                <PageTitleSection title={"Edit 'Placeholder'"}>
+                    <div className="edit-board-title-container">
+                        <div className="people-overview-header__input">
+                            <FormInput 
+                                label="title"
+                                value={title}
+                                onChange={onTitleChange}
+                                />
+                        </div>
+                        <div className="people-overview-header__button"> <button className="button button--mid button--action"  onClick={onAddPersonClick}><FaPlus />Add People</button></div>
+                        <div className="people-overview-header__button"> <button className="button button--mid button--danger" onClick={onDeleteBoardClick}><FaTrash />Delete Board</button></div>
+                    </div>
+                </PageTitleSection>
     
-        <div className="page__content page__content--container">
-
-
-            <PageTitleSection title={"Edit 'Placeholder'"}>
-                <div className="edit-board-title-container">
-                    <div className="people-overview-header__input"><FormInput label="title"/></div>
-                    <div className="people-overview-header__button"> <button className="button button--mid button--action"  onClick={onAddPersonClick}><FaPlus />Add People</button></div>
-                    <div className="people-overview-header__button"> <button className="button button--mid button--danger"><FaTrash />Delete Board</button></div>
+        
+                <div className="page-section edit-board-body">
+                    <div className="edit-board-body__save">
+                        
+                        <PrimaryButton onClick={onSave} isLoading={isEditPending}>Save</PrimaryButton>
+                        <FormMessageDisplay message="" type="error"/>
+                    </div>
+                    <PeopleList items={displayPeople} axis="xy"  />
                 </div>
-            </PageTitleSection>
-  
-      
-            <div className="page-section edit-board-body">
-                <div className="edit-board-body__save">
-                <button className="button button--action button--center" onClick={onSave}>Save</button>
-                </div>
-                <PeopleList items={displayPeople} axis="xy"  />
+
             </div>
             
-           
-
-
+            <BoardEditAddPeopleOverlay title="Edit board" show={showOverlay} setShow={setShowOverlay} addPeople={addPeople}/>
         </div>
-
-        <BoardEditAddPeopleOverlay title="Edit board" show={showOverlay} setShow={setShowOverlay} addPeople={addPeople}/>
-    </div>
     )
 }
 

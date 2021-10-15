@@ -1,5 +1,6 @@
 import BOARDS_TYPES from "./boards.types"
 import boardsServices from "./boards.services"
+import {parseError} from "../../utils/errors.utils"
 
 
 const createBoard = (createBoardDto) => dispatch => {
@@ -61,7 +62,7 @@ const fetchAllBoards = () => dispatch => {
 }
 
 const fetchOneBoard = (id) => dispatch => {
-    console.log("fetch board")
+
     const fetchOneBoardStart = () => ({
         type: BOARDS_TYPES.BOARDS_FETCH_ONE_START
     })
@@ -84,8 +85,9 @@ const fetchOneBoard = (id) => dispatch => {
             dispatch(fetchOneBoardSuccess(json))
         })
         .catch(errors => {
-            console.log(errors)
-            dispatch(fetchOneBoardError(errors))
+            const parsedErrors = parseError(errors)
+            console.log(parsedErrors)
+            dispatch(fetchOneBoardError(parsedErrors))
         })   
 }
 
