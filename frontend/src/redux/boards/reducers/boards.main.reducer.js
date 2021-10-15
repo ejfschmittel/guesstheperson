@@ -47,6 +47,9 @@ const boardsMainReducer = (state=initialState, action) => {
             return {...state, fetchOnePending: false, fetchOneError: action.payload}
 
         case BOARDS_TYPES.BOARDS_CREATE_SUCCESS:
+
+             console.log("create success")
+             console.log(action.payload);
             return {
                 ...state, 
                 byId: {...state.byId, [action.payload.id]: action.payload},

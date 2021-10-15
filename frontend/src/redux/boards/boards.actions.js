@@ -20,7 +20,6 @@ const createBoard = (createBoardDto) => dispatch => {
 
     dispatch(createBoardStart())
 
-    console.log("call boards service")
 
     boardsServices.createBoard(createBoardDto)
         .then(json => {
@@ -28,8 +27,8 @@ const createBoard = (createBoardDto) => dispatch => {
             dispatch(createBoardSuccess(json))
         })
         .catch(errors => {
-            console.log(errors)
-            dispatch(createBoardError(errors))
+            const parsedErrors = parseError(errors)
+            dispatch(createBoardError(parsedErrors))
         })   
 }
 

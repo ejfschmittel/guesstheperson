@@ -5,15 +5,12 @@ import {handleFetchResponse} from "../../utils/fetch.utils"
 
 const BOARDS_BASE_URL = API_BASE_URL + "boards/"
 
-const createBoard = (createBoardDto) => {
+const createBoard = async (createBoardDto) => {
 
     validate(createBoardDto,{
         title: {exists: true}
     })
 
-
-
-    console.log(createBoardDto)
     return fetch(BOARDS_BASE_URL, {
         method: "POST",
         body: JSON.stringify(createBoardDto),
@@ -22,7 +19,7 @@ const createBoard = (createBoardDto) => {
             'Accept': 'application/json', 
             'Content-Type': 'application/json',
         }
-    }).then(res => res.json())
+    }).then(handleFetchResponse)
 }
 
 const fetchAll = () => {

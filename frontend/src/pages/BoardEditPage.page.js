@@ -11,6 +11,7 @@ import FormInput from '../components/FormInput.component'
 import PageTitleSection from '../components/PageTitleSection.component'
 import PrimaryButton from "../components/PrimaryButton"
 import FormMessageDisplay from '../components/FormMessageDisplay.component'
+import PeopleEditCard from '../components/PeopleEditCard.component'
 import "../styles/pages/BoardEditPage.styles.scss"
 
 const BaordEditPage = () => {
@@ -36,10 +37,10 @@ const BaordEditPage = () => {
     useEffect(() => {
         if(board){
             setTitle(board.title)
-            const boardPeople = board.people.reduce((arr, boardPerson) => {
+            const boardPeople = board.people ? board.people.reduce((arr, boardPerson) => {
                 if(boardPerson.person) return [...arr, boardPerson.person]
                 return arr
-            },[])
+            },[]) : [];
             setDisplayPeople(boardPeople)
         }
     },[board])
@@ -96,7 +97,12 @@ const BaordEditPage = () => {
 
     // deletes board
     const onDeleteBoardClick = () => {
-        
+
+    }
+
+    const onRemoveCard = (removePerson) => {
+        const newDisplayPeople = displayPeople.filter(person => person.id !== removePerson.id)
+        setDisplayPeople(newDisplayPeople)
     }
 
     return (
@@ -127,7 +133,13 @@ const BaordEditPage = () => {
                         <PrimaryButton onClick={onSave} isLoading={isEditPending}>Save</PrimaryButton>
                         <FormMessageDisplay message="" type="error"/>
                     </div>
-                    <PeopleList items={displayPeople} axis="xy"  />
+                    <PeopleList 
+                        items={displayPeople} 
+                        axis="xy" 
+                        card={({person, ...props}) => 
+                            <PeopleEditCard person={person} {...props} onRemoveClick={() => onRemoveCard(person)}/>
+                        }
+                        />
                 </div>
 
             </div>
