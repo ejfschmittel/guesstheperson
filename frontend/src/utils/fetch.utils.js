@@ -2,8 +2,10 @@ import {HTTPError} from "./errors.utils"
 
 export const handleFetchResponse = (response) => {
 
+    console.log(response)
 
     if(response.ok){
+
         return response.json();
     }else{
    

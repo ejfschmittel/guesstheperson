@@ -1,7 +1,7 @@
 import BOARDS_TYPES from "./boards.types"
 import boardsServices from "./boards.services"
 import {parseError} from "../../utils/errors.utils"
-
+import history from "../../utils/history.utils"
 
 const createBoard = (createBoardDto) => dispatch => {
     const createBoardStart = () => ({
@@ -84,6 +84,7 @@ const fetchOneBoard = (id) => dispatch => {
             dispatch(fetchOneBoardSuccess(json))
         })
         .catch(errors => {
+            console.log(errors)
             const parsedErrors = parseError(errors)
             console.log(parsedErrors)
             dispatch(fetchOneBoardError(parsedErrors))
@@ -121,12 +122,45 @@ const updateBoard = (id, updateBoardDto) => dispatch => {
 }
 
 
+const deleteBaord = (id) => dispatch => {
+
+    const deleteBoardStart = () => ({
+        type: BOARDS_TYPES.BOARDS_DELETE_START
+    })
+
+    const deleteBoardSuccess = (id) => ({
+        type: BOARDS_TYPES.BOARDS_DELETE_SUCCESS,
+        payload: id
+    })
+
+    const deleteBoardError = (errors) => ({
+        type: BOARDS_TYPES.BOARDS_DELETE_ERROR,
+        payload: errors,
+    })
+
+    dispatch(deleteBoardStart())
+
+    boardsServices.deleteBoard(id)
+        .then(json => {
+            dispatch(deleteBoardSuccess(id))
+            history.push({
+                pathname: "/boards"
+            })
+        })
+        .catch(errors => {
+            const parsedErrors = parseError(errors)
+            console.log(parsedErrors)
+            dispatch(deleteBoardError(parsedErrors))
+        })   
+}
+
 
 const boardActions = {
     fetchAllBoards,
     fetchOneBoard,
     createBoard,
     updateBoard,
+    deleteBaord
 }
 
 export default boardActions

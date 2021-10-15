@@ -55,6 +55,8 @@ const boardsMainReducer = (state=initialState, action) => {
                 byId: {...state.byId, [action.payload.id]: action.payload},
                 list: [action.payload.id, ...state.list]
             }
+
+        
         default:
             return state
     }

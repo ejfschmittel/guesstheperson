@@ -97,9 +97,10 @@ const BaordEditPage = () => {
 
     // deletes board
     const onDeleteBoardClick = () => {
-
+        dispatch(boardActions.deleteBaord(boardId))
     }
 
+    // removes card from board (local only until save)
     const onRemoveCard = (removePerson) => {
         const newDisplayPeople = displayPeople.filter(person => person.id !== removePerson.id)
         setDisplayPeople(newDisplayPeople)

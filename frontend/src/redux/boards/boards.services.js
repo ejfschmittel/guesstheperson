@@ -3,6 +3,7 @@ import {API_BASE_URL} from "../../utils/urls.utils"
 import {validate} from "../../utils/validation.utils"
 import {handleFetchResponse} from "../../utils/fetch.utils"
 
+
 const BOARDS_BASE_URL = API_BASE_URL + "boards/"
 
 const createBoard = async (createBoardDto) => {
@@ -41,7 +42,7 @@ const fetchOne = async (id) => {
     }).then(handleFetchResponse)
 }
 
-const updateBoard = (id,updateBoardDto) => {
+const updateBoard = async (id,updateBoardDto) => {
     
     validate(updateBoardDto,{
         title: {exists: true}
@@ -60,11 +61,23 @@ const updateBoard = (id,updateBoardDto) => {
 }
 
 
+const deleteBoard = async (id) => {
+    const URL = BOARDS_BASE_URL + id;
+    console.log(URL)
+    return fetch(URL, {
+        method: "DELETE",
+        headers: {
+            'Authorization': 'Bearer ' + getAuthToken(),
+        }
+    }).then(handleFetchResponse)
+}
+
 const boardServices = {
     fetchAll,
     fetchOne,
     createBoard,
-    updateBoard
+    updateBoard,
+    deleteBoard
 }
 
 export default boardServices

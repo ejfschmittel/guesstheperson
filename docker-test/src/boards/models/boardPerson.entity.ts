@@ -16,6 +16,6 @@ export class BoardPersonEntity{
     person: PeopleEntity
 
     // one board / multiple entities
-    @ManyToOne(() => BoardEntity, board => board.people)
+    @ManyToOne(() => BoardEntity, board => board.people, {onDelete: 'CASCADE' })
     board: BoardEntity;
 }

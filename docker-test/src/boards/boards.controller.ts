@@ -1,8 +1,9 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpException, Param, Patch, Post, Put, Req, UseGuards, HttpStatus} from '@nestjs/common';
 import { JWTAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { BoardsService } from './boards.service';
 import { createBoardDto } from './models/dto/CreateBoard.dto';
 import { UpdateBoardDto } from './models/dto/UpdateBoard.dto';
+
 
 @Controller('boards')
 export class BoardsController {
@@ -23,8 +24,11 @@ export class BoardsController {
     }
 
     @Get(":id")
-    getBoard(@Param("id") id: string){
-        return this.boardsService.findOne(id); 
+    async getBoard(@Param("id") id: string){
+        const board = await this.boardsService.findOne(id); 
+        if(board) return board;
+
+        throw new HttpException(`Board with id '${id}' not found.`, HttpStatus.NOT_FOUND);
     }
 
     @Put(":id")
@@ -33,7 +37,7 @@ export class BoardsController {
     }
 
     @Delete(":id")
-    deleteBoard(@Param("id") id: string){
+    async deleteBoard(@Param("id") id: string){
         return this.boardsService.delete(id);
     }
 }

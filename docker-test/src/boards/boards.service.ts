@@ -44,7 +44,7 @@ export class BoardsService {
         })
     }
 
-    async delete(id: string){
+    async delete(id: string): Promise<string>{
         await this.boardRepositiory.delete(id)
         return id;
     }
