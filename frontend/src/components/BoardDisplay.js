@@ -41,21 +41,26 @@ const BoardDisplay = ({people}) => {
     return (
         <div className="board-display">
             {board.map((boardCard, i) => {
+
+
                 return (
                     <div className="board-display__card-socket">
                         <div className={`board-display__card ${boardCard.open && 'board-display__card--open'}`} onClick={() => onCardClick(i)}>
                             <div className="board-display__card-back"></div>
                             <div className="board-display__card-front">
-                                {boardCard.person && (
+                                
 
                                
                                 <div className="board-display__card-container">
-                                    <div className="board-display__card-img-container" style={{backgroundImage: `url('${API_BASE_URL + boardCard.person.image_url}')`}}>
-                                        
-                                    </div>
-                                    <div className="board-display__card-title">{boardCard.person.name}</div>
+                                    <div 
+                                        className="board-display__card-img-container" 
+                                        style={boardCard.person ? 
+                                            {backgroundImage: `url('${API_BASE_URL + boardCard.person.image_url}')`} : 
+                                            {backgroundImage: `url('/img/card-unplaced.png')`}}>          
+                                        </div>
+                                    <div className="board-display__card-title">{boardCard.person ? boardCard.person.name : "Unplaced"}</div>
                                 </div>
-                                 )}
+                                 
                             </div>
                             
                         </div>

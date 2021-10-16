@@ -1,26 +1,46 @@
 import USER_TYPES from "./user.types"
-import {getAuthToken, parseJwt, isExpired} from "../../utils/jwt.utils"
+import {getAuthToken, parseJwt, isExpired, removeAuthToken} from "../../utils/jwt.utils"
 
 
 
   const token = getAuthToken();
-  let user = null;
+  
+
+  let initalUserState = {
+      user: null,
+      auth_token: null,
+  }
+
   if(token){
 
     const parsedToken = parseJwt(token);
-    isExpired(parsedToken)
+    const expired = isExpired(parsedToken)
+   
+
+    if(expired){
+        removeAuthToken()
+    }else{
+        initalUserState = {
+            user: parsedToken.user,
+            auth_token: token,
+        }
+    }
+
+    
     console.log(parsedToken)
-    user = parsedToken.user
+    
   }
 
 
 
 
 const initalState = {
-    user: user,
+    user: null,
+    auth_token: null,
     userLoginPending: false,
     userLoginError: null,
-    auth_token: token,
+    ...initalUserState,
+    
 
 
     registeredUser: null,
