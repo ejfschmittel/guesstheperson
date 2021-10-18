@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import "../styles/components/BoardDisplay.scss"
 import {API_BASE_URL} from "../utils/urls.utils"
 const createEmptyBoard = (num) => {
@@ -38,36 +38,66 @@ const BoardDisplay = ({people}) => {
         setBoard(newBoard)
     }
 
+    const openAll = () => {
+
+        const newBoard = board.map(boardCard => {boardCard.open = true; return boardCard})
+        setBoard(newBoard)
+
+    }
+
     return (
-        <div className="board-display">
-            {board.map((boardCard, i) => {
+        <div className="board-display__container">
+            <div className="board-display">
+                {board.map((boardCard, i) => {
 
 
-                return (
-                    <div className="board-display__card-socket">
-                        <div className={`board-display__card ${boardCard.open && 'board-display__card--open'}`} onClick={() => onCardClick(i)}>
-                            <div className="board-display__card-back"></div>
-                            <div className="board-display__card-front">
-                                
+                    return (
+                    <BoardDisplayCard card={boardCard} key={`board-display-card-${i}`} pos={i} onCardClick={onCardClick}/>
+                    )
+                })}
+            </div>
 
-                               
-                                <div className="board-display__card-container">
-                                    <div 
-                                        className="board-display__card-img-container" 
-                                        style={boardCard.person ? 
-                                            {backgroundImage: `url('${API_BASE_URL + boardCard.person.image_url}')`} : 
-                                            {backgroundImage: `url('/img/card-unplaced.png')`}}>          
-                                        </div>
-                                    <div className="board-display__card-title">{boardCard.person ? boardCard.person.name : "Unplaced"}</div>
-                                </div>
-                                 
-                            </div>
-                            
-                        </div>
-                    </div>
-                )
-            })}
+            <button className="board-display-open-all-btn" onClick={openAll}>Open All</button>
         </div>
+    )
+}
+
+
+const BoardDisplayCard = ({card, pos, onCardClick}) => {
+
+    const cardRef = useRef()
+    const [height, setHeight] = useState(0);
+
+
+    useEffect(() => {
+        const width = cardRef.current.offsetWidth
+        setHeight(width * 4 / 3);
+    }, [])
+
+
+
+    return (
+        <div className="board-display__card-socket" ref={cardRef} style={{height: height}}>
+        <div className={`board-display__card ${card.open && 'board-display__card--open'}`} onClick={() => onCardClick(pos)}>
+            <div className="board-display__card-back"></div>
+            <div className="board-display__card-front">
+                
+
+               
+                <div className="board-display__card-container">
+                    <div 
+                        className="board-display__card-img-container" 
+                        style={card.person ? 
+                            {backgroundImage: `url('${API_BASE_URL + card.person.image_url}')`} : 
+                            {backgroundImage: `url('${API_BASE_URL + 'uploads/card-unplaced.png'}')`}}>          
+                        </div>
+                    <div title={card.person ? card.person.name : "Unplaced"} className="board-display__card-title">{card.person ? card.person.name : "Unplaced"}</div>
+                </div>
+                 
+            </div>
+            
+        </div>
+    </div>
     )
 }
 

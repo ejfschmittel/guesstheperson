@@ -33,6 +33,8 @@ const PlayBoard = () => {
         
             <div className="page__content page__content--container">
                 <BoardDisplay people={people}/>
+
+               
             </div>
         </div>
     )

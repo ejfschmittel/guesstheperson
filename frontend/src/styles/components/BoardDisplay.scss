@@ -2,82 +2,78 @@
 
 .board-display{
     width: 100%;
-    height: 80vh;
-    background: red;
+    
+   
+    background: rgb(167, 26, 26);
     border-radius: 1rem;
     display: grid;
     grid-template-columns: repeat(6,1fr);
-    grid-template-rows: repeat(4,1fr);
+   
     box-shadow: 0 .3rem .5rem rgba(0,0,0, .8);
-    gap: 2rem;
+    gap: 2.5rem;
     padding: 2rem;
+ 
+    position: relative;
     transform-style: preserve-3d;
+
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+
+    &__container{
+        perspective: 800px;
+        padding: 0 6rem;
+    }
+
     
-    transform:  perspective(2000px) rotateX(20deg) rotateZ(0deg) rotateY(0deg) translateY(5rem);
-
+    transform: rotateX(17deg) rotateZ(0deg) rotateY(0deg) translateY(5rem);
     
-    @include respond(tab-land){
-        background: green;
-        width: 80%;
-        margin: 0 auto;
-        height: 70vh;
-        transform:  perspective(2000px) rotateX(20deg) rotateZ(0deg) rotateY(0deg) translateY(10rem);
-    }
-
-    @include respond(tab-port){
-        background: blue;
-        transform:  perspective(2000px) rotateX(0deg) rotateZ(0deg) rotateY(0deg) translateY(10rem);
-        width: 90%;
-        margin: 0 auto;
-    }
-
-    @include respond(phone){
-        background: black;
-        height: 90vh;
-        transform:  perspective(2000px) rotateX(0deg) rotateZ(0deg) rotateY(0deg) translateY(0rem);
-        width: 100%;
-        margin: 0 auto;
-        grid-template-columns: repeat(4,1fr);
-        grid-template-rows: repeat(6,1fr);
-    }
-
+    
+  
 
 
 
     &__card-socket{
-        background: red;
+        background: rgb(134, 21, 21);
         border-radius: .5rem;
         box-shadow: inset 0 .2rem .5rem rgba(0,0,0,.5);
-        position: relative;
+        transform-style: preserve-3d;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+
+ 
     }
 
     &__card{
         border-radius: .5rem;
-        z-index: 5;
-        position: absolute;
+        z-index: 30;
         top: 0;
         left: 0;
         height: 100%;
         width: 100%;
         background: #fff;
-        transform-origin: top center;
-        transform-style: preserve-3d;
+        transform-origin: bottom center;
+  
+      
+        border: 3px solid #aaa;
         
-
         cursor: pointer;
-        border: 1px solid #333;
+       
         transition: .5s;
+        transform-style: preserve-3d;
+        transform: translateY(-100%) rotate3d(1,0,0,-180deg);
+     
+        z-index: 10;
+
+        &:hover{
+            box-shadow: 0 .5rem 2rem rgba(255,255,255,.8);
+        }
 
         @include respond(tab-port){
           
         }
 
         &--open{
-            transform: rotateX(150deg);
-           
-            @include respond(tab-port){
-                transform: rotateY(180deg);
-            }
+            transform: translateY(-100%) rotate3d(1,0,0,-30deg);
         }
 
       
@@ -86,15 +82,22 @@
     }
 
     &__card-back{
-        position: absolute;
+        position: relative;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
         background: url('/img/card-background.png');
-    
+     
         background-repeat: no-repeat;
-        background-size: cover;
+        background-size: 100% 100%;
+        cursor: pointer;
+        z-index: 10;
+        transform: rotateY(180deg) rotateZ(180deg);
+
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+       
 
     }
 
@@ -105,11 +108,16 @@
         width: 100%;
         height: 100%;
         background: green;
-        transform: rotateY(180deg) rotateZ(180deg);
+        z-index: 500;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        
 
+
+        
           
         @include respond(tab-port){
-            transform: rotateY(180deg) rotateZ(0deg)
+            
         }
     }
 
@@ -133,9 +141,10 @@
         align-items: center;
         background-repeat: no-repeat;
         background-position: center center;
-        background-size: cover; 
+        background-size: 100%; 
         clear: both;
         width: 100%;
+        
         margin: 0;
     }
 
@@ -146,6 +155,27 @@
         text-align: center;
         font-size: 1.2rem;
         color: gold;
-        background: #333;
+        background: rgba(0,0,0,.5);
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        padding: 0 .5rem;
     }
+}
+
+.board-display-open-all-btn{
+    position: fixed;
+    top: 0;
+    right: -10vw;
+    font-size: 1.6rem;
+    padding: .6rem 2rem;
+    border-radius: 1rem;
+    border: none;
+    box-shadow: 0 .1rem .5rem rgba(0,0,0,.5);
+    cursor: pointer;
+    background: green;
+    color: #fff;
 }
