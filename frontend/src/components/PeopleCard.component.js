@@ -38,7 +38,7 @@ const PeopleCard = SortableElement(({children, person, selected, selectable, hid
             </div>
             
        
-            <div className="people-card__name">
+            <div className="people-card__name" title={person.name}>
                 {person.name}
             </div>
 
