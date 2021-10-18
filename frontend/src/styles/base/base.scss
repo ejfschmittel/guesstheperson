@@ -70,10 +70,12 @@ html, body{
             margin: 0 auto;
             margin-top: 5rem;
             padding-bottom: 5rem;
+            padding-top: 7rem;
             
             @include respond(tab-port){
                 width: 100%;
                 padding: 1rem;
+                padding-top: 7rem;
             }
         }
     }
