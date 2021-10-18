@@ -1,6 +1,6 @@
 import React from 'react'
-
 import "../styles/components/LoadingIndicator.styles.scss"
+
 const LoadingIndicator = ({className}) => {
     return (
         <div className={`spinner ${className}`}>

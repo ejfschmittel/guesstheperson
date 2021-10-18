@@ -13,6 +13,8 @@ import PrimaryButton from "../components/PrimaryButton"
 import FormMessageDisplay from '../components/FormMessageDisplay.component'
 import PeopleEditCard from '../components/PeopleEditCard.component'
 import "../styles/pages/BoardEditPage.styles.scss"
+import LoadingOverlay from '../components/LoadingOverlay.component'
+import NotFoundNotice from '../components/NotFoundNotice.component'
 
 const BaordEditPage = () => {
     const {boardId} = useParams() 
@@ -21,7 +23,10 @@ const BaordEditPage = () => {
     // selectors
     const board = useSelector(store => store.boards.boards.byId[boardId])
     const isEditPending = useSelector(store => store.boards.edit.editBoardPending)
+    const fetchOnePending = useSelector(store => store.boards.boards.fetchOnePending)
     const user = useSelector(store => store.user.user)
+
+
 
     // state vars
     const [showOverlay, setShowOverlay] = useState(false)
@@ -110,42 +115,52 @@ const BaordEditPage = () => {
         <div className="page page--fullscreen page--flex" >
             <Header />
         
-            <div className="page__content page__content--container">
 
+            {!fetchOnePending && !board ? 
+                <div className="page__content page__content--container">
+                        <NotFoundNotice title="No Board Found" message={`can't find board with id '${boardId}'`}/>
+                </div>
+            :
+            (          
+                <React.Fragment>
+                    <div className="page__content page__content--container">
+                        <LoadingOverlay isLoading={fetchOnePending} />
 
-                <PageTitleSection title={"Edit 'Placeholder'"}>
-                    <div className="edit-board-title-container">
-                        <div className="people-overview-header__input">
-                            <FormInput 
-                                label="title"
-                                value={title}
-                                onChange={onTitleChange}
+                        <PageTitleSection title={"Edit 'Placeholder'"}>
+                            <div className="edit-board-title-container">
+                                <div className="people-overview-header__input">
+                                    <FormInput 
+                                        label="title"
+                                        value={title}
+                                        onChange={onTitleChange}
+                                        />
+                                </div>
+                                <div className="people-overview-header__button"> <button className="button button--mid button--action"  onClick={onAddPersonClick}><FaPlus />Add People</button></div>
+                                <div className="people-overview-header__button"> <button className="button button--mid button--danger" onClick={onDeleteBoardClick}><FaTrash />Delete Board</button></div>
+                            </div>
+                        </PageTitleSection>
+            
+                
+                        <div className="page-section edit-board-body">
+                            <div className="edit-board-body__save">
+                                
+                                <PrimaryButton onClick={onSave} isLoading={isEditPending}>Save</PrimaryButton>
+                                <FormMessageDisplay message="" type="error"/>
+                            </div>
+                            <PeopleList 
+                                items={displayPeople} 
+                                axis="xy" 
+                                card={({person, ...props}) => 
+                                    <PeopleEditCard person={person} {...props} onRemoveClick={() => onRemoveCard(person)}/>
+                                }
                                 />
                         </div>
-                        <div className="people-overview-header__button"> <button className="button button--mid button--action"  onClick={onAddPersonClick}><FaPlus />Add People</button></div>
-                        <div className="people-overview-header__button"> <button className="button button--mid button--danger" onClick={onDeleteBoardClick}><FaTrash />Delete Board</button></div>
-                    </div>
-                </PageTitleSection>
-    
-        
-                <div className="page-section edit-board-body">
-                    <div className="edit-board-body__save">
                         
-                        <PrimaryButton onClick={onSave} isLoading={isEditPending}>Save</PrimaryButton>
-                        <FormMessageDisplay message="" type="error"/>
                     </div>
-                    <PeopleList 
-                        items={displayPeople} 
-                        axis="xy" 
-                        card={({person, ...props}) => 
-                            <PeopleEditCard person={person} {...props} onRemoveClick={() => onRemoveCard(person)}/>
-                        }
-                        />
-                </div>
-
-            </div>
-            
-            <BoardEditAddPeopleOverlay title="Edit board" show={showOverlay} setShow={setShowOverlay} addPeople={addPeople}/>
+                    
+                    <BoardEditAddPeopleOverlay title="Edit board" show={showOverlay} setShow={setShowOverlay} addPeople={addPeople}/>
+                </React.Fragment>
+            )}
         </div>
     )
 }
