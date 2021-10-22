@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react'
 import {useDispatch, useSelector} from "react-redux"
 import {useParams, useLocation} from "react-router-dom"
 import Header from '../components/Header.component'
-
-import {FaPlus, FaTrash} from "react-icons/fa"
+import {Link} from "react-router-dom"
+import {FaPlus, FaTrash, FaArrowLeft} from "react-icons/fa"
 import BoardEditAddPeopleOverlay from '../components/BoardEditAddPeopleOverlay'
 import PeopleList from '../components/PeopleList.component'
 import boardActions from "../redux/boards/boards.actions"
@@ -147,6 +147,7 @@ const BaordEditPage = () => {
                         <LoadingOverlay isLoading={fetchOnePending} />
 
                         <PageTitleSection title={"Edit 'Placeholder'"}>
+                            <Link className="back-to-boards-overview-link" to="/boards" title="Back To Boards Overview"><FaArrowLeft /></Link>
                             <div className="edit-board-title-container">
                                 <div className="people-overview-header__input">
                                     <FormInput 

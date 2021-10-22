@@ -25,6 +25,10 @@ const createBoard = (createBoardDto) => dispatch => {
         .then(json => {
             console.log("success")
             dispatch(createBoardSuccess(json))
+
+            history.push({
+                pathname: `/boards/${json.id}/edit`
+            })
         })
         .catch(errors => {
             const parsedErrors = parseError(errors)
