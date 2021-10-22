@@ -87,6 +87,19 @@ const BaordEditPage = () => {
         setDisplayPeople([...displayPeople, ...peopleToAdd])
     }
 
+    const reorderArray = (array, fromIndex, toIndex) => {
+        array = [...array];
+        const startIndex = fromIndex < 0 ? array.length + fromIndex : fromIndex;
+
+        if (startIndex >= 0 && startIndex < array.length) {
+            const endIndex = toIndex < 0 ? array.length + toIndex : toIndex;
+
+            const [item] = array.splice(fromIndex, 1);
+            array.splice(endIndex, 0, item);
+        }
+        return array;
+    }
+
     // save all changes
     const onSave = (e) => {
         e.preventDefault();
@@ -109,6 +122,13 @@ const BaordEditPage = () => {
     const onRemoveCard = (removePerson) => {
         const newDisplayPeople = displayPeople.filter(person => person.id !== removePerson.id)
         setDisplayPeople(newDisplayPeople)
+    }
+
+
+    const onSortEnd = ({oldIndex, newIndex}) => {
+        const newOrderedArray = reorderArray(displayPeople, oldIndex, newIndex)
+        setDisplayPeople(newOrderedArray)
+        
     }
 
     return (
@@ -149,6 +169,8 @@ const BaordEditPage = () => {
                             </div>
                             <PeopleList 
                                 items={displayPeople} 
+                                sortable={true}
+                                onSortEnd={onSortEnd}
                                 axis="xy" 
                                 card={({person, ...props}) => 
                                     <PeopleEditCard person={person} {...props} onRemoveClick={() => onRemoveCard(person)}/>
