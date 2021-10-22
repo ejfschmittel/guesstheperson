@@ -9,8 +9,20 @@ const PeopleOverviewCard = ({person, onRemoveClick, ...props}) => {
 
     return (
         <PeopleCard {...props} person={person}>
-            <div className="people-card__overlay" onClick={onDeleteClick}>
-                <div><FaTrash /> Remove</div>
+            <div className="people-card__overlay-edit">
+       
+
+                <div className="expanding-btn" title="remove" onClick={onDeleteClick}>
+                    <div className="expanding-btn__text">
+                        Remove
+                    </div>
+                    <div className="expanding-btn__icon">
+                        <FaTrash />  
+                    </div>
+                </div>
+
+                
+                <div className="people-card__edit-drag">Drag to order</div>
             </div>
         </PeopleCard>
     )

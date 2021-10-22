@@ -28,6 +28,10 @@
         opacity: 1;
     }
 
+    &:hover &__overlay-edit{
+        opacity: 1;
+    }
+
     &__overlay{
         position: absolute;
         top: 0;
@@ -44,6 +48,68 @@
         cursor: pointer;
         opacity: 0;
         transition: .3s all;
+    }
+
+    &__overlay-edit{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(34, 8, 8, 0.8);
+        border-radius: .3rem;
+        color: #fff;
+        cursor: pointer;
+        opacity: 0;
+        transition: .3s all;
+
+    }
+
+    &__edit-delete-btn{
+        position: absolute;
+        z-index: 2;
+        top: .7rem;
+        right: .7rem;
+
+        background:   rgb(129, 67, 67);
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: .5rem 1rem;
+        flex-direction: row;
+        height: 2.8rem;
+        box-shadow: 0 .2rem .2rem rgba(0,0,0,.3);
+        cursor: pointer;
+        border-radius: 1.3rem;
+
+        &:hover{
+            background:rgb(100, 52, 52);
+            box-shadow: 0 .2rem .5rem rgba(0,0,0,.5);
+        }
+
+        &:active{
+            background: rgb(68, 34, 34);
+            box-shadow: none;
+        }
+        
+        & svg{
+            margin-left: .6rem;
+        }
+    }
+
+    &__edit-drag{
+     
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
    
@@ -99,7 +165,7 @@
         width: 100%;
         font-size: 1.3rem;
         display: block;
-        background: red;
+        background: rgb(161, 50, 50);
         color: #fff;
         cursor: pointer;
         border: none;
@@ -116,4 +182,79 @@
         border: none;
         padding: .3rem 0;
     }
+}
+
+.expanding-btn{
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+
+
+    display: flex;
+ 
+    &:hover &__text{
+        clip-path: inset(0 0 0 0);
+        opacity: 1;
+    }
+
+    &__icon{
+        width: 3rem;
+        height: 3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        background: rgb(129, 67, 67);
+        z-index: 2;
+        transition: all .5s ease-in-out;
+        box-shadow: 0 .2rem .2rem rgba(0,0,0,.3);
+    }
+
+    &__text{
+        background: rgb(129, 67, 67);
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 50%;
+        padding-right: 2rem;
+        padding-left: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-top-left-radius: 1.5rem;
+        border-bottom-left-radius: 1.5rem;
+        opacity: 0;
+        transition: all .5s ease-in-out;
+        clip-path: inset(0 0 0 100%);
+    }
+
+
+    &:hover{
+        box-shadow: 0 .2rem .5rem rgba(0,0,0,.5);
+    }
+
+    &:active{
+        box-shadow: none;
+    }
+    
+    &:hover &__text{
+        background:rgb(100, 52, 52);
+        
+    }
+
+    &:hover &__icon{
+        background:rgb(100, 52, 52);
+        box-shadow: none;
+    }
+
+    &:active &__text{
+        background: rgb(68, 34, 34);
+    }
+
+    &:active &__icon{
+        background: rgb(68, 34, 34);
+        box-shadow: none;
+    }
+    
+
 }
