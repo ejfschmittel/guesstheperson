@@ -10,6 +10,7 @@ import "../styles/pages/PeopleOverviewpage.styles.scss"
 import {FaPlus} from "react-icons/fa"
 import PeopleOverviewCard from '../components/PeopleOverviewCard.component'
 import PageTitleSection from "../components/PageTitleSection.component"
+import {API_BASE_URL} from "../utils/urls.utils"
 /*
 
     CreatePersonOverlay
@@ -39,6 +40,7 @@ const PeopleOverview = () => {
         if(peopleByID){
             const people = peopleList.map(id => peopleByID[id])
             setDisplayedPeople(people)
+            //loadPeopleImages(people)
         }
         setShowOverlay(false)
     }, [peopleByID, peopleList])
@@ -61,6 +63,10 @@ const PeopleOverview = () => {
   
         setDisplayedPeople(people)
     }
+
+
+
+ 
 
 
 

@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react'
+import React, {useMemo, useEffect} from 'react'
 import PeopleCard from './PeopleCard.component'
 import "../styles/components/PeopleList.scss"
 import LoadingOverlay from './LoadingIndicator.component'
@@ -44,6 +44,8 @@ export const RawPeopleList = SortableContainer(({card: Card, items, sortable, hi
                 return "people-list"
         }
     }, [displayType])
+
+
 
     return (
         <div className={classes}>
