@@ -21,18 +21,10 @@ const PeopleOverview = () => {
     const peopleByID= useSelector(store =>store.people.people.peopleByID)
     const isLoadingPeople = useSelector(store => store.people.people.fetchAllPeoplePending)
     const user = useSelector(store => store.user.user)
-    
-
 
     const [searchTerm, setSearchTerm] = useState("")
     const [displayedPeople, setDisplayedPeople] = useState([])
 
-
-
-    const [overlayPerson, setOverlayPerson] = useState({
-        name: "",
-        image_url: "",
-    })
     const [showOverlay, setShowOverlay] = useState(false)
 
 
@@ -72,6 +64,7 @@ const PeopleOverview = () => {
 
 
 
+
     return (
 
         <div className="page page--fullscreen page--flex" >
@@ -101,7 +94,7 @@ const PeopleOverview = () => {
                     />
               </div>
                 
-                <CreatePersonOverlay person={overlayPerson} setShowOverlay={setShowOverlay} showOverlay={showOverlay}/>
+                <CreatePersonOverlay setShowOverlay={setShowOverlay} showOverlay={showOverlay}/>
             </div>
         </div>
        

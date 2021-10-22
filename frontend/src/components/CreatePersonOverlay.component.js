@@ -34,6 +34,7 @@ const CreatePersonOverlay = ({setShowOverlay, showOverlay}) => {
             setPrevPending(false)
             setPersonName("")
             setImg(null)
+            setImgFile(null)
         }
     }, [createPersonErrorPending])
 
@@ -75,10 +76,15 @@ const CreatePersonOverlay = ({setShowOverlay, showOverlay}) => {
         cropImage();
     }
 
+    const onOverlayClose = () => {
+        setImgFile(null)
+        setImg(null)
+        setPersonName("")
+    }
 
 
     return (
-        <FlexOverlay setShow={setShowOverlay} show={showOverlay} className="person-overlay" title="Create New Person">
+        <FlexOverlay setShow={setShowOverlay} show={showOverlay} className="person-overlay" title="Create New Person" onClose={onOverlayClose}>
        
                 <form>
                     <FormMessageDisplay message={statusMessage.message} type={statusMessage.type} />
