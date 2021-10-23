@@ -15,6 +15,7 @@ import PeopleEditCard from '../components/PeopleEditCard.component'
 import "../styles/pages/BoardEditPage.styles.scss"
 import LoadingOverlay from '../components/LoadingOverlay.component'
 import NotFoundNotice from '../components/NotFoundNotice.component'
+import DropDownContainer from '../components/DropDownBox.component'
 
 const BaordEditPage = () => {
     const {boardId} = useParams() 
@@ -148,6 +149,7 @@ const BaordEditPage = () => {
 
                         <PageTitleSection title={"Edit 'Placeholder'"}>
                             <Link className="back-to-boards-overview-link" to="/boards" title="Back To Boards Overview"><FaArrowLeft /></Link>
+                            <div className=""></div>
                             <div className="edit-board-title-container">
                                 <div className="people-overview-header__input">
                                     <FormInput 
@@ -159,6 +161,7 @@ const BaordEditPage = () => {
                                 <div className="people-overview-header__button"> <button className="button button--mid button--action"  onClick={onAddPersonClick}><FaPlus />Add People</button></div>
                                 <div className="people-overview-header__button"> <button className="button button--mid button--danger" onClick={onDeleteBoardClick}><FaTrash />Delete Board</button></div>
                             </div>
+                          
                         </PageTitleSection>
             
                 

@@ -1,0 +1,46 @@
+.drop-down{
+    display: flex;
+    flex-direction: column;
+
+    &--expanded{}
+
+   
+    
+    &__header{
+        display: flex;
+        padding: 1.6rem;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        position: relative;
+        transition: .3s;
+
+        svg{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 2rem;
+            height: 2rem;
+        }
+
+        &:hover{
+            background: rgba(0,0,0,.3);
+        }
+
+        &:hover svg{
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+    }
+
+    &__body{
+
+        overflow: hidden;
+        transition: all 1s;
+        max-height: 0;
+    }
+
+    &--expanded &__body{
+        max-height: 200px;
+    }
+}
