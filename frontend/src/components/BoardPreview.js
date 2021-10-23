@@ -7,7 +7,7 @@ const BoardPreview = ({board}) => {
     return (
         <div className="board-preview" >
 
-            <div className="board-preview__feature-img" style={{backgroundImage: `url('https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg')` }}></div>
+            <div className="board-preview__feature-img" style={{backgroundImage: `url('/board.png')` }}></div>
 
             <div className="board-preview__title">
                 {board.title}
