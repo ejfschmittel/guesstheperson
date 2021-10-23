@@ -6,4 +6,5 @@ export interface BoardInterface{
     title: string,
     people: string,
     owner: UserEntity,
+    sharing_enabled: boolean,
 }

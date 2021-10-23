@@ -34,7 +34,7 @@ const PeopleList = (props) => {
     )
 }
 
-export const RawPeopleList = SortableContainer(({card: Card, items, sortable, hideOptions, selected, onClick, isLoading, emptyMessage, displayType}) => {
+export const RawPeopleList = SortableContainer(({id, card: Card, items, sortable, hideOptions, selected, onClick, isLoading, emptyMessage, displayType}) => {
 
     const classes = useMemo(() => {
         switch(displayType){
@@ -56,11 +56,12 @@ export const RawPeopleList = SortableContainer(({card: Card, items, sortable, hi
            
            <div className="people-list__items">     
                 {items.map((person, idx) => {
+                 
                     const isSelected = selected.filter(id => person.id === id).length === 1
                     return (
                         <Card 
                             person={person} 
-                            key={person.id} 
+                            key={id + person.id} 
                             index={idx} 
                             disabled={!sortable} 
                             selected={isSelected} 

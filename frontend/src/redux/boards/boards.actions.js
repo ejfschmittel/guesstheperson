@@ -97,7 +97,7 @@ const fetchOneBoard = (id) => dispatch => {
 
 
 const updateBoard = (id, updateBoardDto) => dispatch => {
-    console.log("fetch board")
+
     const updateBoardStart = () => ({
         type: BOARDS_TYPES.BOARDS_EDIT_START
     })

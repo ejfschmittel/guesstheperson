@@ -1,3 +1,4 @@
+import { removeAuthToken } from "../../../utils/jwt.utils"
 import BOARDS_TYPES from "../boards.types"
 
 const initialState = {
@@ -55,6 +56,15 @@ const boardsMainReducer = (state=initialState, action) => {
                 byId: {...state.byId, [action.payload.id]: action.payload},
                 list: [action.payload.id, ...state.list]
             }
+
+        case BOARDS_TYPES.BOARDS_EDIT_SUCCESS:
+            console.log("board edit success")
+            console.log(action.payload)
+          
+            return {
+                ...state, 
+                byId: {...state.byId, [action.payload.id]: action.payload},
+            }   
 
         
         default:

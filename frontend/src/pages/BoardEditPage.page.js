@@ -16,17 +16,21 @@ import "../styles/pages/BoardEditPage.styles.scss"
 import LoadingOverlay from '../components/LoadingOverlay.component'
 import NotFoundNotice from '../components/NotFoundNotice.component'
 import DropDownContainer from '../components/DropDownBox.component'
+import BoardEditShare from '../components/BoardEditShare.component'
 
 const BaordEditPage = () => {
     const {boardId} = useParams() 
     const dispatch = useDispatch()
   
     // selectors
-    const board = useSelector(store => store.boards.boards.byId[boardId])
+    const boards = useSelector(store => store.boards.boards.byId)
     const isEditPending = useSelector(store => store.boards.edit.editBoardPending)
     const fetchOnePending = useSelector(store => store.boards.boards.fetchOnePending)
     const user = useSelector(store => store.user.user)
 
+    const board = boards[boardId]
+
+    console.log(board)
 
 
     // state vars
@@ -148,8 +152,13 @@ const BaordEditPage = () => {
                         <LoadingOverlay isLoading={fetchOnePending} />
 
                         <PageTitleSection title={"Edit 'Placeholder'"}>
-                            <Link className="back-to-boards-overview-link" to="/boards" title="Back To Boards Overview"><FaArrowLeft /></Link>
-                            <div className=""></div>
+
+                            <div className="board-edit-controlls">
+                                <BoardEditShare className="share-board-icon" board={board}/>
+                                <Link className="back-to-boards-overview-link" to="/boards" title="Back To Boards Overview"><FaArrowLeft /></Link>
+                            </div>
+                            
+                       
                             <div className="edit-board-title-container">
                                 <div className="people-overview-header__input">
                                     <FormInput 
@@ -172,6 +181,7 @@ const BaordEditPage = () => {
                                 <FormMessageDisplay message="" type="error"/>
                             </div>
                             <PeopleList 
+                                id="board-edit-people"
                                 items={displayPeople} 
                                 sortable={true}
                                 onSortEnd={onSortEnd}

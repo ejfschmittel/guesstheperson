@@ -17,4 +17,8 @@ export class BoardEntity{
 
     @ManyToOne(() => UserEntity, user => user.people)
     owner: UserEntity;
+
+    // link generated link
+    @Column('boolean', {default: false})
+    sharing_enabled: boolean
 }

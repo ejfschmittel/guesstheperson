@@ -28,7 +28,6 @@ const PeopleCard = SortableElement(({children, person, selected, selectable, hid
             const url = API_BASE_URL + person.image_url;
             const image = new Image();
             image.onload = () => {
-                console.log(image)
                 setImage(image)
             }
             image.src = url

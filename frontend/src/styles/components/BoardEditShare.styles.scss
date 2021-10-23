@@ -1,0 +1,71 @@
+.board-share{
+    position: relative;
+    z-index: 2;
+
+    &--show &__container{
+        display: block;
+    }
+
+
+    &__icon-container{
+        z-index: 5;
+    }
+
+
+
+
+    &__input-container{
+        padding: .5rem 2rem;
+        display: flex;
+        width: 100%;
+        display: flex;
+        background: #eee;
+    }
+
+    &__input{
+        flex: 1;
+        border: none;
+        background: #eee;
+        font-size: 1.4rem;
+        padding: .2rem .5rem;
+    }
+
+    &__copy-btn{
+        border: none;
+        cursor: pointer;
+        margin-left: 2rem;
+        color: blue;
+    }
+
+    &__check{
+        padding: 1rem;
+        background: red;
+        display: inline-block;
+        border-radius: 1rem;
+        display: flex;
+        justify-content: space-between;
+        max-width: 80px;
+
+        input{
+            display: none;
+           
+
+        }
+
+        svg{
+            width: 1.6rem;
+            height: 1.6rem;
+        }
+
+    }
+
+    &__public-container{
+        margin-bottom: 1.6rem;
+        display: flex;
+        align-items: center;
+
+        & > * {
+            margin-right: 1rem;
+        }
+    }
+}
