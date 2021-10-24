@@ -22,13 +22,6 @@ const useIsLoggedIn = (redirectUrl) => {
 }
 
 const PrivateRoute = ({component: Component, ...props}) => {
-   /* const auth =  useSelector(store => store.user.token)
-    const isTokenExpired = isExpired(parseJwt(auth))
-
-
-    console.log(auth)
-    console.log(isTokenExpired)*/
-
     const isLoggedIn = useIsLoggedIn();
 
     return (

@@ -51,11 +51,9 @@ const DEFAULT_ERROR_VALIDATORS = {
 export const validate = (data, validators) => {
     const errors = {}
 
-    console.log(data)
     const validatorKeys = Object.keys(validators);
     for(let i = 0; i < validatorKeys.length; i++){
-      
-        
+         
         const fieldKey = validatorKeys[i];
         const value = data[fieldKey];
         const fieldValidators = validators[fieldKey]

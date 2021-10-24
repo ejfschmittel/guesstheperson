@@ -68,7 +68,6 @@ const CreatePersonOverlay = ({setShowOverlay, showOverlay}) => {
         if (e.target.files && e.target.files.length > 0) {
             const reader = new FileReader();
             reader.addEventListener('load', () => setImg(reader.result));
-            console.log(e.target.files[0])
             setImgFile(e.target.files[0])
             reader.readAsDataURL(e.target.files[0]);
         }

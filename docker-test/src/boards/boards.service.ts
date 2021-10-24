@@ -51,14 +51,8 @@ export class BoardsService {
 
 
     async updateBoard(id: string, updateBoardDto: UpdateBoardDto): Promise<BoardEntity>{
-        console.log("update board")
         const board = await this.findOne(id)
 
-
-        console.log(board)
-
-        console.log(updateBoardDto)
-        
         const {title, sharing_enabled, people} = updateBoardDto;
 
         // remove all people
@@ -78,8 +72,7 @@ export class BoardsService {
             newPeople.push(boardPersonEntity)
         }
        
-        // return updated board 
-
+        // create updated board data
         const updatedBoard = {
             ...board, // existing fields
             title, // updated fields
@@ -87,8 +80,7 @@ export class BoardsService {
             people: newPeople,
         }
 
-        console.log(updatedBoard)
-
+        // save updated board
         await this.boardRepositiory.save(updatedBoard);
         return this.findOne(id)
     }

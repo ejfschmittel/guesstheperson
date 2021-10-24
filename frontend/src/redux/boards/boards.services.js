@@ -63,7 +63,6 @@ const updateBoard = async (id,updateBoardDto) => {
 
 const deleteBoard = async (id) => {
     const URL = BOARDS_BASE_URL + id;
-    console.log(URL)
     return fetch(URL, {
         method: "DELETE",
         headers: {

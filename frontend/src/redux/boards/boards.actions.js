@@ -23,7 +23,6 @@ const createBoard = (createBoardDto) => dispatch => {
 
     boardsServices.createBoard(createBoardDto)
         .then(json => {
-            console.log("success")
             dispatch(createBoardSuccess(json))
 
             history.push({
@@ -59,7 +58,6 @@ const fetchAllBoards = () => dispatch => {
             dispatch(fetchAllBoardsSuccess(json))
         })
         .catch(errors => {
-            console.log(errors)
             dispatch(fetchAllBoardsError(errors))
         })   
 }
@@ -84,13 +82,10 @@ const fetchOneBoard = (id) => dispatch => {
 
     boardsServices.fetchOne(id)
         .then(json => {
-            console.log("fetch board success")
             dispatch(fetchOneBoardSuccess(json))
         })
         .catch(errors => {
-            console.log(errors)
             const parsedErrors = parseError(errors)
-            console.log(parsedErrors)
             dispatch(fetchOneBoardError(parsedErrors))
         })   
 }
@@ -116,11 +111,9 @@ const updateBoard = (id, updateBoardDto) => dispatch => {
 
     boardsServices.updateBoard(id, updateBoardDto)
         .then(json => {
-            console.log("fetch board success")
             dispatch(updateBoardSuccess(json))
         })
         .catch(errors => {
-            console.log(errors)
             dispatch(updateBoardError(errors))
         })   
 }
@@ -152,10 +145,7 @@ const deleteBaord = (id) => dispatch => {
             })
         })
         .catch(errors => {
-            console.log(errors)
-            console.log("errors")
             const parsedErrors = parseError(errors)
-            console.log(parsedErrors)
             dispatch(deleteBoardError(parsedErrors))
         })   
 }

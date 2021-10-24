@@ -25,10 +25,6 @@ import {getAuthToken, parseJwt, isExpired, removeAuthToken} from "../../utils/jw
             auth_token: token,
         }
     }
-
-    
-    console.log(parsedToken)
-    
   }
 
 
@@ -61,8 +57,6 @@ const userReducer = (state = initalState, action) => {
         case USER_TYPES.LOGIN_USER_PENDING:
             return {...state, userLoginPending: true}
         case USER_TYPES.LOGIN_USER_SUCCESS:
-            console.log("login user success")
-            console.log(action.payload)
             return {...state, userLoginPending: false, user: action.payload.user, auth_token: action.payload.token, userLoginError: null}
         case USER_TYPES.LOGIN_USER_ERROR:
             return {...state, userLoginPending: false, userLoginError: action.payload}

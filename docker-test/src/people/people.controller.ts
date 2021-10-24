@@ -26,8 +26,6 @@ export class PeopleController {
         fileFilter: imageFileFilter
     }))
     createPerson(@UploadedFile() image, @Body("name") name: string, @Req() request): any{
-        //console.log(request)
-        console.log(image)
         return this.peopleService.createPerson({
             image_url: image.path,
             name: name,
@@ -44,7 +42,6 @@ export class PeopleController {
 
     @Delete(":id")
     deletePerson(@Param("id") id: string): any{
-        console.log("delete person with " + id)
         this.peopleService.delete(id);
         return {id}
     }

@@ -32,7 +32,6 @@ export class UsersController {
     @UseGuards(JWTAuthGuard)
     @Get()
     findAll(@Req() request): Observable<UserInterface[]>{
-        console.log(request.user)
         return this.userService.findAll()
     }
 }

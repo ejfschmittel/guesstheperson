@@ -14,7 +14,6 @@ export class BoardsController {
     @Post()
     @UseGuards(JWTAuthGuard)
     createBoard(@Body() createBoardDto: createBoardDto, @Req() req){
-        console.log(createBoardDto)
         return this.boardsService.create(createBoardDto, req.user);
     }
 

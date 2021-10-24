@@ -11,9 +11,7 @@ const initialState = {
 }
 
 
-
 const peopleReducer = (state = initialState, action) => {
-    console.log(action)
     switch(action.type){
 
 

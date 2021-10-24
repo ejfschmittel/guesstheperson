@@ -28,7 +28,6 @@ const login = (userLoginDto, redirectUrl="/") => (dispatch) => {
 
     userService.login(userLoginDto)
         .then(json => {
-            console.log(json)
             const token = json.access_token;
             const user = getUserData(token);
             setAuthToken(token)

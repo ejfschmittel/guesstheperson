@@ -10,9 +10,7 @@ export class PersonOwnerGuard implements CanActivate{
         const user = request.user;
         const personID = request.params.id;
 
-        console.log(personID)
-        const person = await this.peopleService.findWithOwner(personID)
-       
+        const person = await this.peopleService.findWithOwner(personID)     
 
         let errorMessage = "You have to be logged In to access Person."
 

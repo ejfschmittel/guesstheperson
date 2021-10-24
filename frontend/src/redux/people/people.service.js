@@ -6,11 +6,8 @@ const PEOPLE_BASE_URL = API_BASE_URL + "people/"
 
 
 
-const deletePerson = (personId) => {
-
+const deletePerson = async (personId) => {
     const PEOPLE_DELETE_URL = PEOPLE_BASE_URL + `${personId}`
-
-    console.log(PEOPLE_DELETE_URL)
 
     return fetch(PEOPLE_DELETE_URL, {
         method: "DELETE",
@@ -35,12 +32,6 @@ const createPerson = async (createPersonDto) => {
     const formData = new FormData()
     formData.append('name', createPersonDto.name)
     formData.append('image', createPersonDto.image)
-
-    for (var pair of formData.entries()) {
-        console.log(pair[0]+ ', ' + pair[1]); 
-    }
-
-
 
     return fetch(PEOPLE_BASE_URL, {
         method: "POST",

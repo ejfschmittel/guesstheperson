@@ -17,7 +17,6 @@ const boardsMainReducer = (state=initialState, action) => {
             return {...state, fetchAllPending: true}
 
         case BOARDS_TYPES.BOARDS_FETCH_ALL_SUCCESS:
-            console.log("on success")
             return {...state, 
                 fetchAllPending: false, 
                 byId: action.payload.reduce((res, board) => ({...res, [board.id]: board }), {}),

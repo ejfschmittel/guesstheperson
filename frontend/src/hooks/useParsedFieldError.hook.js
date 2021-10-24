@@ -2,7 +2,6 @@ import {useMemo} from 'react'
 
 
 export const useParsedFieldErrors = (errors) => {
-    console.log(errors)
     const parsedErrors = useMemo(() => {
 
         const parsedErrors = {}

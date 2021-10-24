@@ -21,7 +21,6 @@ const useCrop = (initialImage=null) => {
             'newFile.jpeg'
           );
     
-          console.log(imgFile)
           const previewUrl = window.URL.createObjectURL(croppedImage);
           setImg(previewUrl)
  

@@ -24,8 +24,6 @@ const getEmptyUniversalErrorObject = () => ({
 })
 
 const parseFormError = (error) => {
-    console.log("**HTTP_ERROR**")
-    console.error(error)
     const errorObject = getEmptyUniversalErrorObject()
     errorObject.primaryMessage = null;
     errorObject.type = ERROR_TYPES.FORM_ERROR;
@@ -36,10 +34,6 @@ const parseFormError = (error) => {
 
 
 const parseHTTPError = (error) => {
-    console.log("**HTTP_ERROR**")
-    console.error(error)
-
-
     const errorObject = getEmptyUniversalErrorObject()
     errorObject.type = ERROR_TYPES.HTTP_ERROR;
     errorObject.status = error.status;

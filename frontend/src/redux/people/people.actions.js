@@ -24,11 +24,9 @@ const deletePerson = (personId) => dispatch => {
 
     peopleService.deletePerson(personId)
     .then(json => {
-        console.log(json)
         dispatch(deletePersonSuccess(json.id))
     })
     .catch(error => {
-        console.log(error)
         dispatch(deletePersonError(personId, error))
     })
 }
@@ -81,11 +79,9 @@ const fetchAllPeople = () => (dispatch) => {
 
     peopleService.fetchAllPeople()
         .then(json => {
-            console.log(json)
             dispatch(fetchAllPeopleSuccess(json))
         })
         .catch(error => {
-            console.log(error)
             dispatch(fetchAllPeopleError(error))
         })
 }
