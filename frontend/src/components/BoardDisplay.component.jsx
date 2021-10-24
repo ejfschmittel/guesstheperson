@@ -1,6 +1,8 @@
 import React, {useState, useEffect, useRef} from 'react'
-import "../styles/components/BoardDisplay.scss"
 import {API_BASE_URL} from "../utils/urls.utils"
+
+import "../styles/components/BoardDisplay.scss"
+
 const createEmptyBoard = (num) => {
     return [...new Array(num)].map(_ => ({
         open: true,

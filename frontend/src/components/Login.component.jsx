@@ -9,7 +9,7 @@ import { useParsedFieldErrors } from '../hooks/useParsedFieldError.hook'
 
 import FormInput from './FormInput.component'
 import FormMessageDisplay from './FormMessageDisplay.component'
-import PrimaryButton from './PrimaryButton'
+import PrimaryButton from './PrimaryButton.component'
 
 
 

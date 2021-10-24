@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {useParams} from "react-router-dom"
 import {useDispatch, useSelector} from "react-redux"
-import BoardDisplay from '../components/BoardDisplay'
+import BoardDisplay from '../components/BoardDisplay.component'
 import Header from '../components/Header.component'
 import boardsActions from '../redux/boards/boards.actions'
 import LoadingOverlay from "../components/LoadingOverlay.component"

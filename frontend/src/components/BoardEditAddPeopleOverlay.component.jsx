@@ -3,10 +3,10 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import peopleActions from "../redux/people/people.actions"
 
-import FlexOverlay from './FlexOverlay'
+import FlexOverlay from './FlexOverlay.component'
 import FormInput from "./FormInput.component"
 import PeopleList, {DISPLAY_TYPES} from "./PeopleList.component"
-import PrimaryButton from "./PrimaryButton"
+import PrimaryButton from "./PrimaryButton.component"
 
 import "../styles/components/BoardEditAddPeopleOverlay.styles.scss"
 

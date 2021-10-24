@@ -5,11 +5,11 @@ import peopleActions from "../redux/people/people.actions"
 import { useParsedFieldErrors } from '../hooks/useParsedFieldError.hook';
 import useCrop from "../hooks/useCrop.hook"
 
-import FlexOverlay from "./FlexOverlay"
+import FlexOverlay from "./FlexOverlay.component"
 import FormMessageDisplay from './FormMessageDisplay.component';
 import FormInput from "./FormInput.component"
 import ImageSelector from './ImageSelector.component';
-import PrimaryButton from "./PrimaryButton"
+import PrimaryButton from "./PrimaryButton.component"
 
 import "../styles/components/EditPersonOverlay.scss";
 

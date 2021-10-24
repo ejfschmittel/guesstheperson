@@ -1,5 +1,5 @@
 import React from 'react'
-import BoardPreview from './BoardPreview'
+import BoardPreview from './BoardPreview.component'
 import FormMessageDisplay from './FormMessageDisplay.component'
 
 import "../styles/components/BoardsList.scss"

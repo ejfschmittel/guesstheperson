@@ -9,7 +9,7 @@ import FormInput from '../components/FormInput.component'
 import Header from "../components/Header.component"
 import PageTitleSection from "../components/PageTitleSection.component"
 import PeopleList from '../components/PeopleList.component'
-import PeopleOverviewCard from '../components/PeopleOverviewCard.component'
+import PeopleCardOverview from '../components/PeopleCardOverview.component'
 
 import "../styles/pages/PeopleOverviewpage.styles.scss"
 
@@ -85,7 +85,7 @@ const PeopleOverview = () => {
                         hideOptions={false} 
                         isLoading={isLoadingPeople} 
                         emptyMessage={searchTerm ? `There are no people with the name '${searchTerm}'` : null}
-                        card={PeopleOverviewCard}
+                        card={PeopleCardOverview}
                         />
                 </div>
                 

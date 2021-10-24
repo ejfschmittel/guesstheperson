@@ -7,7 +7,7 @@ import {FaPlus, FaTrash, FaArrowLeft} from "react-icons/fa"
 import boardActions from "../redux/boards/boards.actions"
 
 import Header from '../components/Header.component'
-import BoardEditAddPeopleOverlay from '../components/BoardEditAddPeopleOverlay'
+import BoardEditAddPeopleOverlay from '../components/BoardEditAddPeopleOverlay.component'
 import BoardEditShare from '../components/BoardEditShare.component'
 import FormInput from '../components/FormInput.component'
 import FormMessageDisplay from '../components/FormMessageDisplay.component'
@@ -15,8 +15,8 @@ import LoadingOverlay from '../components/LoadingOverlay.component'
 import NotFoundNotice from '../components/NotFoundNotice.component'
 import PeopleList from '../components/PeopleList.component'
 import PageTitleSection from '../components/PageTitleSection.component'
-import PrimaryButton from "../components/PrimaryButton"
-import PeopleEditCard from '../components/PeopleEditCard.component'
+import PrimaryButton from "../components/PrimaryButton.component"
+import PeopleCardEdit from '../components/PeopleCardEdit.component'
 
 import "../styles/pages/BoardEditPage.styles.scss"
 
@@ -184,7 +184,7 @@ const BaordEditPage = () => {
                                 onSortEnd={onSortEnd}
                                 axis="xy" 
                                 card={({person, ...props}) => 
-                                    <PeopleEditCard person={person} {...props} onRemoveClick={() => onRemoveCard(person)}/>
+                                    <PeopleCardEdit person={person} {...props} onRemoveClick={() => onRemoveCard(person)}/>
                                 }
                                 />
                         </div>

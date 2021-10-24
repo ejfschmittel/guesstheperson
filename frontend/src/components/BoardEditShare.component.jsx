@@ -4,7 +4,7 @@ import {useDispatch} from "react-redux"
 
 import boardActions from "../redux/boards/boards.actions"
 
-import FlexOverlay from './FlexOverlay'
+import FlexOverlay from './FlexOverlay.component'
 import ToggleCheckbox from "./ToggleCheckbox.component"
 import FormMessageDisplay from './FormMessageDisplay.component'
 

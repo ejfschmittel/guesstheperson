@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import FormInput from './FormInput.component'
 import {useDispatch, useSelector} from "react-redux"
 import userActions from "../redux/user/user.actions"
-import PrimaryButton from "./PrimaryButton"
+import PrimaryButton from "./PrimaryButton.component"
 import { useParsedFieldErrors } from '../hooks/useParsedFieldError.hook'
 import FormMessageDisplay from "./FormMessageDisplay.component"
 

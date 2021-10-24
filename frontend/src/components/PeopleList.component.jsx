@@ -1,7 +1,7 @@
 import React, {useMemo} from 'react'
 import {SortableContainer} from "react-sortable-hoc"
 
-import FormMessageDisplay from "../components/FormMessageDisplay.component"
+import FormMessageDisplay from "./FormMessageDisplay.component"
 import LoadingOverlay from './LoadingIndicator.component'
 import PeopleCard from './PeopleCard.component'
 

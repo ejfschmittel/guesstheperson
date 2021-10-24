@@ -4,7 +4,7 @@ import peopleActions from "../redux/people/people.actions"
 import { useDispatch } from 'react-redux'
 import PeopleCard from './PeopleCard.component'
 
-const PeopleOverviewCard = ({person, ...props}) => {
+const PeopleCardOverview = ({person, ...props}) => {
     const dispatch = useDispatch()
 
     const onDeleteClick = (e) => {
@@ -20,4 +20,4 @@ const PeopleOverviewCard = ({person, ...props}) => {
     )
 }
 
-export default PeopleOverviewCard
+export default PeopleCardOverview

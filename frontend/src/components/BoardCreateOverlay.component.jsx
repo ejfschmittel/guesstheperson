@@ -4,10 +4,10 @@ import { useSelector, useDispatch } from 'react-redux'
 import boardActions from '../redux/boards/boards.actions'
 import {useParsedFieldErrors} from "../hooks/useParsedFieldError.hook"
 
-import FlexOverlay from './FlexOverlay'
+import FlexOverlay from './FlexOverlay.component'
 import FormInput from './FormInput.component'
 import FormMessageDisplay from './FormMessageDisplay.component'
-import PrimaryButton from './PrimaryButton'
+import PrimaryButton from './PrimaryButton.component'
 
 
 const BoardCreateOverlay = ({showOverlay, setShowOverlay}) => {

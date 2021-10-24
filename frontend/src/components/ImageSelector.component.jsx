@@ -4,8 +4,6 @@ import ReactCrop from 'react-image-crop';
 import "../styles/components/ImageSelector.scss";
 import 'react-image-crop/dist/ReactCrop.css';
 
-
-
 const ImageSelector = ({src, crop, setCrop, onImageLoad, onImageSelect, errorMessage}) => {
     return (
         <div className={`image-selector ${errorMessage && 'image-selector--error'}`}>

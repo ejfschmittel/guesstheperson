@@ -5,7 +5,7 @@ import {FaPlus} from "react-icons/fa"
 import boardsActions from "../redux/boards/boards.actions"
 
 import BoardCreateOverlay from '../components/BoardCreateOverlay.component';
-import BoardsList from '../components/BoardsList'
+import BoardsList from '../components/BoardsList.component'
 import Header from '../components/Header.component'
 import FormInput from '../components/FormInput.component';
 import PageTitleSection from "../components/PageTitleSection.component"

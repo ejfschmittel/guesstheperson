@@ -5,9 +5,6 @@ import { useSelector } from 'react-redux';
 import "../styles/pages/Homepage.styles.scss";
 
 
-
-
-
 const HomePage = () => {
 
     const user = useSelector(store => store.user.user);

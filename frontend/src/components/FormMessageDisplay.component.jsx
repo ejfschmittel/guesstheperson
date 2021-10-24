@@ -8,7 +8,6 @@ const MESSAGE_TYPES = {
     INFO: "info"
 }
 
-
 const FormMessageDisplay = (props) => {
 
     const {message, type} = props;
@@ -25,8 +24,6 @@ const FormMessageDisplay = (props) => {
                 return "form-message-display__error"
         }
     }, [type])
-
-  
 
     return (
         <div className={`form-message-display ${messageClass} ${!message && 'form-message-display__hidden'}`}>
