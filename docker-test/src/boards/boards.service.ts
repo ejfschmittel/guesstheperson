@@ -49,6 +49,7 @@ export class BoardsService {
         return id;
     }
 
+
     async updateBoard(id: string, updateBoardDto: UpdateBoardDto): Promise<BoardEntity>{
         console.log("update board")
         const board = await this.findOne(id)

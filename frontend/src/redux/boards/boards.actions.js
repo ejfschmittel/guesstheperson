@@ -152,6 +152,8 @@ const deleteBaord = (id) => dispatch => {
             })
         })
         .catch(errors => {
+            console.log(errors)
+            console.log("errors")
             const parsedErrors = parseError(errors)
             console.log(parsedErrors)
             dispatch(deleteBoardError(parsedErrors))

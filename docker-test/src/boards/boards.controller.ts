@@ -38,6 +38,9 @@ export class BoardsController {
 
     @Delete(":id")
     async deleteBoard(@Param("id") id: string){
-        return this.boardsService.delete(id);
+        this.boardsService.delete(id);
+        return {id}
     }
+
+   
 }
