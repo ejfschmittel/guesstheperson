@@ -88,6 +88,7 @@ export class BoardsService {
 
         console.log(updatedBoard)
 
-        return this.boardRepositiory.save(updatedBoard);
+        await this.boardRepositiory.save(updatedBoard);
+        return this.findOne(id)
     }
 }

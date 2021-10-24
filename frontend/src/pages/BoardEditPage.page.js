@@ -51,6 +51,7 @@ const BaordEditPage = () => {
                 if(boardPerson.person) return [...arr, boardPerson.person]
                 return arr
             },[]) : [];
+            console.log(boardPeople)
             setDisplayPeople(boardPeople)
         }
     },[board])
@@ -136,6 +137,9 @@ const BaordEditPage = () => {
         
     }
 
+
+    console.log("display people")
+    console.log(displayPeople)
     return (
         <div className="page page--fullscreen page--flex" >
             <Header />

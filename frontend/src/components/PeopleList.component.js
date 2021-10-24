@@ -46,6 +46,8 @@ export const RawPeopleList = SortableContainer(({id, card: Card, items, sortable
     }, [displayType])
 
 
+    console.log("peopel list items")
+    console.log(items)
 
     return (
         <div className={classes}>
@@ -56,6 +58,8 @@ export const RawPeopleList = SortableContainer(({id, card: Card, items, sortable
            
            <div className="people-list__items">     
                 {items.map((person, idx) => {
+
+                    console.log(person )
                  
                     const isSelected = selected.filter(id => person.id === id).length === 1
                     return (
