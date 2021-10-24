@@ -1,11 +1,11 @@
-import React, {useMemo, useEffect} from 'react'
-import PeopleCard from './PeopleCard.component'
-import "../styles/components/PeopleList.scss"
-import LoadingOverlay from './LoadingIndicator.component'
+import React, {useMemo} from 'react'
 import {SortableContainer} from "react-sortable-hoc"
 
 import FormMessageDisplay from "../components/FormMessageDisplay.component"
+import LoadingOverlay from './LoadingIndicator.component'
+import PeopleCard from './PeopleCard.component'
 
+import "../styles/components/PeopleList.scss"
 
 export const DISPLAY_TYPES = {
     STANDARD: "standard",
@@ -13,8 +13,7 @@ export const DISPLAY_TYPES = {
 }
 
 const PeopleList = (props) => {
-
-    function shouldCancelStart(e) {
+    const shouldCancelStart = (e) => {
         // Cancel sorting if the event target is an `input`, `textarea`, `select` or `option`
         if (['input', 'textarea', 'select', 'option'].indexOf(e.target.tagName.toLowerCase()) !== -1) {
             return true; // Return true to cancel sorting
@@ -25,9 +24,6 @@ const PeopleList = (props) => {
         width: node.offsetWidth,
         height: node.offsetHeight,
     })
-
-
-
 
     return (
         <RawPeopleList {...props} distance={1}  shouldCancelStart={shouldCancelStart} getHelperDimensions={getHelperDimensions}/>
@@ -45,10 +41,6 @@ export const RawPeopleList = SortableContainer(({id, card: Card, items, sortable
         }
     }, [displayType])
 
-
-    console.log("peopel list items")
-    console.log(items)
-
     return (
         <div className={classes}>
          
@@ -57,10 +49,7 @@ export const RawPeopleList = SortableContainer(({id, card: Card, items, sortable
             {items.length === 0 && <FormMessageDisplay message={emptyMessage || "There are currently no people to display"} type="info" />}
            
            <div className="people-list__items">     
-                {items.map((person, idx) => {
-
-                    console.log(person )
-                 
+                {items.map((person, idx) => {               
                     const isSelected = selected.filter(id => person.id === id).length === 1
                     return (
                         <Card 

@@ -1,14 +1,17 @@
 import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+
+import peopleActions from "../redux/people/people.actions"
+import { useParsedFieldErrors } from '../hooks/useParsedFieldError.hook';
+import useCrop from "../hooks/useCrop.hook"
+
+import FlexOverlay from "./FlexOverlay"
+import FormMessageDisplay from './FormMessageDisplay.component';
 import FormInput from "./FormInput.component"
 import ImageSelector from './ImageSelector.component';
-import "../styles/components/EditPersonOverlay.scss";
-import peopleActions from "../redux/people/people.actions"
-import FlexOverlay from "./FlexOverlay"
-import useCrop from "../hooks/useCrop.hook"
 import PrimaryButton from "./PrimaryButton"
-import FormMessageDisplay from './FormMessageDisplay.component';
-import { useParsedFieldErrors } from '../hooks/useParsedFieldError.hook';
+
+import "../styles/components/EditPersonOverlay.scss";
 
 const CreatePersonOverlay = ({setShowOverlay, showOverlay}) => {
     const dispatch = useDispatch()

@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from "react-redux";
-import Header from '../components/Header.component'
-import BoardsList from '../components/BoardsList'
-import boardsActions from "../redux/boards/boards.actions"
 import {FaPlus} from "react-icons/fa"
-import FormInput from '../components/FormInput.component';
+
+import boardsActions from "../redux/boards/boards.actions"
+
 import BoardCreateOverlay from '../components/BoardCreateOverlay.component';
+import BoardsList from '../components/BoardsList'
+import Header from '../components/Header.component'
+import FormInput from '../components/FormInput.component';
 import PageTitleSection from "../components/PageTitleSection.component"
 
 
@@ -13,7 +15,6 @@ const BoardsOverviewPage = () => {
     const dispatch = useDispatch()
 
     // selectors
-    const user = useSelector(store => store.user.user)
     const boardsByID = useSelector(store => store.boards.boards.byId)
     const boardsList = useSelector(store => store.boards.boards.list)
     const fetchBoardsPending = useSelector(store => store.boards.boards.fetchAllPending)
@@ -35,12 +36,10 @@ const BoardsOverviewPage = () => {
         setBoards(boardsList.map(boardId => boardsByID[boardId]))
     }, [boardsByID, boardsList])
 
-    
-
-
+    // update search state & update displayed boards based on search term
     const onSearch = (e) => {
         setSearchTerm(e.target.value)
-        // update boards
+
         const searchedBoards = boardsList.map(boardId => {
             const board = boardsByID[boardId]
             return board.title.toLowerCase().includes(e.target.value) ? board : null;
@@ -58,22 +57,17 @@ const BoardsOverviewPage = () => {
     
         <div className="page__content page__content--container">
 
-
             <PageTitleSection title="Boards">
                 <div className="people-overview-header__controlls">
                     <div className="people-overview-header__input"><FormInput label="search" value={searchTerm} onChange={onSearch}/></div>
                     <div className="people-overview-header__button"> <button className="button button--action" onClick={onCreateClick}><FaPlus />New Board</button></div>
                 </div>
             </PageTitleSection>
-        
-
   
             <div className="page-section">
                 <BoardsList boards={boards} isLoading={fetchBoardsPending} error={fetchBoardsError} />
             </div>
-
-            
-          
+   
         </div>
         <BoardCreateOverlay showOverlay={showBoardCreate} setShowOverlay={setShowBoardCreate}/>
     </div>

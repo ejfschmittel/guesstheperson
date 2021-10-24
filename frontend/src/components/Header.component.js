@@ -1,8 +1,10 @@
 import React, {useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import userActions from "../redux/user/user.actions"
-import "../styles/components/Header.scss";
 import {Link} from "react-router-dom"
+
+import userActions from "../redux/user/user.actions"
+
+import "../styles/components/Header.scss";
 
 const Header = () => {
     const dispatch = useDispatch()
@@ -40,7 +42,7 @@ const Header = () => {
                             <Link className="header__link" to="/">Home</Link>
                             <Link className="header__link" to="/people">People</Link>
                             <Link className="header__link" to="/boards">Boards</Link>
-                            <a className="header__link" onClick={onLogoutClick}>Logout</a>
+                            <button className="header__link" onClick={onLogoutClick}>Logout</button>
                         </React.Fragment>
                         :
                         <React.Fragment>
@@ -49,8 +51,7 @@ const Header = () => {
                         </React.Fragment>
                     }
                 </div>
-
-                    
+                 
                 </nav>      
             </div>
         </header>

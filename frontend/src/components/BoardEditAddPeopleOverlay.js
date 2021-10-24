@@ -1,11 +1,14 @@
 import React, {useEffect, useState, useMemo} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import FlexOverlay from './FlexOverlay'
-import PeopleList, {DISPLAY_TYPES} from "./PeopleList.component"
-import FormInput from "./FormInput.component"
+
 import peopleActions from "../redux/people/people.actions"
-import "../styles/components/BoardEditAddPeopleOverlay.styles.scss"
+
+import FlexOverlay from './FlexOverlay'
+import FormInput from "./FormInput.component"
+import PeopleList, {DISPLAY_TYPES} from "./PeopleList.component"
 import PrimaryButton from "./PrimaryButton"
+
+import "../styles/components/BoardEditAddPeopleOverlay.styles.scss"
 
 const BoardEditAddPeopleOverlay = ({setShow, show, addPeople}) => {
     const dispatch = useDispatch()
@@ -23,10 +26,10 @@ const BoardEditAddPeopleOverlay = ({setShow, show, addPeople}) => {
     )
 
 
-
+    // fetch users people on load
     useEffect(() => {
         dispatch(peopleActions.fetchAllPeople())
-    },[])
+    },[dispatch])
 
     useEffect(() => { 
         setPeopleDisplayList(allPeople)
@@ -51,25 +54,20 @@ const BoardEditAddPeopleOverlay = ({setShow, show, addPeople}) => {
 
         // remove selected people
         setSelectedPeople([])
-        // set search = ""
         setSerachTerm("")
         setPeopleDisplayList(allPeople)
-        // close window
         setShow(false)
     }
 
     const onSearch = (e) => {
         setSerachTerm(e.target.value)
         const searchTerm = e.target.value;
-        console.log("all people")
-        console.log(allPeople)
 
         const searchResults = allPeople.filter(person => {
             return person.name.includes(searchTerm)
         })
         setPeopleDisplayList(searchResults)
     }
-
     
 
     return (

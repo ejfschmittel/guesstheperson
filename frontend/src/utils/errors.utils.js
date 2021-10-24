@@ -27,7 +27,6 @@ const parseFormError = (error) => {
     console.log("**HTTP_ERROR**")
     console.error(error)
     const errorObject = getEmptyUniversalErrorObject()
-    //errorObject.primaryMessage = getPrimaryMessageFromFormError(error);
     errorObject.primaryMessage = null;
     errorObject.type = ERROR_TYPES.FORM_ERROR;
     errorObject.status = 400;
@@ -35,12 +34,6 @@ const parseFormError = (error) => {
     return errorObject;
 }
 
-const getPrimaryMessageFromFormError = (error) => {
-    const firstFieldErrors = error.data[Object.keys(error.data)[0]]
-    console.log(firstFieldErrors)
-    const firstFieldError = firstFieldErrors[Object.keys(firstFieldErrors)[0]]
-    return firstFieldError;
-}
 
 const parseHTTPError = (error) => {
     console.log("**HTTP_ERROR**")

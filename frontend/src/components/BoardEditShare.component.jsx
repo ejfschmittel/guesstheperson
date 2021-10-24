@@ -1,35 +1,27 @@
 import React, {useState} from 'react'
-import {FaShareAlt, FaCheck, FaTimes} from "react-icons/fa"
+import {FaShareAlt} from "react-icons/fa"
 import {useDispatch} from "react-redux"
+
 import boardActions from "../redux/boards/boards.actions"
+
 import FlexOverlay from './FlexOverlay'
 import ToggleCheckbox from "./ToggleCheckbox.component"
 import FormMessageDisplay from './FormMessageDisplay.component'
+
 import "../styles/components/BoardEditShare.styles.scss"
-/*
-    - slider
-    - loading 
-    - copy link area
 
-    onChange => update sharing option
-
-
-*/
 
 const BoardEditShare = ({className, board}) => {
     const dispatch = useDispatch()
 
     const [showShareBoard, setShowShareBoard] = useState(false)
-
-    const toggleShowBoard = () => setShowShareBoard(!showShareBoard)
-
-
     const [share, setShare] =  useState(board ? board.sharing_enabled : false)
     const [message, setMessage] = useState("")
 
-
     const link = board ? `${window.location.hostname}/boards/${board.id}` : ''
     
+
+    const toggleShowBoard = () => setShowShareBoard(!showShareBoard)
 
     const copyLinkToClipBoard = () => {
         navigator.clipboard.writeText(link).then(function() {
@@ -48,10 +40,10 @@ const BoardEditShare = ({className, board}) => {
     }
 
  
+    // updates 'public/private' status of board
     const onShareChange = (e) => {
         setShare(e.target.checked)
-
-      
+     
         if(board){
             const updateBoardDto = {
                 title: board.title,
@@ -59,8 +51,6 @@ const BoardEditShare = ({className, board}) => {
                 sharing_enabled: e.target.checked
             }
 
-            // call action
-            console.log(updateBoardDto)
             dispatch(boardActions.updateBoard(board.id, updateBoardDto))
         }
         

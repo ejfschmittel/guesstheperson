@@ -1,4 +1,3 @@
-import { removeAuthToken } from "../../../utils/jwt.utils"
 import BOARDS_TYPES from "../boards.types"
 
 const initialState = {
@@ -29,7 +28,6 @@ const boardsMainReducer = (state=initialState, action) => {
         case BOARDS_TYPES.BOARDS_FETCH_ALL_ERROR:
             return {...state, fetchAllPending: false, fetchAllError: action.payload}
 
-         // fetch one action types
         case BOARDS_TYPES.BOARDS_FETCH_ONE_START:
             return {...state, fetchOnePending: true, fetchOneError: null}
 
@@ -48,19 +46,13 @@ const boardsMainReducer = (state=initialState, action) => {
             return {...state, fetchOnePending: false, fetchOneError: action.payload}
 
         case BOARDS_TYPES.BOARDS_CREATE_SUCCESS:
-
-             console.log("create success")
-             console.log(action.payload);
             return {
                 ...state, 
                 byId: {...state.byId, [action.payload.id]: action.payload},
                 list: [action.payload.id, ...state.list]
             }
 
-        case BOARDS_TYPES.BOARDS_EDIT_SUCCESS:
-            console.log("board edit success")
-            console.log(action.payload)
-          
+        case BOARDS_TYPES.BOARDS_EDIT_SUCCESS:     
             return {
                 ...state, 
                 byId: {...state.byId, [action.payload.id]: action.payload},

@@ -1,22 +1,24 @@
 import React, {useState, useEffect} from 'react'
 import {useDispatch, useSelector} from "react-redux"
-import {useParams, useLocation} from "react-router-dom"
-import Header from '../components/Header.component'
 import {Link} from "react-router-dom"
+import {useParams} from "react-router-dom"
 import {FaPlus, FaTrash, FaArrowLeft} from "react-icons/fa"
-import BoardEditAddPeopleOverlay from '../components/BoardEditAddPeopleOverlay'
-import PeopleList from '../components/PeopleList.component'
+
 import boardActions from "../redux/boards/boards.actions"
+
+import Header from '../components/Header.component'
+import BoardEditAddPeopleOverlay from '../components/BoardEditAddPeopleOverlay'
+import BoardEditShare from '../components/BoardEditShare.component'
 import FormInput from '../components/FormInput.component'
-import PageTitleSection from '../components/PageTitleSection.component'
-import PrimaryButton from "../components/PrimaryButton"
 import FormMessageDisplay from '../components/FormMessageDisplay.component'
-import PeopleEditCard from '../components/PeopleEditCard.component'
-import "../styles/pages/BoardEditPage.styles.scss"
 import LoadingOverlay from '../components/LoadingOverlay.component'
 import NotFoundNotice from '../components/NotFoundNotice.component'
-import DropDownContainer from '../components/DropDownBox.component'
-import BoardEditShare from '../components/BoardEditShare.component'
+import PeopleList from '../components/PeopleList.component'
+import PageTitleSection from '../components/PageTitleSection.component'
+import PrimaryButton from "../components/PrimaryButton"
+import PeopleEditCard from '../components/PeopleEditCard.component'
+
+import "../styles/pages/BoardEditPage.styles.scss"
 
 const BaordEditPage = () => {
     const {boardId} = useParams() 
@@ -26,17 +28,12 @@ const BaordEditPage = () => {
     const boards = useSelector(store => store.boards.boards.byId)
     const isEditPending = useSelector(store => store.boards.edit.editBoardPending)
     const fetchOnePending = useSelector(store => store.boards.boards.fetchOnePending)
-    const user = useSelector(store => store.user.user)
-
-    const board = boards[boardId]
-
-    console.log(board)
-
 
     // state vars
     const [showOverlay, setShowOverlay] = useState(false)
     const [title, setTitle] = useState("Loading...")
     const [displayPeople, setDisplayPeople] = useState([])
+    const board = boards[boardId]
 
     // fetch board on load
     useEffect(() => {

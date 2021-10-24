@@ -1,27 +1,31 @@
 import React, {useState, useEffect} from 'react'
 import {useHistory} from "react-router-dom"
 import { Link } from 'react-router-dom'
-import FormInput from './FormInput.component'
 import {useDispatch, useSelector} from "react-redux"
-import userActions from "../redux/user/user.actions"
-import PrimaryButton from './PrimaryButton'
-import { useParsedFieldErrors } from '../hooks/useParsedFieldError.hook'
 import {useLocation} from "react-router-dom"
+
+import userActions from "../redux/user/user.actions"
+import { useParsedFieldErrors } from '../hooks/useParsedFieldError.hook'
+
+import FormInput from './FormInput.component'
 import FormMessageDisplay from './FormMessageDisplay.component'
+import PrimaryButton from './PrimaryButton'
+
 
 
 const useLoginRedirect = () => {
     const history = useHistory();
     const user = useSelector(store => store.user.user);
     const {state} = useLocation()
+    const refferer = state?.referrer ? state.referrer : null;
 
     useEffect(() => {
         // is logged in
         if(user){
-            const redirectUrl = state?.referrer ? state.referrer.pathname : "/";
+            const redirectUrl = refferer ? refferer.pathname : "/";
             history.push(redirectUrl);
         }
-    },[user])
+    },[user,history, refferer])
 }
 
 
@@ -38,14 +42,14 @@ const Login = () => {
     })
 
     
+    const [loginData, setLoginData] = useState({
+        email: "",
+        password: ""
+    })
 
 
-    
-    const isLoggedIn = useLoginRedirect();
+    useLoginRedirect();
 
-
-
-  
     useEffect(() => {
         if(loginError && loginError.primaryMessage){
             setFormMessage({
@@ -55,16 +59,7 @@ const Login = () => {
         }
     },[loginError])
 
-    
-   
-
-
-
-    const [loginData, setLoginData] = useState({
-        email: "",
-        password: ""
-    })
-
+    // on change handler for login form
     const onChange = (e) => {
         setLoginData({
             ...loginData,
@@ -72,15 +67,11 @@ const Login = () => {
         })
     }
 
-
+    // on login submit
     const onSubmit = (e) => {
         e.preventDefault()
-        console.log(userActions)
-       
-        
-       dispatch(userActions.login(loginData))
+        dispatch(userActions.login(loginData))
     }
-
 
 
     return (

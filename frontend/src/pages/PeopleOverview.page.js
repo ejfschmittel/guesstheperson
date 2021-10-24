@@ -1,16 +1,18 @@
 import React, {useState, useEffect} from 'react'
 import {useSelector, useDispatch} from "react-redux"
-import Header from "../components/Header.component"
-import PeopleList from '../components/PeopleList.component'
-import peopleActions from "../redux/people/people.actions"
-import CreatePersonOverlay from '../components/CreatePersonOverlay.component'
-
-import FormInput from '../components/FormInput.component'
-import "../styles/pages/PeopleOverviewpage.styles.scss"
 import {FaPlus} from "react-icons/fa"
-import PeopleOverviewCard from '../components/PeopleOverviewCard.component'
+
+import peopleActions from "../redux/people/people.actions"
+
+import CreatePersonOverlay from '../components/CreatePersonOverlay.component'
+import FormInput from '../components/FormInput.component'
+import Header from "../components/Header.component"
 import PageTitleSection from "../components/PageTitleSection.component"
-import {API_BASE_URL} from "../utils/urls.utils"
+import PeopleList from '../components/PeopleList.component'
+import PeopleOverviewCard from '../components/PeopleOverviewCard.component'
+
+import "../styles/pages/PeopleOverviewpage.styles.scss"
+
 /*
 
     CreatePersonOverlay
@@ -21,7 +23,6 @@ const PeopleOverview = () => {
     const peopleList = useSelector(store => store.people.people.peopleList)
     const peopleByID= useSelector(store =>store.people.people.peopleByID)
     const isLoadingPeople = useSelector(store => store.people.people.fetchAllPeoplePending)
-    const user = useSelector(store => store.user.user)
 
     const [searchTerm, setSearchTerm] = useState("")
     const [displayedPeople, setDisplayedPeople] = useState([])
@@ -29,18 +30,17 @@ const PeopleOverview = () => {
     const [showOverlay, setShowOverlay] = useState(false)
 
 
-
+    // load user people on load
     useEffect(() => {
-        // load people list
         dispatch(peopleActions.fetchAllPeople())
     }, [dispatch])
 
 
+    // react to people update & convert to display ready array
     useEffect(() => {
         if(peopleByID){
             const people = peopleList.map(id => peopleByID[id])
             setDisplayedPeople(people)
-            //loadPeopleImages(people)
         }
         setShowOverlay(false)
     }, [peopleByID, peopleList])
@@ -51,11 +51,10 @@ const PeopleOverview = () => {
 
     const onSearch = (e) => {
         setSearchTerm(e.target.value)
-        filterPeople(e.target.value)
+        filterDisplayedPeopleBySearch(e.target.value)
     }
 
-
-    const filterPeople = (searchTerm) => {
+    const filterDisplayedPeopleBySearch = (searchTerm) => {
         const people = peopleList.map(id => {
             const person = peopleByID[id]
             return person.name.toLowerCase().includes(searchTerm.toLowerCase()) ? person : null; 
@@ -65,21 +64,13 @@ const PeopleOverview = () => {
     }
 
 
-
- 
-
-
-
-
     return (
 
         <div className="page page--fullscreen page--flex" >
             <Header />
         
             <div className="page__content page__content--container">
-
-
-                
+        
                 <PageTitleSection title="People Overview">
                     <div className="people-overview-header__controlls">
                         <div className="people-overview-header__input"><FormInput label="search" value={searchTerm} onChange={onSearch}/></div>
@@ -88,22 +79,19 @@ const PeopleOverview = () => {
                 </PageTitleSection>
               
                
-              
-
-              <div className="page-section">
-                <PeopleList 
-                    items={displayedPeople}  
-                    hideOptions={false} 
-                    isLoading={isLoadingPeople} 
-                    emptyMessage={searchTerm ? `There are no people with the name '${searchTerm}'` : null}
-                    card={PeopleOverviewCard}
-                    />
-              </div>
+                <div className="page-section">
+                    <PeopleList 
+                        items={displayedPeople}  
+                        hideOptions={false} 
+                        isLoading={isLoadingPeople} 
+                        emptyMessage={searchTerm ? `There are no people with the name '${searchTerm}'` : null}
+                        card={PeopleOverviewCard}
+                        />
+                </div>
                 
                 <CreatePersonOverlay setShowOverlay={setShowOverlay} showOverlay={showOverlay}/>
             </div>
         </div>
-       
     )
 }
 
