@@ -4,7 +4,7 @@ services:
       build:
         dockerfile: Dockerfile
         context: ./docker-test 
-        target: development
+        target: ${NODE_ENV}
       volumes:
           - ./docker-test:/usr/src/app
           - ./usr/src/app/node_modules
@@ -13,7 +13,7 @@ services:
         - postgres
       environment:
         DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/db
-        NODE_ENV: development
+        NODE_ENV: ${NODE_ENV}
         JWT_SECRET: ${JWT_SECRET}
         PORT: 3000
       ports: 
@@ -31,7 +31,7 @@ services:
       depends_on:
         - postgres
       environment: 
-        PGADMIN_DEFAULT_EMAIL: admin@admin.de
-        PGADMIN_DEFAULT_PASSWORD: password
+        PGADMIN_DEFAULT_EMAIL: ${PG_ADMIN_EMAIL}
+        PGADMIN_DEFAULT_PASSWORD: ${PG_ADMIN_PASSWORD}
       ports:
         - "${POSTGRES_ADMIN_PORT}:80"
