@@ -2,7 +2,7 @@ import React from "react";
 import {Switch, Route, Router} from "react-router-dom"
 
 import history from "./utils/history.utils"
-
+import {API_BASE_URL} from "./utils/urls.utils"
 import HomepagePage from "./pages/Homepage.page";
 import LoginPage from "./pages/Login.page";
 import RegisterPage from "./pages/Register.page";
@@ -13,6 +13,8 @@ import PlayBoard from "./pages/PlayBoard.page";
 import PrivateRoute from "./redux/PrivateRoute"
 
 import "./styles/main.scss";
+
+console.log(API_BASE_URL)
 
 
 function App() {

@@ -12,7 +12,7 @@ services:
       depends_on:
         - postgres
       environment:
-        DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/db
+        DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
         NODE_ENV: ${NODE_ENV}
         JWT_SECRET: ${JWT_SECRET}
         PORT: 3000

@@ -3,13 +3,18 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
 
+const corsOptions = process.env.NODE_ENV === "production" ? {
+  origin: 'https://ejfschmittel.github.io/',
+  credentials: true,
+}:{
+  origin: 'http://localhost:3000',
+    credentials: true,
+}
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api')
-  app.enableCors({
-    origin: 'http://localhost:3000',
-    credentials: true,
-  })
+  app.enableCors(corsOptions)
 
   
 

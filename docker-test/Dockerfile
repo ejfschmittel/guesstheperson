@@ -4,7 +4,9 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN npm install
+RUN npm install glob rimraf
+
+RUN npm install --only=development
 
 COPY . . 
 
@@ -17,8 +19,13 @@ ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /usr/src/app
 
-COPY --from=development /usr/src/app .
+COPY package*.json ./
 
-EXPOSE 8080
+
+RUN npm install --only=production
+
+COPY . .
+
+COPY --from=development /usr/src/app .
 
 CMD ["node", "dist/main"]
