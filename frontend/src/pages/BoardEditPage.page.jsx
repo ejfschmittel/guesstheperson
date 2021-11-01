@@ -148,7 +148,7 @@ const BaordEditPage = () => {
                     <div className="page__content page__content--container">
                         <LoadingOverlay isLoading={fetchOnePending} />
 
-                        <PageTitleSection title={"Edit 'Placeholder'"}>
+                        <PageTitleSection title={`Edit '${board ? title : "loading..."}'`}>
 
                             <div className="board-edit-controlls">
                                 <BoardEditShare className="share-board-icon" board={board}/>
