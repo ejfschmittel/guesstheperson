@@ -1,8 +1,14 @@
+@use "../abstracts/" as *;
+
 .people-list{
 
     padding: 2rem;
     background: #fff;
     position: relative;
+
+    @include respond(phone){
+        padding: .4rem;
+    }
 
     &--auto-fit{
         max-height: 40vh;
@@ -13,12 +19,21 @@
 
     &--auto-fit &__items{
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+
+        @include respond(phone){
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        }
     }
 
     &__items{
         display: grid;
         grid-template-columns: repeat(6, minmax(0, 1fr));
         gap: 1.5rem;
+
+        @include respond(phone){
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        }
     }
 
     

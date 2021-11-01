@@ -1,12 +1,28 @@
+@use "../abstracts/" as *;
+
+
 .boards-list{
 
     padding: 2rem;
+
+    @include respond(tab-port){
+        padding: 1rem;
+    }
+
+    @include respond(phone){
+        padding: 0.4rem;
+    }
 
     &__items{
         flex-direction: column;
         gap: 2rem;
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+        @include respond(phone){
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1.4rem
+        }
     }
 
     & .form-message-display{

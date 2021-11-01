@@ -1,3 +1,5 @@
+@use "../abstracts/" as *;
+
 .primary-error-field{
    
     min-height: 2rem;
@@ -7,6 +9,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
 
     &--active{
         

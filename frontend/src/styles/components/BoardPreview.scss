@@ -1,3 +1,5 @@
+@use "../abstracts/" as *;
+
 .board-preview{
     display: flex;
     flex-direction: column;
@@ -17,12 +19,23 @@
         padding: .5rem 0;
         background: #333;
         color: #fff;
+
+        @include respond(tab-port){
+            font-size: 1.6rem;
+            padding: .8rem 0;
+        }
     }
 
     &__buttons{
         display: flex;
         width: 100%;
+
+        @include respond(phone){
+            flex-direction: column;
+        }
     }
+
+
 
     &__feature-img{
         height: 10rem;
@@ -48,6 +61,11 @@
         justify-content: center;
         align-items: center;
         text-decoration: none;
+
+        @include respond(phone){
+            font-size: 1.6rem;
+            padding: .8rem 0;
+        }
 
         svg{
             margin-right: .3rem;
