@@ -1,5 +1,5 @@
 import React from "react";
-import {Switch, Route, Router} from "react-router-dom"
+import {Switch, Route, Router, HashRouter} from "react-router-dom"
 
 import history from "./utils/history.utils"
 import {API_BASE_URL} from "./utils/urls.utils"
@@ -20,7 +20,7 @@ console.log(API_BASE_URL)
 function App() {
   return (
     <div className="App">
-      <Router history={history} >
+      <HashRouter history={history} >
         <Switch>
           
           <Route path="/register" component={RegisterPage}/>
@@ -28,12 +28,12 @@ function App() {
           <PrivateRoute path="/people" component={PeopleOverview}/>
 
           <PrivateRoute path="/boards/:boardId/edit" component={BaordEditPage} />
-          <PrivateRoute path="/boards/:boardId" component={PlayBoard} />
+          <Route path="/boards/:boardId" component={PlayBoard} />
           <PrivateRoute path="/boards" component={BoardsOverviewPage} />
         
           <Route path="/" component={HomepagePage}/>
         </Switch>
-      </Router>
+      </HashRouter>
     </div>
   );
 }

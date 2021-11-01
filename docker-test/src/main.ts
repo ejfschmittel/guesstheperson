@@ -4,7 +4,7 @@ import { AppModule } from './app.module';
 
 
 const corsOptions = process.env.NODE_ENV === "production" ? {
-  origin: 'https://ejfschmittel.github.io/',
+  origin: 'https://guesstheperson.eliasschmittel.com',
   credentials: true,
 }:{
   origin: 'http://localhost:3000',

@@ -26,7 +26,7 @@ const createBoard = (createBoardDto) => dispatch => {
             dispatch(createBoardSuccess(json))
 
             history.push({
-                pathname: `/boards/${json.id}/edit`
+                pathname: `/#/boards/${json.id}/edit`
             })
         })
         .catch(errors => {
@@ -141,7 +141,7 @@ const deleteBaord = (id) => dispatch => {
         .then(json => {
             dispatch(deleteBoardSuccess(id))
             history.push({
-                pathname: "/boards"
+                pathname: "/#/boards"
             })
         })
         .catch(errors => {

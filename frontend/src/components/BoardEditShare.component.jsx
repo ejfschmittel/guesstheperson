@@ -18,7 +18,7 @@ const BoardEditShare = ({className, board}) => {
     const [share, setShare] =  useState(board ? board.sharing_enabled : false)
     const [message, setMessage] = useState("")
 
-    const link = board ? `${window.location.hostname}/boards/${board.id}` : ''
+    const link = board ? `${window.location.hostname}/#/boards/${board.id}` : ''
     
 
     const toggleShowBoard = () => setShowShareBoard(!showShareBoard)
