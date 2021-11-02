@@ -5,6 +5,9 @@
     padding: 1rem 2rem;
     position: relative;
 
+    &--high{
+
+    }
   
     @include respond(tab-port){
         padding: 2rem !important;
@@ -19,6 +22,10 @@
             margin-bottom: 1.6rem;
         }
 
+        
+    }
+
+    &--high &__title{
         @include respond(phone){
             margin-bottom: 1.6rem;
             margin-top: 5rem;

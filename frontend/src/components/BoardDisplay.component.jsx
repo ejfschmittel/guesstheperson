@@ -49,6 +49,7 @@ const BoardDisplay = ({people}) => {
 
     return (
         <div className="board-display__container">
+             <button className="board-display-open-all-btn" onClick={openAll}>Open All</button>
             <div className="board-display">
                 {board.map((boardCard, i) => {
 
@@ -59,7 +60,7 @@ const BoardDisplay = ({people}) => {
                 })}
             </div>
 
-            <button className="board-display-open-all-btn" onClick={openAll}>Open All</button>
+           
         </div>
     )
 }
@@ -71,10 +72,18 @@ const BoardDisplayCard = ({card, pos, onCardClick}) => {
     const [height, setHeight] = useState(0);
 
 
+  
+
     useEffect(() => {
+        window.addEventListener('resize', setSize);
+        setSize();
+        return () => window.removeEventListener('resize', setSize);
+    }, []);
+
+    const setSize = () => {
         const width = cardRef.current.offsetWidth
         setHeight(width * 4 / 3);
-    }, [])
+    }
 
 
 

@@ -22,12 +22,22 @@
     &__container{
         perspective: 800px;
         padding: 0 6rem;
+
+        @include respond(phone){
+            padding: 0 1rem;
+            
+        }
     }
 
     
     transform: rotateX(17deg) rotateZ(0deg) rotateY(0deg) translateY(5rem);
     
-    
+    @include respond(phone){
+        transform: rotateX(0deg) rotateZ(0deg) rotateY(0deg) translateY(0rem);
+        gap: 1rem;
+        grid-template-columns: repeat(4,1fr);   
+        perspective: none;
+    }
   
 
 
@@ -61,8 +71,14 @@
         transition: .5s;
         transform-style: preserve-3d;
         transform: translateY(-100%) rotate3d(1,0,0,-180deg);
+        backface-visibility: visible;
      
         z-index: 10;
+
+        @include respond(phone){
+            transform:  translateY(0%) rotate3d(0,1,0,-180deg);
+            backface-visibility: visible;
+        }
 
         &:hover{
             box-shadow: 0 .5rem 2rem rgba(255,255,255,.8);
@@ -73,7 +89,12 @@
         }
 
         &--open{
-            transform: translateY(-100%) rotate3d(1,0,0,-30deg);
+            transform:  translateY(-100%) rotate3d(1,0,0,-30deg);
+
+            @include respond(phone){
+                transform: translateY(0%) rotate3d(0,1,0,0deg);
+                backface-visibility: visible;
+            }
         }
 
       
@@ -178,4 +199,12 @@
     cursor: pointer;
     background: green;
     color: #fff;
+
+    @include respond(phone){
+        position: relative;
+        width: 100%;
+        right: auto;
+        top: auto;
+        margin-bottom: 2rem;
+    }
 }
